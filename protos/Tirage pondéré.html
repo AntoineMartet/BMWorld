@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <textarea id="console" rows=10 col=40 >résultats </textarea>
+</body>
+</html>
+<script>
+  let tab=[{"nom":"manger","prob":10},{"nom":"courir","prob":10},
+      {"nom":"travailler","prob":40},{"nom":"étudier","prob":20},
+      {"nom":"courir","prob":0},{"nom":"courir","prob":-5}]
+
+  for (j=0;j<10;j++){
+      ii=fnTire(tab);
+      document.getElementById("console").value += "\n"+tab[ii].nom;
+  }
+
+  function fnTire(t){
+      //Calculer la somme, uniquement des >0
+      somme=0;
+      for (i=0;i<tab.length;i++){
+         if (tab[i].prob>0) somme+= tab[i].prob;
+      }
+      //Tirer un nombre aléatoire de 0 à somme
+      n=Math.random()*somme;
+      total=0
+      for (i=0;i<tab.length;i++){
+          if (tab[i].prob>0){
+              total+=tab[i].prob;
+              if (total>=n) return i
+          }
+      }
+
+  }
+</script>

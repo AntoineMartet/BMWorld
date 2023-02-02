@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+	<title> Perspective point de fuite 2d et Demi </title>
+	<canvas id="dessin" width="1000" height="750" style="border:1px solid black;background-color:forestgreen">
+	</canvas>
+</body>
+</html>
+<script>
+	//script de test de perspective
+	// JCY 25 janvier 2023
+	let mo={"minx":-750,"maxx":750,"miny":0,"maxy":2000,"cell":50,"nx":28,"ny":40,
+			"r":1000,"h":1000,"a":0.7};//applatissement de départ pour y
+	let cr={"l":35,"h":50,"t":25};
+	let acr=[];//tableau des créatures (vide au départ)
+
+		//liaison entre le canvas et le code
+	let canvas = document.getElementById("dessin");
+    let ctx = canvas.getContext("2d");
+	let cx=canvas.width;
+	let cy=700;
+
+	tmrPrincipal=setInterval(function() {fnActionTimer();}, 1000);
+
+	fnCreatures(100);
+	function fnActionTimer() {
+		fnBouge();
+		fnDessineTout();
+	}
+	function fndist(x1,y1,x2,y2){
+		//renvoie la distance entre deux points
+		return Math.pow((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1),0.5)
+	}
+
+	function fndist2(i,j){
+		return fndist(am[i].x,am[i].y,am[j].x,am[j].y);
+	}
+
+
+	function fnDessineTout(){
+		ctx.clearRect(0,0,canvas.width,canvas.height);
+		ctx.fillStyle="lightblue";
+		ctx.fillRect(0,0,cx,220);
+		for (x=mo.minx;x<=mo.maxx;x+=mo.cell){
+			p1=fnTransforme(x,mo.miny);
+			p2=fnTransforme(x,mo.maxy);
+			ctx.beginPath();
+			ctx.moveTo(p1.x,p1.y);
+			ctx.lineTo(p2.x,p2.y);
+			ctx.stroke();
+		}
+		for (y=mo.miny;y<=mo.maxy;y+=mo.cell){
+			p1=fnTransforme(mo.minx,y);
+			p2=fnTransforme(mo.maxx,y);
+			ctx.beginPath();
+			ctx.moveTo(p1.x,p1.y);
+			ctx.lineTo(p2.x,p2.y);
+			ctx.stroke();
+		}
+
+
+		//tri du tableau
+		acr.sort(function (a, b) {
+				return b.y-a.y;
+			})
+		//Dessiner les créatures (ellipse)
+		for (i=0;i<acr.length;i++){
+			p1=fnTransforme(acr[i].x+mo.cell/2,acr[i].y+mo.cell/2);
+			ctx.fillStyle=acr[i].color;
+			alea=Math.random()*10-5;
+			x=p1.x-cr.l/2*p1.ratio+alea*p1.ratio;
+			y=p1.y-cr.h*p1.ratio;
+			r1=cr.l*p1.ratio;
+			r2=cr.h*p1.ratio;
+			ctx.beginPath();
+			ctx.ellipse(x,y,r1,r2,0,0,6.28,false);
+			ctx.fill();
+			ctx.beginPath();
+			ctx.arc(x,y-(cr.h+cr.t)*p1.ratio,cr.t*p1.ratio,0,6.28,false);
+			ctx.fill();
+
+		}
+
+	}
+
+	function fnTransforme(x,y){
+		//pour un recul de 1000 et une hauteur de vue de 1000
+
+		y1=mo.a*y*mo.h/(mo.r+y);
+		if (y>1)
+			x1=x*y1/y/mo.a;
+		else x1=x;
+		return {"x":cx/2+x1, "y":cy-y1, "ratio":y1/y}
+
+	}
+
+	//Crée 100 bonhommes (représentés par des rectangles)
+	function fnCreatures(n){
+		for (i=0;i<n;i++) {
+			x = mo.minx + mo.cell * ( (Math.floor(Math.random() * mo.nx)));
+			y = mo.miny + mo.cell * ((Math.floor(Math.random() * mo.ny)));
+			//stockage dans un tableau
+			acr.push({"x":x, "y":y,"color":'#'+(Math.random()*0xFFFFFF<<0).toString(16)});
+
+		}
+	}
+
+	function fnBouge() {
+		//fait bouger les créatures de 2 max
+		for (i=0;i<acr.length;i++){
+			dx=Math.round(Math.random()*2-1)*mo.cell/3;
+			dy=Math.round(Math.random()*2-1)*mo.cell/3;
+			if (acr[i].x+dx>mo.minx && acr[i].x+dx<mo.maxx &&
+				acr[i].y+dy>mo.miny && acr[i].y+dy<mo.maxy){
+				acr[i].x+=dx;
+				acr[i].y+=dy;
+			}
+
+		}
+	}
+
+	
+</script>
