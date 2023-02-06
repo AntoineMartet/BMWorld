@@ -7,11 +7,58 @@ SI-CA1a
 <head>
     <meta charset="UTF-8">
     <title>BMW</title>
+    <style>
+        h1{
+            background-color: lightcoral;
+            margin: 0px;
+        }
+
+        #canvasDisplay{
+            border: 5px solid lightcoral;
+            width: 1000px;
+            height: 800px;
+            float: left;
+            margin: 10px;
+        }
+
+        #world{
+            background-color: mediumpurple;
+            height: 396px;
+            width: 600px;
+            float: left;
+            margin: 10px;
+        }
+
+        #person{
+            background-color: mediumpurple;
+            height: 396px;
+            width: 600px;
+            float: left;
+            margin: 10px;
+        }
+
+        #devTests{
+            background-color: lightyellow;
+            width: 1700px;
+            margin: 10px;
+            clear: both;
+        }
+    </style>
 </head>
-    <body>
-        <h1> BENE-MALE WORLD</h1>
-        <textarea id="textengine"></textarea>
-    </body>
+<body>
+    <h1> BENE-MALE WORLD</h1>
+    <div id="canvasDisplay"></div>
+    <div id="world">
+        <p>World World World World World </p>
+    </div>
+    <div id="person">
+        <p>Person Person Person Person Person </p>
+    </div>
+    <div id="devTests">
+        <textarea id="textEngine">Tests Tests Tests Tests Tests </textarea>
+    </div>
+
+</body>
 </html>
 <script src="p5.min.js"></script>
 <script src="display.js"></script>

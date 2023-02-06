@@ -15,7 +15,8 @@
 
 function setup() {
     //fonction appelée au lancement du programme
-    createCanvas(1000,800,WEBGL);//canvas en 3D
+    mainDisplay = createCanvas(1000,800,WEBGL);//canvas en 3D
+    mainDisplay.parent("canvasDisplay");
     angleMode(DEGREES);//angles en degrés
     camera(500,-500,1000,0,-0,0);//placement de la camera au départ, vise le centre
     normalMaterial(250);//matériaux solide
