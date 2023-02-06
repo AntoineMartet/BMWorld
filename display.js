@@ -12,17 +12,19 @@
         {"name":"axe Z","type":"line","x":0,"y":0,"z":0,"x1":0,"y1":0,"z1":700,"color":"blue"},
         {"name":"batiment","type":"box","x":0,"y":-50,"z":0,"rx":0,"ry":0,"rz":0,"l1":100,"l2":100,"l3":100,"color":"green"}
     ];
+    let ctxPerson;
 
 function setup() {
     //fonction appelée au lancement du programme
     mainDisplay = createCanvas(1000,800,WEBGL);//canvas en 3D
     mainDisplay.parent("canvasDisplay");
     angleMode(DEGREES);//angles en degrés
-    camera(500,-500,1000,0,-0,0);//placement de la camera au départ, vise le centre
+    camera(-300,-500,-300,nx/2*size,-0,nz/2*size);//placement de la camera au départ, vise le centre
     normalMaterial(250);//matériaux solide
     fnTiles();//Crée des tuiles comme sol
-    fnCreatures(100);//Crée 100 créatures en 3D
+    // fnCreatures(100);//Crée 100 créatures en 3D
     frameRate(20);//2 fois par secondes on rafraichit
+    ctxPerson=document.getElementById("canvasPerson").getContext("2d");
 }
 
 function draw() {
@@ -42,10 +44,15 @@ function fnDisplay(){
         fnDisplayObject(aWorld[i]);
     }
     //Dessin des créatures
-    for (let i=0;i<acr.length;i++){
-        fnDisplayObject(acr[i]);
-        fnDisplayDetails(acr[i]);
+    for (let i=0;i<creatureTotal.length;i++){
+        creatureTotal[i].color="red";
+        // fnDisplayObject(creatureTotal[i]);
+        fnDisplayCreature(creatureTotal[i]);
     }
+
+    //Dessin détail personne
+    ctxPerson.fillStyle="red";
+    ctxPerson.fillRect(100,100,50,50)
 }
 
 function fnDisplayObject(o){
@@ -133,29 +140,32 @@ function fnDisplayObject(o){
 
 function fnTiles(){
     //Crée un certain nb de tuiles
-    for (x=-nx/2;x<=nx/2;x++) {
-        for (z = -nz / 2; z <= nz / 2; z++) {
+    for (x=0;x<=nx;x++) {
+        for (z = 0; z <= nz ; z++) {
             aWorld.push({"name":"t","type":"plane","x":x*size,"y":0,"z":z*size,"rx":90,"ry":0,"rz":0,"l1":size-2,"l2":size-2,"color":"lightgreen"});
         }
     }
 }
 
-function fnDisplayDetails(o){
-    //Dessine les yeux à un objet
+function fnDisplayCreature(o){
     push();
-    fill("black");
-    translate(o.x-10,o.y-size/2,o.z+20);
+    translate(o.position.x*size,-50,o.position.z*size);
+    fill(o.color);
+    box(size/2,size/2,size/2);
+    //pop();
+    //Dessine les yeux à un objet
+    //push();
+
+    translate(-10,-size/2,20);
     sphere(5);
     translate(+20,0,0);
     sphere(5);
     //nez
     translate(-10,15,5);
-    fill(o.color);
     cone(10);
 
     //pieds
     translate(-10,32,-25)
-    rotateX(0)
     cone(-14,80);
     translate(20,20,0)
     cone(14,80);
