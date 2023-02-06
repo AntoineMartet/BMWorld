@@ -19,52 +19,62 @@ const creatureDef = [
 {"ID": 0, "name": "creature1", 
  "position" : [{"x": 0}, {"y": 0}], 
  "profile"  : [{"I": 0.15}, {"F": 0.15}, {"R": 0.15}, {"P": 0.15}, {"E": 0.15}],
- "status"   : [{"FC": valDefStatus}, {"CP": valDefStatus}, {"RA": valDefStatus}, {"RA": valDefStatus}, {"RP": valDefStatus}, {"BE": valDefStatus}, {"RE": valDefStatus}]
+ "status"   : [{"FC": valDefStatus}, {"CP": valDefStatus}, {"RA": valDefStatus}, {"RA": valDefStatus}, {"RP": valDefStatus}, {"BE": valDefStatus}, {"RE": valDefStatus}],
+ "direction" :  Math.floor(Math.random() * 4)
 },
 {"ID": 1, "name": "creature2", 
  "position" : [{"x": 10}, {"y": 10}], 
  "profile"  : [{"I": 0.15}, {"F": 0.15}, {"R": 0.15}, {"P": 0.15}, {"E": 0.15}],
- "status"   : [{"FC": valDefStatus}, {"CP": valDefStatus}, {"RA": valDefStatus}, {"RA": valDefStatus}, {"RP": valDefStatus}, {"BE": valDefStatus}, {"RE": valDefStatus}]
+ "status"   : [{"FC": valDefStatus}, {"CP": valDefStatus}, {"RA": valDefStatus}, {"RA": valDefStatus}, {"RP": valDefStatus}, {"BE": valDefStatus}, {"RE": valDefStatus}],
+ "direction" :  Math.floor(Math.random() * 4)
 },
 {"ID": 2, "name": "creature3", 
  "position" : [{"x": 20}, {"y": 20}], 
  "profile"  : [{"I": 0.15}, {"F": 0.15}, {"R": 0.15}, {"P": 0.15}, {"E": 0.15}],
- "status"   : [{"FC": valDefStatus}, {"CP": valDefStatus}, {"RA": valDefStatus}, {"RA": valDefStatus}, {"RP": valDefStatus}, {"BE": valDefStatus}, {"RE": valDefStatus}]
+ "status"   : [{"FC": valDefStatus}, {"CP": valDefStatus}, {"RA": valDefStatus}, {"RA": valDefStatus}, {"RP": valDefStatus}, {"BE": valDefStatus}, {"RE": valDefStatus}],
+ "direction" :  Math.floor(Math.random() * 4)
 },
 {"ID": 3, "name": "creature4", 
  "position" : [{"x": 30}, {"y": 30}], 
  "profile"  : [{"I": 0.15}, {"F": 0.15}, {"R": 0.15}, {"P": 0.15}, {"E": 0.15}],
- "status"   : [{"FC": valDefStatus}, {"CP": valDefStatus}, {"RA": valDefStatus}, {"RA": valDefStatus}, {"RP": valDefStatus}, {"BE": valDefStatus}, {"RE": valDefStatus}]
+ "status"   : [{"FC": valDefStatus}, {"CP": valDefStatus}, {"RA": valDefStatus}, {"RA": valDefStatus}, {"RP": valDefStatus}, {"BE": valDefStatus}, {"RE": valDefStatus}],
+ "direction" :  Math.floor(Math.random() * 4)
 },
 {"ID": 4, "name": "creature5", 
  "position" : [{"x": 40}, {"y": 40}], 
  "profile"  : [{"I": 0.15}, {"F": 0.15}, {"R": 0.15}, {"P": 0.15}, {"E": 0.15}],
- "status"   : [{"FC": valDefStatus}, {"CP": valDefStatus}, {"RA": valDefStatus}, {"RA": valDefStatus}, {"RP": valDefStatus}, {"BE": valDefStatus}, {"RE": valDefStatus}]
+ "status"   : [{"FC": valDefStatus}, {"CP": valDefStatus}, {"RA": valDefStatus}, {"RA": valDefStatus}, {"RP": valDefStatus}, {"BE": valDefStatus}, {"RE": valDefStatus}],
+ "direction" :  Math.floor(Math.random() * 4)
 },
 {"ID": 5, "name": "creature6", 
  "position" : [{"x": 50}, {"y": 50}], 
  "profile"  : [{"I": 0.15}, {"F": 0.15}, {"R": 0.15}, {"P": 0.15}, {"E": 0.15}],
- "status"   : [{"FC": valDefStatus}, {"CP": valDefStatus}, {"RA": valDefStatus}, {"RA": valDefStatus}, {"RP": valDefStatus}, {"BE": valDefStatus}, {"RE": valDefStatus}]
+ "status"   : [{"FC": valDefStatus}, {"CP": valDefStatus}, {"RA": valDefStatus}, {"RA": valDefStatus}, {"RP": valDefStatus}, {"BE": valDefStatus}, {"RE": valDefStatus}],
+ "direction" :  Math.floor(Math.random() * 4)
 },
 {"ID": 6, "name": "creatur7", 
  "position" : [{"x": 60}, {"y": 60}], 
  "profile"  : [{"I": 0.15}, {"F": 0.15}, {"R": 0.15}, {"P": 0.15}, {"E": 0.15}],
- "status"   : [{"FC": valDefStatus}, {"CP": valDefStatus}, {"RA": valDefStatus}, {"RA": valDefStatus}, {"RP": valDefStatus}, {"BE": valDefStatus}, {"RE": valDefStatus}]
+ "status"   : [{"FC": valDefStatus}, {"CP": valDefStatus}, {"RA": valDefStatus}, {"RA": valDefStatus}, {"RP": valDefStatus}, {"BE": valDefStatus}, {"RE": valDefStatus}],
+ "direction" :  Math.floor(Math.random() * 4)
 },
 {"ID": 7, "name": "creature8", 
  "position" : [{"x": 70}, {"y": 70}], 
  "profile"  : [{"I": 0.15}, {"F": 0.15}, {"R": 0.15}, {"P": 0.15}, {"E": 0.15}],
- "status"   : [{"FC": valDefStatus}, {"CP": valDefStatus}, {"RA": valDefStatus}, {"RA": valDefStatus}, {"RP": valDefStatus}, {"BE": valDefStatus}, {"RE": valDefStatus}]
+ "status"   : [{"FC": valDefStatus}, {"CP": valDefStatus}, {"RA": valDefStatus}, {"RA": valDefStatus}, {"RP": valDefStatus}, {"BE": valDefStatus}, {"RE": valDefStatus}],
+ "direction" :  Math.floor(Math.random() * 4)
 },
 {"ID": 8, "name": "creature9", 
  "position" : [{"x": 80}, {"y": 80}], 
  "profile"  : [{"I": 0.15}, {"F": 0.15}, {"R": 0.15}, {"P": 0.15}, {"E": 0.15}],
- "status"   : [{"FC": valDefStatus}, {"CP": valDefStatus}, {"RA": valDefStatus}, {"RA": valDefStatus}, {"RP": valDefStatus}, {"BE": valDefStatus}, {"RE": valDefStatus}]
+ "status"   : [{"FC": valDefStatus}, {"CP": valDefStatus}, {"RA": valDefStatus}, {"RA": valDefStatus}, {"RP": valDefStatus}, {"BE": valDefStatus}, {"RE": valDefStatus}],
+ "direction" :  Math.floor(Math.random() * 4)
 },
 {"ID": 9, "name": "creature10", 
  "position" : [{"x": 90}, {"y": 90}], 
  "profile"  : [{"I": 0.15}, {"F": 0.15}, {"R": 0.15}, {"P": 0.15}, {"E": 0.15}],
- "status"   : [{"FC": valDefStatus}, {"CP": valDefStatus}, {"RA": valDefStatus}, {"RA": valDefStatus}, {"RP": valDefStatus}, {"BE": valDefStatus}, {"RE": valDefStatus}]
+ "status"   : [{"FC": valDefStatus}, {"CP": valDefStatus}, {"RA": valDefStatus}, {"RA": valDefStatus}, {"RP": valDefStatus}, {"BE": valDefStatus}, {"RE": valDefStatus}],
+ "direction" :  Math.floor(Math.random() * 4)
 }
 ]
 
@@ -77,10 +87,11 @@ for(let i = (creatureDef.length);i < 100; i++) {
     {"ID": i,
     "name": "creature" + (i+1), 
     "position" : [{"x": Math.floor(Math.random() * 41)}, {"y": Math.floor(Math.random() * 41)}], 
-    "profile"  : [{"I": (Math.random() * 1.1).toFixed(2)}, {"F": (Math.random() * 1.1).toFixed(2)},
-                {"R": (Math.random() * 1.1).toFixed(2)}, {"P": (Math.random() * 1.1).toFixed(2)}, {"E": (Math.random() * 1.1).toFixed(2)}],
+    "profile"  : [{"I": (Math.random() * 1.01).toFixed(2)}, {"F": (Math.random() * 1.01).toFixed(2)},
+                {"R": (Math.random() * 1.01).toFixed(2)}, {"P": (Math.random() * 1.01).toFixed(2)}, {"E": (Math.random() * 1.01).toFixed(2)}],
     "status"   : [{"FC": valDefStatus}, {"CP": valDefStatus}, {"RA": valDefStatus}, {"RA": valDefStatus}, 
-                {"RP": valDefStatus}, {"BE": valDefStatus}, {"RE": valDefStatus}]
+                {"RP": valDefStatus}, {"BE": valDefStatus}, {"RE": valDefStatus}],
+    "direction" :  Math.floor(Math.random() * 4)
     })
 };
 
@@ -92,16 +103,17 @@ console.log(creatureTotal);
 
 
 //tableau des créatures
-let acr=[];
+//let arc=[];
 
+/*
 function fnCreatures(n){
     //Crée un certain nb de créatures
     for (c=0;c<n;c++) {
         x=Math.floor(Math.random()*nx)-nx/2;
         z=Math.floor(Math.random()*nz)-nz/2;
-        acr.push({"name":c,"type":"box","x":x*size,"y":-size-30,"z":z*size,"rx":0,"ry":0,"rz":0,"r1":size/2,"r2":size,"r3":size/2,"color":'#'+(Math.random()*0xFFFFFF<<0).toString(16)});
+        arc.push({"name":c,"type":"box","x":x*size,"y":-size-30,"z":z*size,"rx":0,"ry":0,"rz":0,"r1":size/2,"r2":size,"r3":size/2,"color":'#'+(Math.random()*0xFFFFFF<<0).toString(16)});
     }
-}
+}*/
 
 function fnEngine(){
     //Cette fonction va faire
@@ -109,13 +121,13 @@ function fnEngine(){
 }
 function fnMove() {
     //fait bouger les créatures de 2 max
-    for (i=0;i<acr.length;i++){
+    for (i=0;i<creatureTotal.length;i++){
         dx=Math.round(Math.random()*2-1)*1/3;
         dz=Math.round(Math.random()*2-1)*1/3;
-        if (acr[i].x+dx*size>-nx/2*size && acr[i].x+dx*size<nx/2*size &&
-            acr[i].z+dz*size>-nz/2*size && acr[i].z+dz*size<nz/2*size){
-            acr[i].x+=dx*size;
-            acr[i].z+=dz*size;
+        if (creatureTotal[i].x+dx*size>-nx/2*size && creatureTotal[i].x+dx*size<nx/2*size &&
+            creatureTotal[i].z+dz*size>-nz/2*size && creatureTotal[i].z+dz*size<nz/2*size){
+            creatureTotal[i].x+=dx*size;
+            creatureTotal[i].z+=dz*size;
         }
 
     }
