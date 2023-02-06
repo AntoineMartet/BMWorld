@@ -4,6 +4,93 @@
 // début 30.01.2023
 // Ce fichier contient tout pour animer les créatures.
 
+//Creature-----------------------------------------------------------------------
+//fix les valeurs pour tous les satatus à 50
+const valDefStatus = 50;
+
+//JSON des creatures defaults
+//10 creatures defaults
+ /*
+   I = immédiat, F = future, R = relation, P = possession, E = Ethique
+   FC = Force, CP = Compétences, RA = Richesse sous forme argent, RP = Richesse sous forme possession, BE = bien-être, o	RE = qualité/quantité de relations
+ */
+//Maybe no need ID ???
+const creatureDef = [
+{"ID": 0, "name": "creature1", 
+ "position" : [{"x": 0}, {"y": 0}], 
+ "profile"  : [{"I": 0.15}, {"F": 0.15}, {"R": 0.15}, {"P": 0.15}, {"E": 0.15}],
+ "status"   : [{"FC": valDefStatus}, {"CP": valDefStatus}, {"RA": valDefStatus}, {"RA": valDefStatus}, {"RP": valDefStatus}, {"BE": valDefStatus}, {"RE": valDefStatus}]
+},
+{"ID": 1, "name": "creature2", 
+ "position" : [{"x": 10}, {"y": 10}], 
+ "profile"  : [{"I": 0.15}, {"F": 0.15}, {"R": 0.15}, {"P": 0.15}, {"E": 0.15}],
+ "status"   : [{"FC": valDefStatus}, {"CP": valDefStatus}, {"RA": valDefStatus}, {"RA": valDefStatus}, {"RP": valDefStatus}, {"BE": valDefStatus}, {"RE": valDefStatus}]
+},
+{"ID": 2, "name": "creature3", 
+ "position" : [{"x": 20}, {"y": 20}], 
+ "profile"  : [{"I": 0.15}, {"F": 0.15}, {"R": 0.15}, {"P": 0.15}, {"E": 0.15}],
+ "status"   : [{"FC": valDefStatus}, {"CP": valDefStatus}, {"RA": valDefStatus}, {"RA": valDefStatus}, {"RP": valDefStatus}, {"BE": valDefStatus}, {"RE": valDefStatus}]
+},
+{"ID": 3, "name": "creature4", 
+ "position" : [{"x": 30}, {"y": 30}], 
+ "profile"  : [{"I": 0.15}, {"F": 0.15}, {"R": 0.15}, {"P": 0.15}, {"E": 0.15}],
+ "status"   : [{"FC": valDefStatus}, {"CP": valDefStatus}, {"RA": valDefStatus}, {"RA": valDefStatus}, {"RP": valDefStatus}, {"BE": valDefStatus}, {"RE": valDefStatus}]
+},
+{"ID": 4, "name": "creature5", 
+ "position" : [{"x": 40}, {"y": 40}], 
+ "profile"  : [{"I": 0.15}, {"F": 0.15}, {"R": 0.15}, {"P": 0.15}, {"E": 0.15}],
+ "status"   : [{"FC": valDefStatus}, {"CP": valDefStatus}, {"RA": valDefStatus}, {"RA": valDefStatus}, {"RP": valDefStatus}, {"BE": valDefStatus}, {"RE": valDefStatus}]
+},
+{"ID": 5, "name": "creature6", 
+ "position" : [{"x": 50}, {"y": 50}], 
+ "profile"  : [{"I": 0.15}, {"F": 0.15}, {"R": 0.15}, {"P": 0.15}, {"E": 0.15}],
+ "status"   : [{"FC": valDefStatus}, {"CP": valDefStatus}, {"RA": valDefStatus}, {"RA": valDefStatus}, {"RP": valDefStatus}, {"BE": valDefStatus}, {"RE": valDefStatus}]
+},
+{"ID": 6, "name": "creatur7", 
+ "position" : [{"x": 60}, {"y": 60}], 
+ "profile"  : [{"I": 0.15}, {"F": 0.15}, {"R": 0.15}, {"P": 0.15}, {"E": 0.15}],
+ "status"   : [{"FC": valDefStatus}, {"CP": valDefStatus}, {"RA": valDefStatus}, {"RA": valDefStatus}, {"RP": valDefStatus}, {"BE": valDefStatus}, {"RE": valDefStatus}]
+},
+{"ID": 7, "name": "creature8", 
+ "position" : [{"x": 70}, {"y": 70}], 
+ "profile"  : [{"I": 0.15}, {"F": 0.15}, {"R": 0.15}, {"P": 0.15}, {"E": 0.15}],
+ "status"   : [{"FC": valDefStatus}, {"CP": valDefStatus}, {"RA": valDefStatus}, {"RA": valDefStatus}, {"RP": valDefStatus}, {"BE": valDefStatus}, {"RE": valDefStatus}]
+},
+{"ID": 8, "name": "creature9", 
+ "position" : [{"x": 80}, {"y": 80}], 
+ "profile"  : [{"I": 0.15}, {"F": 0.15}, {"R": 0.15}, {"P": 0.15}, {"E": 0.15}],
+ "status"   : [{"FC": valDefStatus}, {"CP": valDefStatus}, {"RA": valDefStatus}, {"RA": valDefStatus}, {"RP": valDefStatus}, {"BE": valDefStatus}, {"RE": valDefStatus}]
+},
+{"ID": 9, "name": "creature10", 
+ "position" : [{"x": 90}, {"y": 90}], 
+ "profile"  : [{"I": 0.15}, {"F": 0.15}, {"R": 0.15}, {"P": 0.15}, {"E": 0.15}],
+ "status"   : [{"FC": valDefStatus}, {"CP": valDefStatus}, {"RA": valDefStatus}, {"RA": valDefStatus}, {"RP": valDefStatus}, {"BE": valDefStatus}, {"RE": valDefStatus}]
+}
+]
+
+//JSON pour tous les creatures (100)
+let creatureTotal = creatureDef;
+
+//Ajouter le reste de creature
+for(let i = (creatureDef.length);i < 100; i++) {
+    creatureTotal.push(
+    {"ID": i,
+    "name": "creature" + (i+1), 
+    "position" : [{"x": Math.floor(Math.random() * 41)}, {"y": Math.floor(Math.random() * 41)}], 
+    "profile"  : [{"I": (Math.random() * 1.1).toFixed(2)}, {"F": (Math.random() * 1.1).toFixed(2)},
+                {"R": (Math.random() * 1.1).toFixed(2)}, {"P": (Math.random() * 1.1).toFixed(2)}, {"E": (Math.random() * 1.1).toFixed(2)}],
+    "status"   : [{"FC": valDefStatus}, {"CP": valDefStatus}, {"RA": valDefStatus}, {"RA": valDefStatus}, 
+                {"RP": valDefStatus}, {"BE": valDefStatus}, {"RE": valDefStatus}]
+    })
+};
+
+//POUR TEST
+console.log(creatureTotal);
+
+//-----------------------------------------------------------------------fin 
+
+
+
 //tableau des créatures
 let acr=[];
 
