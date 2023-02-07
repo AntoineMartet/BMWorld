@@ -49,7 +49,7 @@ const creatureDef = [
  "near": null
 },
 {"ID": 4, "name": "creature5", 
- "position" : {"x": 40, "z": 40}, 
+ "position" : {"x": 30, "z": 29}, 
  "profile"  : {"I": 0.15, "F": 0.15, "R": 0.15, "P": 0.15, "E": 0.15},
  "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
  "direction" :  Math.floor(Math.random() * 4),
@@ -106,7 +106,7 @@ for(let i = (creatureDef.length);i < 100; i++) {
     creatureTotal.push(
     {"ID": i,
     "name": "creature" + (i+1), 
-    "position" : {"x": Math.floor(Math.random() * 41), "z": Math.floor(Math.random() * 41)}, 
+    "position" : {"x": Math.floor(Math.random() * 40), "z": Math.floor(Math.random() * 40)}, 
     "profile"  : {"I": (Math.random() * 1.01).toFixed(2), "F": (Math.random() * 1.01).toFixed(2),
                 "R": (Math.random() * 1.01).toFixed(2), "P": (Math.random() * 1.01).toFixed(2), "E": (Math.random() * 1.01).toFixed(2)},
     "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RA": valDefStatus, 
@@ -161,18 +161,52 @@ fnResetPositionCreatures();
 function fnMove() {
     //fait bouger les créatures de 2 max
     fnResetPositionCreatures();//maikol//reset le tableau qui stock la position des créatures afin de savoir s'il y a des créatures proche les unes des autres
+
     for (i=0;i<creatureTotal.length;i++){
-        dx=Math.round(Math.random()*2-1);
-        dz=Math.round(Math.random()*2-1);
-        if (creatureTotal[i].position.x+dx>0 && creatureTotal[i].position.x+dx<nx &&
-            creatureTotal[i].position.z+dz>0 && creatureTotal[i].position.z+dz<nz){
-            creatureTotal[i].position.x+=dx;
-            creatureTotal[i].position.z+=dz;
-            PositionCreatures[creatureTotal[i].position.x][creatureTotal[i].position.z].push(creatureTotal[i].ID);
+        switch(creatureTotal[i].direction) { //AYAMI
+            case 0: //up
+            if(creatureTotal[i].position.z + 1 < 40) {
+                creatureTotal[i].position.z += 1;
+            }
+            break;
+            case 1: //right
+            if(creatureTotal[i].position.x + 1 < 40) {
+                creatureTotal[i].position.x += 1;
+            }
+            break;
+            case 2: //down
+            if(creatureTotal[i].position.z - 1 >= 0) {
+                creatureTotal[i].position.z -= 1;
+            }
+            break;
+            case 3: // left
+            if(creatureTotal[i].position.x - 1 >= 0) {
+                creatureTotal[i].position.x -= 1;
+            }
+
+            /*if(...) {
+                //Change le direction
+                //creatureTotal[i].direction = 
+
+            }*/
+
         }
+
+        PositionCreatures[creatureTotal[i].position.x][creatureTotal[i].position.z].push(creatureTotal[i].ID);
         creatureTotal.near = null;//maikol
-    }
-    fnCheckPosOtherCreatures();//maikol
+
+
+        /*for (i=0;i<creatureTotal.length;i++){
+            dx=Math.round(Math.random()*2-1);
+            dz=Math.round(Math.random()*2-1);
+            if (creatureTotal[i].position.x+dx>0 && creatureTotal[i].position.x+dx<nx &&
+                creatureTotal[i].position.z+dz>0 && creatureTotal[i].position.z+dz<nz){
+                creatureTotal[i].position.x+=dx;
+                creatureTotal[i].position.z+=dz;
+            }
+        }*/
+    fnCheckPosOtherCreatures();//maikol 
+    }      
 }
 
 function fnCheckPosOtherCreatures (){ //pour checker la postion des autres créatures afin de déterminer si une créature oeut jouer avec une autre ou non
