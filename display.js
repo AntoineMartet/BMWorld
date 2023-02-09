@@ -13,6 +13,12 @@
         {"name":"batiment","type":"box","x":0,"y":-50,"z":0,"rx":0,"ry":0,"rz":0,"l1":100,"l2":100,"l3":100,"color":"green"}
     ];
     let ctxPerson;
+    /* Dans ctxPerson : créer un système d'onglets pour afficher :
+        - Personnalité d'un individu
+        - Etat d'un individu
+       Créer une liste des individus pour sélectionner l'un d'eux.
+     */
+    let ctxWorld;
 
 function setup() {
     //fonction appelée au lancement du programme
@@ -25,6 +31,7 @@ function setup() {
     // fnCreatures(100);//Crée 100 créatures en 3D
     frameRate(20);//2 fois par secondes on rafraichit
     ctxPerson=document.getElementById("canvasPerson").getContext("2d");
+    ctxWorld=document.getElementById("canvasPerson").getContext("2d");
 }
 
 function draw() {
@@ -53,89 +60,6 @@ function fnDisplay(){
     //Dessin détail personne
     ctxPerson.fillStyle="red";
     ctxPerson.fillRect(100,100,50,50)
-}
-
-function fnDisplayObject(o){
-
-    switch (o.type) {
-    case 'line':
-        stroke(o.color);
-        line(o.x,o.y,o.z,o.x1,o.y1,o.z1);
-        noStroke();
-        break;
-
-    case 'cylinder':
-        push();
-        translate(o.x,o.y,o.z);
-        rotateX(o.rx);
-        rotateY(o.ry);
-        rotateZ(o.rz);
-        fill(o.color);
-        cylinder(o.r,o.l);
-        pop();
-    break;
-    case 'plane':
-        push();
-        translate(o.x,o.y,o.z);
-        rotateX(o.rx);
-        rotateY(o.ry);
-        rotateZ(o.rz);
-        fill(o.color);
-        plane(o.l1,o.l2);
-        pop();
-    break;
-    case 'box':
-        push();
-        translate(o.x,o.y,o.z);
-        rotateX(o.rx);
-        rotateY(o.ry);
-        rotateZ(o.rz);
-        fill(o.color);
-        box(o.l1,o.l2,o.l3);
-        pop();
-        break;
-    case 'sphere':
-        push();
-        translate(o.x,o.y,o.z);
-        rotateX(o.rx);
-        rotateY(o.ry);
-        rotateZ(o.rz);
-        fill(o.color);
-        sphere(o.r);
-        pop();
-        break;
-    case 'ellipsoid':
-        push();
-        translate(o.x,o.y,o.z);
-        rotateX(o.rx);
-        rotateY(o.ry);
-        rotateZ(o.rz);
-        fill(o.color);
-        ellipsoid(o.r1,o.r2,o.r3);
-        pop();
-        break;
-    case 'cone':
-        push();
-        translate(o.x,o.y,o.z);
-        rotateX(o.rx);
-        rotateY(o.ry);
-        rotateZ(o.rz);
-        fill(o.color);
-        cone(o.r,o.h);
-        pop();
-    break;
-        case 'torus':
-        push();
-        translate(o.x,o.y,o.z);
-        rotateX(o.rx);
-        rotateY(o.ry);
-        rotateZ(o.rz);
-        fill(o.color);
-        torus(o.r1,o.r2);
-        pop();
-        break;
-    }
-
 }
 
 function fnTiles(){
@@ -170,7 +94,87 @@ function fnDisplayCreature(o){
     translate(20,20,0)
     cone(14,80);
     pop();
-
 }
 
+function fnDisplayObject(o){
 
+    switch (o.type) {
+        case 'line':
+            stroke(o.color);
+            line(o.x,o.y,o.z,o.x1,o.y1,o.z1);
+            noStroke();
+            break;
+
+        case 'cylinder':
+            push();
+            translate(o.x,o.y,o.z);
+            rotateX(o.rx);
+            rotateY(o.ry);
+            rotateZ(o.rz);
+            fill(o.color);
+            cylinder(o.r,o.l);
+            pop();
+            break;
+        case 'plane':
+            push();
+            translate(o.x,o.y,o.z);
+            rotateX(o.rx);
+            rotateY(o.ry);
+            rotateZ(o.rz);
+            fill(o.color);
+            plane(o.l1,o.l2);
+            pop();
+            break;
+        case 'box':
+            push();
+            translate(o.x,o.y,o.z);
+            rotateX(o.rx);
+            rotateY(o.ry);
+            rotateZ(o.rz);
+            fill(o.color);
+            box(o.l1,o.l2,o.l3);
+            pop();
+            break;
+        case 'sphere':
+            push();
+            translate(o.x,o.y,o.z);
+            rotateX(o.rx);
+            rotateY(o.ry);
+            rotateZ(o.rz);
+            fill(o.color);
+            sphere(o.r);
+            pop();
+            break;
+        case 'ellipsoid':
+            push();
+            translate(o.x,o.y,o.z);
+            rotateX(o.rx);
+            rotateY(o.ry);
+            rotateZ(o.rz);
+            fill(o.color);
+            ellipsoid(o.r1,o.r2,o.r3);
+            pop();
+            break;
+        case 'cone':
+            push();
+            translate(o.x,o.y,o.z);
+            rotateX(o.rx);
+            rotateY(o.ry);
+            rotateZ(o.rz);
+            fill(o.color);
+            cone(o.r,o.h);
+            pop();
+            break;
+        case 'torus':
+            push();
+            translate(o.x,o.y,o.z);
+            rotateX(o.rx);
+            rotateY(o.ry);
+            rotateZ(o.rz);
+            fill(o.color);
+            torus(o.r1,o.r2);
+            pop();
+            break;
+    }
+
+}
