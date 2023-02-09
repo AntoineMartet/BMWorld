@@ -4,6 +4,47 @@
 // début 30.01.2023
 // Ce fichier contient tout pour animer les créatures.
 
+
+
+//profil
+//	I = immédiat, envie de plaisir immédiat (par. Ex jouer)
+//	F = future, envie d'investir pour le futur (p. exemple travailler, étudier)
+//	R = relation, envie d'investir dans des relations
+//	P = possession, envie de posséder un max d'argent (AG) et d'objets (OB)
+//	E = Ethique, plus le niveau est haut, moins la créature se permet des actions douteuses
+//	Le profil est susceptible d'être modifié en fonction des expériences, des relations…
+
+//état
+//	FC = Force, quel état de force (dépend du sport)
+//	CP = Compétences, dépend des études
+//	RA = Richesse sous forme argent
+//	RP = Richesse sous forme possession
+//	BE = bien-être, qui dépend des activités et du profil.
+//	RE = qualité/quantité de relations
+
+
+
+
+
+//Probabilité action
+//les actions: type 1= indiv, type 2= à deux, type=4 avec gagnant ou perdant 
+actions= [
+    {"ID":"ETU","type":1,"prob":[0,2,0,0,1],"effect":[0,2,0,0,0,0]},
+    {"ID":"TRA","type":1,"prob":[0,2,0,1,0],"effect":[0,1,100,0,0,1]},
+    {"ID":"JOS","type":1,"prob":[2,0,-1,0,0],"effect":[0,0,0,0,2,0]},
+    {"ID":"SPS","type":1,"prob":[1,2,0,0,0],"effect":[2,0,0,0,1,0]},
+    {"ID":"VOS","type":1,"prob":[2,0,0,0,-2],"effect":[0,0,1,2,0,-1]},
+    {"ID":"COS","type":1,"prob":[2,0,0,0,-2],"effect":[-1,-1,-2,0,1,0]},      
+    
+    {"ID":"JO2","type":2,"prob":[1,0,1,0,0],"effect":[0,0,0,0,2,2]},
+    {"ID":"DI2","type":2,"prob":[1,0,1,0,0],"effect":[0,1,0,0,1,2]},
+    {"ID":"SP2","type":2,"prob":[1,1,1,0,0], "effect":[2,0,0,0,1,1]},//ici les deux sont gagnants
+    {"ID":"VO2","type":4,"prob":[2,0,-1,0,-1], "effect":[0,0,0,1,0,-1]}//ici le premier est le gagnant, le second le perdant
+]
+ 
+
+
+
 //Creature-----------------------------------------------------------------------
 //fix les valeurs pour tous les satatus à 50
 const valDefStatus = 50;
@@ -139,7 +180,7 @@ function creatureTotal(n){
 
 function fnEngine(){
     //Cette fonction va faire
-    //frameRate(0.000001); //permet de mettre le monde en "pause afin de checker l'avancement pas à pas"
+    frameRate(0.000001); //permet de mettre le monde en "pause afin de checker l'avancement pas à pas"
     fnMove();
 }
 
@@ -216,7 +257,7 @@ function fnCheckPosOtherCreatures (){ //pour checker la postion des autres créa
     {
         let CreatureTemp = [];
         if (creatureTotal[i].near != null){
-            continue;
+            continue;//passe à la boucle suivante
         }
         for (let x = -1; x < 2; x++)//check les cases autour
         {
@@ -245,25 +286,30 @@ function fnCheckPosOtherCreatures (){ //pour checker la postion des autres créa
         if (creatureTotal[CreatureTemp[RandomCreature]].near == null){
             creatureTotal[i].near = CreatureTemp[RandomCreature];
             creatureTotal[CreatureTemp[RandomCreature]].near = creatureTotal[i].ID;
-            console.log(i);//pour tester à supprimer!!!!!!!!!!!!!!!!!!!
+            //console.log(i);//pour tester à supprimer!!!!!!!!!!!!!!!!!!!
             fnDeleteCreatureOfArrayPos(creatureTotal[i].position, i);//efface les 2 créatures du tableau des positions
             fnDeleteCreatureOfArrayPos(creatureTotal[CreatureTemp[RandomCreature]].position, CreatureTemp[RandomCreature]);
-            console.log("-----------------");//pour tester à supprimer!!!!!!!!!!!!!!!!!!!
+            //console.log("-----------------");//pour tester à supprimer!!!!!!!!!!!!!!!!!!!
         }
     }
 
-    console.log(creatureTotal);//pour tester à supprimer!!!!!!!!!!!!!!!!!!!
+    //console.log(creatureTotal);//pour tester à supprimer!!!!!!!!!!!!!!!!!!!
 
 }
 
 function fnDeleteCreatureOfArrayPos(position, id){//fonction qui permet d'effacer les créatures du tableau des positions afin qu'elles ne soit pas réattribuer à une autre créature
-    console.log(PositionCreatures[position.x][position.z]);//pour tester à supprimer!!!!!!!!!!!!!!!!!!!
+    //console.log(PositionCreatures[position.x][position.z]);//pour tester à supprimer!!!!!!!!!!!!!!!!!!!
     PositionCreatures[position.x][position.z].splice(PositionCreatures[position.x][position.z].indexOf(id),1);
-    console.log(PositionCreatures[position.x][position.z]);//pour tester à supprimer!!!!!!!!!!!!!!!!!!!
+    //console.log(PositionCreatures[position.x][position.z]);//pour tester à supprimer!!!!!!!!!!!!!!!!!!!
     
 }
 
 
-console.log(PositionCreatures);//pour tester à supprimer!!!!!!!!!!!!!!!!!!!
+fnConsole(JSON.stringify(creatureTotal));//pour tester à supprimer!!!!!!!!!!!!!!!!!!!
+
+
+function fnConsole (text){
+    document.getElementById("textEngine").value += "\n" + text;
+}
 
 
