@@ -8,6 +8,10 @@ SI-CA1a
     <meta charset="UTF-8">
     <title>BMW</title>
     <style>
+        body{
+            margin: 0px;
+        }
+
         h1{
             background-color: lightcoral;
             margin: 0px;
@@ -16,14 +20,15 @@ SI-CA1a
         #canvasDisplay{
             border: 5px solid lightcoral;
             width: 1000px;
-            height: 800px;
+            height: 850px;
             float: left;
             margin: 10px;
         }
 
         #world{
             background-color: mediumpurple;
-            height: 396px;
+            border: 5px solid lightcoral;
+            height: 410px;
             width: 600px;
             float: left;
             margin: 10px;
@@ -31,10 +36,13 @@ SI-CA1a
 
         #person{
             background-color: mediumpurple;
-            height: 396px;
+            border: 5px solid lightcoral;
+            height: 410px;
             width: 600px;
             float: left;
             margin: 10px;
+            flex-wrap: wrap;
+            display: flex;
         }
 
         #devTests{
@@ -43,18 +51,62 @@ SI-CA1a
             margin: 10px;
             clear: both;
         }
+
+        .tab_class {
+            width: calc(100%/5);
+            height: 40px;
+            background-color: darkgrey;
+            line-height: 50px;
+            font-size: 15px;
+            text-align: center;
+            display: block;
+            float: left;
+            order: -1;
+        }
+
+        /*hide all input elements with name "tab_name"*/
+        input[name="tab_name"] {
+            display: none;
+        }
+
+        /* color of tab which is just after the checked input*/
+        /* div + p	Selects the first <p> element that is placed immediately after <div> elements*/
+        input:checked + .tab_class {
+            background-color: cadetblue;
+            color: aliceblue;
+        }
+
+        /*Hide all contents elements*/
+        .content_class {
+            display: none;
+            width: 100%;
+        }
+
+        /*Show the content which is just after the checked input*/
+        input:checked + .tab_class + .content_class {
+            display: block;
+        }
     </style>
 </head>
 <body>
     <h1> BENE-MALE WORLD</h1>
     <div id="canvasDisplay"></div>
     <div id="world">
-        <canvas id="canvasWorld" width=500 height=350></canvas>
-        <p>World World World World World </p>
+        <canvas id="canvasWorld"></canvas>
     </div>
     <div id="person">
-        <canvas id="canvasPerson" width=500 height=350></canvas>
-        <p>Person Person Person Person Person </p>
+        <input type="radio" name="tab_name" id="tab1" checked>
+        <label class="tab_class" for="tab1">Etat</label>
+        <div class="content_class">
+            <canvas id="canvasPerson"></canvas>
+        </div>
+
+        <input type="radio" name="tab_name" id="tab2" >
+        <label class="tab_class" for="tab2">Personnalité</label>
+        <div class="content_class">
+            <canvas id="canvasPerson2"></canvas>
+        </div>
+
     </div>
     <div id="devTests">
         <textarea id="textEngine" rows="50" cols="180">Tests Tests Tests Tests Tests </textarea>
