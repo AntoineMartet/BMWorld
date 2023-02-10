@@ -2,6 +2,8 @@
 // SI-CA1a
 // groupe représentation, affichage
 // début 30.01.2023
+// À faire :
+//  - Créer une liste des individus pour sélectionner l'un d'eux.
 
     let values=[0.1,0.5,0.8,0.2,0.7]; // valeurs à afficher
     let legends=["I","P","F","C","T"]; // légendes à afficher
@@ -16,13 +18,8 @@
         {"name":"axe Z","type":"line","x":0,"y":0,"z":0,"x1":0,"y1":0,"z1":700,"color":"blue"},
         {"name":"batiment","type":"box","x":0,"y":-50,"z":0,"rx":0,"ry":0,"rz":0,"l1":100,"l2":100,"l3":100,"color":"green"}
     ];
-    let ctxPerson;
-    let ctxPerson2;
-    /* Dans ctxPerson : créer un système d'onglets pour afficher :
-        - Personnalité d'un individu
-        - Etat d'un individu
-       Créer une liste des individus pour sélectionner l'un d'eux.
-     */
+    let ctxPersonStatus;
+    let ctxPersonPeronnality;
     let ctxWorld;
 
 function setup() {
@@ -35,19 +32,19 @@ function setup() {
     fnTiles();//Crée des tuiles comme sol
     // fnCreatures(100);//Crée 100 créatures en 3D
     frameRate(20);//2 fois par secondes on rafraichit
-    ctxPerson=document.getElementById("canvasPerson").getContext("2d");
-    ctxPerson2=document.getElementById("canvasPerson2").getContext("2d");
+    ctxPersonStatus=document.getElementById("canvasPerson").getContext("2d");
+    ctxPersonPeronnality=document.getElementById("canvasPerson2").getContext("2d");
     ctxWorld=document.getElementById("canvasWorld").getContext("2d");
-    ctxPerson.canvas.width  = 600;
-    ctxPerson.canvas.height  = 370;
-    ctxPerson2.canvas.width  = 600;
-    ctxPerson2.canvas.height  = 370;
+    ctxPersonStatus.canvas.width  = 600;
+    ctxPersonStatus.canvas.height  = 370;
+    ctxPersonPeronnality.canvas.width  = 600;
+    ctxPersonPeronnality.canvas.height  = 370;
     ctxWorld.canvas.width  = 600;
     ctxWorld.canvas.height  = 410;
 }
 
 function draw() {
-    //fonction appelée 2 fois par secondes (suivant le frameRate)
+    //fonction appelée 2 fois par seconde (suivant le frameRate)
     background("lightblue");
     lights();//Allumer les lumières
     directionalLight(250, 250, 250, -1, -1, -1);
@@ -66,19 +63,16 @@ function fnDisplay(){
     }
     //Dessin des créatures
     for (let i=0;i<creatureTotal.length;i++){
-        creatureTotal[i].color="red";
         // fnDisplayObject(creatureTotal[i]);
         fnDisplayCreature(creatureTotal[i]);
     }
 
     //Fond du canvas personne
-    ctxPerson.fillStyle = "lightblue";
-    ctxPerson.fillRect(0, 0, 600, 600);
+    ctxPersonStatus.fillStyle = "lightblue";
+    ctxPersonStatus.fillRect(0, 0, 600, 600);
 
-    ctxPerson2.fillStyle = "lightblue";
-    ctxPerson2.fillRect(0, 0, 600, 600);
-
-
+    ctxPersonPeronnality.fillStyle = "lightblue";
+    ctxPersonPeronnality.fillRect(0, 0, 600, 600);
 
     //Fond du canvas world
     ctxWorld.fillStyle = "lightblue";
@@ -129,25 +123,25 @@ function bars(values, legends, x, y, l, h, colors){
 
     for (b = 0; b < values.length; b++)
     {
-        ctxPerson.fillStyle = colors[b];
-        ctxPerson.fillRect(x + b * largeur, y, largeur, -h * values[b])
+        ctxPersonStatus.fillStyle = colors[b];
+        ctxPersonStatus.fillRect(x + b * largeur, y, largeur, -h * values[b])
     }
 
     // axes
-    ctxPerson.beginPath();
-    ctxPerson.moveTo(x, y);
-    ctxPerson.lineTo(x + l * 1.1, y);
-    ctxPerson.stroke(); // La méthode stroke() dessine le chemin actuel
-    ctxPerson.beginPath();
-    ctxPerson.moveTo(x, y);
-    ctxPerson.lineTo(x, y - h * 1.1);
-    ctxPerson.stroke();
-    ctxPerson.strokeRect(x, y, l, -h);
+    ctxPersonStatus.beginPath();
+    ctxPersonStatus.moveTo(x, y);
+    ctxPersonStatus.lineTo(x + l * 1.1, y);
+    ctxPersonStatus.stroke(); // La méthode stroke() dessine le chemin actuel
+    ctxPersonStatus.beginPath();
+    ctxPersonStatus.moveTo(x, y);
+    ctxPersonStatus.lineTo(x, y - h * 1.1);
+    ctxPersonStatus.stroke();
+    ctxPersonStatus.strokeRect(x, y, l, -h);
 
     //Ecritures des légendes (noir, 15pt Arial)
-    ctxPerson.font = "15pt Arial";
+    ctxPersonStatus.font = "15pt Arial";
     for (b = 0; b < legends.length; b++){
-        ctxPerson.fillText(legends[b], x + largeur * (b + 0.5), y + 25);
+        ctxPersonStatus.fillText(legends[b], x + largeur * (b + 0.5), y + 25);
     }
 }
 
@@ -158,54 +152,72 @@ function spider(values, legends, x, y, r, c1, c2){
     // Les maxi sont repérés par la couleur c1, les valeurs par c2
     // Ici c'est le milieu du graphe qui est en x, y (pas le coin en haut à gauche)
 
-    // Zone de maxi (en fond)
-    ctxPerson2.beginPath();
-    for (a = 0; a < values.length; a++){
-        angle = -a * 2 * Math.PI / values.length; // Avec le - on tourne dans le sens horaire
-        ctxPerson2.lineTo(x + r * Math.cos(angle), y - r * Math.sin(angle))
+    // Pour stocker les valeurs de personnalité d'un individu
+    let arrayPersonnalityValues = [];
+
+    // Sans dictionnaire
+    for(let x in creatureTotal[0].profile)
+    {
+        arrayPersonnalityValues.push(creatureTotal[0].profile[x]);
     }
-    ctxPerson2.fillStyle = c1;
-    ctxPerson2.fill();
+
+    // Zone de maxi (en fond)
+    ctxPersonPeronnality.beginPath();
+    for (i = 0; i < arrayPersonnalityValues.length; i++){
+        angle = -i * 2 * Math.PI / arrayPersonnalityValues.length; // Avec le - on tourne dans le sens horaire
+        ctxPersonPeronnality.lineTo(x + r * Math.cos(angle), y - r * Math.sin(angle))
+    }
+    ctxPersonPeronnality.fillStyle = c1;
+    ctxPersonPeronnality.fill();
 
     //Zone des valeurs (par-dessus le fond)
-    ctxPerson2.beginPath();
-    for (a = 0; a < values.length; a++){
-        angle = -a * 2 * Math.PI / values.length;
-        ctxPerson2.lineTo(x + values[a] * r * Math.cos(angle), y - values[a] * r * Math.sin(angle))
+    ctxPersonPeronnality.beginPath();
+
+    for (i = 0; i < arrayPersonnalityValues.length; i++){
+        angle = -i * 2 * Math.PI / arrayPersonnalityValues.length;
+        ctxPersonPeronnality.lineTo(x + arrayPersonnalityValues[i] * r * Math.cos(angle), y - arrayPersonnalityValues[i] * r * Math.sin(angle))
     }
-    ctxPerson2.fillStyle = c2;
-    ctxPerson2.fill();
+
+    ctxPersonPeronnality.fillStyle = c2;
+    ctxPersonPeronnality.fill();
 
     // Zone de moitié (par-dessus le fond et les valeurs, épaisseur 1)
     // Pareil que le fond mais r*0,5 au lieu de r et stroke() au lieu de fill()
-    ctxPerson2.beginPath();
-    for (a = 0; a <= values.length; a++){
-        angle = -a * 2 * Math.PI / values.length;
-        ctxPerson2.lineTo(x+0.5*r*Math.cos(angle),y-0.5*r*Math.sin(angle))
+    ctxPersonPeronnality.beginPath();
+    for (a = 0; a <= arrayPersonnalityValues.length; a++){
+        angle = -a * 2 * Math.PI / arrayPersonnalityValues.length;
+        ctxPersonPeronnality.lineTo(x+0.5*r*Math.cos(angle),y-0.5*r*Math.sin(angle))
     }
-    ctxPerson2.stroke();
+    ctxPersonPeronnality.stroke();
 
     // Tracé des axes (épaisseur 2, couleur noire)
-    for (a = 0; a < values.length; a++){
-        angle = a * 2 * Math.PI / values.length;
-        ctxPerson2.beginPath();
-        ctxPerson2.moveTo(x,y);
-        ctxPerson2.lineTo(x + 1.1 * r * Math.cos(angle), y - 1.1 * r * Math.sin(angle))
-        ctxPerson2.lineWidth = 2;
-        ctxPerson2.stroke();
+    for (a = 0; a < arrayPersonnalityValues.length; a++){
+        angle = a * 2 * Math.PI / arrayPersonnalityValues.length;
+        ctxPersonPeronnality.beginPath();
+        ctxPersonPeronnality.moveTo(x,y);
+        ctxPersonPeronnality.lineTo(x + 1.1 * r * Math.cos(angle), y - 1.1 * r * Math.sin(angle));
+        ctxPersonPeronnality.lineWidth = 2;
+        ctxPersonPeronnality.stroke();
+    }
+
+    // Pour stocker les valeurs de statut d'un individu
+    let arrayPersonnalityLegends = [];
+
+    for(const [key, value] of Object.entries(creatureTotal[0].profile))
+    {
+        arrayPersonnalityLegends.push(key);
     }
 
     // Ecritures des légendes (noir, 15pt Arial)
-    ctxPerson2.font="15pt Arial";
-    for (a = 0; a < legends.length; a++){
-        angle = -a * 2 * Math.PI / values.length;
-        ctxPerson2.fillText(legends[a], x - 5 + 1.2 * r * Math.cos(angle), y + 5 - 1.2 * r * Math.sin(angle));
+    ctxPersonPeronnality.font="15pt Arial";
+    for (i = 0; i < arrayPersonnalityLegends.length; i++){
+        angle = -i * 2 * Math.PI / arrayPersonnalityLegends.length;
+        ctxPersonPeronnality.fillText(arrayPersonnalityLegends[i], x - 5 + 1.2 * r * Math.cos(angle), y + 5 - 1.2 * r * Math.sin(angle));
         // "-5" et "+5" uniquement pour peaufiner l'emplacement des légendes
     }
 }
 
 function fnDisplayObject(o){
-
     switch (o.type) {
         case 'line':
             stroke(o.color);
