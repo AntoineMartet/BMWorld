@@ -208,29 +208,37 @@ function fnMove() {
             case 0: //up
             if(creatureTotal[i].position.z + 1 < 40) {
                 creatureTotal[i].position.z += 1;
+            } else {
+                fnChangeDirection();
             }
             break;
             case 1: //right
             if(creatureTotal[i].position.x + 1 < 40) {
                 creatureTotal[i].position.x += 1;
+            } else {
+                fnChangeDirection();
             }
             break;
             case 2: //down
             if(creatureTotal[i].position.z - 1 >= 0) {
                 creatureTotal[i].position.z -= 1;
+            } else {
+                fnChangeDirection();
             }
             break;
             case 3: // left
             if(creatureTotal[i].position.x - 1 >= 0) {
                 creatureTotal[i].position.x -= 1;
-            }
+            } else {
+                fnChangeDirection();
+            } 
 
-            /*if(...) {
-                //Change le direction
-                //creatureTotal[i].direction = 
+        }
 
-            }*/
-
+        //Random pour le possibilité à changer le direction
+        let probability = Math.floor(Math.random() *6) 
+        if(probability == 0 ) {
+            fnChangeDirection();
         }
 
         PositionCreatures[creatureTotal[i].position.x][creatureTotal[i].position.z].push(creatureTotal[i].ID);
@@ -248,6 +256,15 @@ function fnMove() {
         }*/
     fnCheckPosOtherCreatures();//maikol 
     }      
+}
+
+function fnChangeDirection (){ //pour changer le direction
+    let newDirection;
+    do {
+        newDirection = Math.floor(Math.random() * 4);
+    }
+    while(newDirection == creatureTotal[i].direction)
+    creatureTotal[i].direction = newDirection;
 }
 
 function fnCheckPosOtherCreatures (){ //pour checker la postion des autres créatures afin de déterminer si une créature oeut jouer avec une autre ou non
