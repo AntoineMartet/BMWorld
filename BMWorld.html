@@ -43,6 +43,7 @@ SI-CA1a
             margin: 10px;
             flex-wrap: wrap;
             display: flex;
+
         }
 
         #devTests{
@@ -56,12 +57,16 @@ SI-CA1a
             width: calc(100%/5);
             height: 40px;
             background-color: darkgrey;
-            line-height: 50px;
+            line-height: 40px;
             font-size: 15px;
             text-align: center;
             display: block;
             float: left;
             order: -1;
+        }
+
+        .tab_list {
+            text-align: right;
         }
 
         /*hide all input elements with name "tab_name"*/
@@ -89,27 +94,52 @@ SI-CA1a
     </style>
 </head>
 <body>
-    <h1> BENE-MALE WORLD</h1>
+
+    <h1>BENE-MALE WORLD</h1>
+
     <div id="canvasDisplay"></div>
+
     <div id="world">
         <canvas id="canvasWorld"></canvas>
     </div>
+
     <div id="person">
+
         <input type="radio" name="tab_name" id="tab1" checked>
         <label class="tab_class" for="tab1">Etat</label>
+
         <div class="content_class">
             <canvas id="canvasPerson"></canvas>
         </div>
 
         <input type="radio" name="tab_name" id="tab2" >
         <label class="tab_class" for="tab2">Personnalité</label>
+
         <div class="content_class">
             <canvas id="canvasPerson2"></canvas>
         </div>
 
+        <div class="tab_class">
+
+        </div>
+
+        <div class="tab_class tab_list">
+            <div>Créatures :</div>
+        </div>
+
+        <div class="tab_class">
+            <select id="liste2" style="width: 100px">
+                <option value="bob">Bob</option>
+                <option value="alice">Alice</option>
+                <option value="me">Me</option>
+                <option value="you">You</option>
+            </select>
+        </div>
+
     </div>
+
     <div id="devTests">
-        <textarea id="textEngine" rows="50" cols="180">Tests Tests Tests Tests Tests </textarea>
+        <textarea id="textEngine" rows="50" cols="18">Tests Tests Tests Tests Tests </textarea>
     </div>
 
 </body>
