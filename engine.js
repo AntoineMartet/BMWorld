@@ -55,97 +55,106 @@ const valDefStatus = 50;
    I = immédiat, F = future, R = relation, P = possession, E = Ethique
    FC = Force, CP = Compétences, RA = Richesse sous forme argent, RP = Richesse sous forme possession, BE = bien-être, o	RE = qualité/quantité de relations
  */
-//Maybe no need ID ???
 let creatureDef = [
-{"ID": 0, "name": "creature1", 
- "position" : {"x": 0, "z": 0}, 
- "profile"  : [0.15,   0.15,   0.15,   0.15,   0.15],
- "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
- "direction" :  Math.floor(Math.random() * 4),
- "color":'#'+(Math.random()*0xFFFFFF<<0).toString(16),
- "near": null,
- "action" : null
+{   "ID": 0, "name": "creature1", 
+    "position" : {"x": 0, "z": 0}, 
+    "profile"  : [0.15,   0.15,   0.15,   0.15,   0.15],
+    "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
+    "direction": Math.floor(Math.random() * 4),
+    "type"     : Math.floor(Math.random() * 4) + 1,
+    "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
+    "near"     : null,
+    "action"   : null
 },
-{"ID": 1, "name": "creature2", 
- "position" : {"x": 10, "z": 10}, 
- "profile"  : [0.15,   0.15,   0.15,   0.15,   0.15],
- "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
- "direction" :  Math.floor(Math.random() * 4),
- "color":'#'+(Math.random()*0xFFFFFF<<0).toString(16),
- "near": null,
- "action" : null
+{   "ID": 1, "name": "creature2", 
+    "position" : {"x": 10, "z": 10}, 
+    "profile"  : [0.15,   0.15,   0.15,   0.15,   0.15],
+    "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
+    "direction": Math.floor(Math.random() * 4),
+    "type"     : Math.floor(Math.random() * 4) + 1,
+    "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
+    "near"     : null,
+    "action"   : null
 },
-{"ID": 2, "name": "creature3", 
- "position" : {"x": 20, "z": 20}, 
- "profile"  : [0.15,   0.15,   0.15,   0.15,   0.15],
- "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
- "direction" :  Math.floor(Math.random() * 4),
- "color":'#'+(Math.random()*0xFFFFFF<<0).toString(16),
- "near": null,
- "action" : null
+{   "ID": 2, "name": "creature3", 
+    "position" : {"x": 20, "z": 20}, 
+    "profile"  : [0.15,   0.15,   0.15,   0.15,   0.15],
+    "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
+    "direction": Math.floor(Math.random() * 4),
+    "type"     : Math.floor(Math.random() * 4) + 1,
+    "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
+    "near"     : null,
+    "action"   : null
 },
-{"ID": 3, "name": "creature4", 
- "position" : {"x": 30, "z": 30}, 
- "profile"  : [0.15,   0.15,   0.15,   0.15,   0.15],
- "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
- "direction" :  Math.floor(Math.random() * 4),
- "color":'#'+(Math.random()*0xFFFFFF<<0).toString(16),
- "near": null,
- "action" : null
+{   "ID": 3, "name": "creature4", 
+    "position" : {"x": 30, "z": 30}, 
+    "profile"  : [0.15,   0.15,   0.15,   0.15,   0.15],
+    "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
+    "direction": Math.floor(Math.random() * 4),
+    "type"     : Math.floor(Math.random() * 4) + 1,
+    "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
+    "near"     : null,
+    "action"   : null
 },
-{"ID": 4, "name": "creature5", 
- "position" : {"x": 30, "z": 29}, 
- "profile"  : [0.15,   0.15,   0.15,   0.15,   0.15],
- "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
- "direction" :  Math.floor(Math.random() * 4),
- "color":'#'+(Math.random()*0xFFFFFF<<0).toString(16),
- "near": null,
- "action" : null
+{   "ID": 4, "name": "creature5", 
+    "position" : {"x": 30, "z": 29}, 
+    "profile"  : [0.15,   0.15,   0.15,   0.15,   0.15],
+    "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
+    "direction": Math.floor(Math.random() * 4),
+    "type"     : Math.floor(Math.random() * 4) + 1,
+    "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
+    "near"     : null,
+    "action"   : null
 },
-{"ID": 5, "name": "creature6", 
- "position" : {"x": 34, "z": 34}, 
- "profile"  : [0.15,   0.15,   0.15,   0.15,   0.15],
- "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
- "direction" :  Math.floor(Math.random() * 4),
- "color":'#'+(Math.random()*0xFFFFFF<<0).toString(16),
- "near": null,
- "action" : null
+{   "ID": 5, "name": "creature6", 
+    "position" : {"x": 34, "z": 34}, 
+    "profile"  : [0.15,   0.15,   0.15,   0.15,   0.15],
+    "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
+    "direction": Math.floor(Math.random() * 4),
+    "type"     : Math.floor(Math.random() * 4) + 1,
+    "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
+    "near"     : null,
+    "action"   : null
 },
-{"ID": 6, "name": "creatur7", 
- "position" : {"x": 35, "z": 35}, 
- "profile"  : [0.15,   0.15,   0.15,   0.15,   0.15],
- "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
- "direction" :  Math.floor(Math.random() * 4),
- "color":'#'+(Math.random()*0xFFFFFF<<0).toString(16),
- "near": null,
- "action" : null
+{   "ID": 6, "name": "creatur7", 
+    "position" : {"x": 35, "z": 35}, 
+    "profile"  : [0.15,   0.15,   0.15,   0.15,   0.15],
+    "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
+    "direction": Math.floor(Math.random() * 4),
+    "type"     : Math.floor(Math.random() * 4) + 1,
+    "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
+    "near"     : null,
+    "action"   : null
 },
-{"ID": 7, "name": "creature8", 
- "position" : {"x": 25, "z": 25}, 
- "profile"  : [0.15,   0.15,   0.15,   0.15,   0.15],
- "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
- "direction" :  Math.floor(Math.random() * 4),
- "color":'#'+(Math.random()*0xFFFFFF<<0).toString(16),
- "near": null,
- "action" : null
+{   "ID": 7, "name": "creature8", 
+    "position" : {"x": 25, "z": 25}, 
+    "profile"  : [0.15,   0.15,   0.15,   0.15,   0.15],
+    "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
+    "direction": Math.floor(Math.random() * 4),
+    "type"     : Math.floor(Math.random() * 4) + 1,
+    "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
+    "near"     : null,
+    "action"   : null
 },
-{"ID": 8, "name": "creature9", 
- "position" : {"x": 15, "z": 15}, 
- "profile"  : [0.15,   0.15,   0.15,   0.15,   0.15],
- "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
- "direction" :  Math.floor(Math.random() * 4),
- "color":'#'+(Math.random()*0xFFFFFF<<0).toString(16),
- "near": null,
- "action" : null
+{   "ID": 8, "name": "creature9", 
+    "position" : {"x": 15, "z": 15}, 
+    "profile"  : [0.15,   0.15,   0.15,   0.15,   0.15],
+    "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
+    "direction": Math.floor(Math.random() * 4),
+    "type"     : Math.floor(Math.random() * 4) + 1,
+    "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
+    "near"     : null,
+    "action"   : null
 },
-{"ID": 9, "name": "creature10", 
- "position" : {"x": 5, "z": 5}, 
- "profile"  : [0.15,   0.15,   0.15,   0.15,   0.15],
- "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
- "direction" :  Math.floor(Math.random() * 4),
- "color":'#'+(Math.random()*0xFFFFFF<<0).toString(16),
- "near": null,
- "action" : null
+{   "ID": 9, "name": "creature10", 
+    "position" : {"x": 5, "z": 5}, 
+    "profile"  : [0.15,   0.15,   0.15,   0.15,   0.15],
+    "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
+    "direction": Math.floor(Math.random() * 4),
+    "type"     : Math.floor(Math.random() * 4) + 1,
+    "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
+    "near"     : null,
+    "action"   : null
 }
 ]
 
@@ -154,20 +163,22 @@ let creatureTotal = creatureDef;
 
 //Ajouter le reste de creature
 for(let i = (creatureDef.length);i < 100; i++) {
-    creatureTotal.push(
-    {"ID": i,
-    "name": "creature" + (i+1), 
+    creatureTotal.push({
+    "ID"       : i,
+    "name"     : "creature" + (i+1), 
     "position" : {"x": Math.floor(Math.random() * 40), "z": Math.floor(Math.random() * 40)}, 
     "profile"  : [(Math.random() * 1.01).toFixed(2),   (Math.random() * 1.01).toFixed(2),
                   (Math.random() * 1.01).toFixed(2),   (Math.random() * 1.01).toFixed(2),   (Math.random() * 1.01).toFixed(2)],
     "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, 
-                "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
-    "direction" :  Math.floor(Math.random() * 4),
-    "color":'#'+(Math.random()*0xFFFFFF<<0).toString(16),
-    "near": null,
-    "action" : null
+                  "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
+    "direction": Math.floor(Math.random() * 4),
+    "type"     : Math.floor(Math.random() * 4) + 1,
+    "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
+    "near"     : null,
+    "action"   : null
     })
-};
+}
+
 
 //POUR TEST
 console.log(creatureTotal);
@@ -191,7 +202,7 @@ function creatureTotal(n){
 
 function fnEngine(){
     //Cette fonction va faire
-    frameRate(0.000001); //permet de mettre le monde en "pause afin de checker l'avancement pas à pas"
+    //frameRate(0.000001); //permet de mettre le monde en "pause afin de checker l'avancement pas à pas"
     fnMove();
 }
 
