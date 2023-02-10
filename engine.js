@@ -197,7 +197,7 @@ function fnEngine(){
 
 let PositionCreatures = [];
 
-function fnResetPositionCreatures(){
+function fnResetPositionCreatures(){ //pour initilaliser le tableau "PositionCreatures" à null
 
     for (let i = 0; i < 40; i++) {
         PositionCreatures[i] = [];
@@ -282,13 +282,11 @@ function fnChangeDirection (){ //pour changer le direction
     creatureTotal[i].direction = newDirection;
 }
 
-function fnCheckPosOtherCreatures (){ //pour checker la postion des autres créatures afin de déterminer si une créature oeut jouer avec une autre ou non
-
-
+function fnCheckPosOtherCreatures (){//pour checker la postion des autres créatures afin de déterminer si une créature peut jouer avec une autre ou non
     for (let i = 0; i < creatureTotal.length; i++)
     {
-        let CreatureTemp = [];
-        if (creatureTotal[i].near != null){
+        let CreatureTemp = [];//tableau pour mettre des autre créatures autour du creatureTotal[i]
+        if (creatureTotal[i].near != null){//Checker si le créature a déjà un autre creature pour jouer
             continue;//passe à la boucle suivante
         }
         for (let x = -1; x < 2; x++)//check les cases autour
@@ -311,12 +309,11 @@ function fnCheckPosOtherCreatures (){ //pour checker la postion des autres créa
         }
         if (CreatureTemp.length == 0)
         {
-            continue;
+            continue;//passe à la boucle suivante
         }
-
         RandomCreature = Math.floor(Math.random() * CreatureTemp.length);//prend une créature au hasard si plusieurs autour
         if (creatureTotal[CreatureTemp[RandomCreature]].near == null){
-            creatureTotal[i].near = CreatureTemp[RandomCreature];
+            creatureTotal[i].near = CreatureTemp[RandomCreature];//Mettre ID du créature partantaire dans creatureTotal[i].near
             creatureTotal[CreatureTemp[RandomCreature]].near = creatureTotal[i].ID;
             //console.log(i);//pour tester à supprimer!!!!!!!!!!!!!!!!!!!
             fnDeleteCreatureOfArrayPos(creatureTotal[i].position, i);//efface les 2 créatures du tableau des positions
@@ -329,23 +326,21 @@ function fnCheckPosOtherCreatures (){ //pour checker la postion des autres créa
 
 }
 
-function fnDeleteCreatureOfArrayPos(position, id){//fonction qui permet d'effacer les créatures du tableau des positions afin qu'elles ne soit pas réattribuer à une autre créature
+function fnDeleteCreatureOfArrayPos(position, id){//pour effacer les créatures du tableau des positions afin qu'elles ne soit pas réattribuer à une autre créature
     //console.log(PositionCreatures[position.x][position.z]);//pour tester à supprimer!!!!!!!!!!!!!!!!!!!
     PositionCreatures[position.x][position.z].splice(PositionCreatures[position.x][position.z].indexOf(id),1);
     //console.log(PositionCreatures[position.x][position.z]);//pour tester à supprimer!!!!!!!!!!!!!!!!!!!
-    
 }
 
 
 //fnConsole(JSON.stringify(creatureTotal));//pour tester à supprimer!!!!!!!!!!!!!!!!!!!
 
-
-function fnConsole (text){
+function fnConsole (text){//pour afficher des textes dans le textbox "textEngine"
     document.getElementById("textEngine").value += "\n" + text;
 }
 
 
-function fnActionProba(){
+function fnActionProba(){//pour calculer des probabilité des chaques actions
     for (let i = 0; i < creatureTotal.length; i++){
         let tab = [];
         if (creatureTotal[i].action != null){
@@ -378,35 +373,27 @@ function fnActionProba(){
     }    
 }
 
-
-function fnAddProba(arr, creaID){
-
+function fnAddProba(arr, creaID){//pour additioner tous les probabilité
     let sommeTemp = 0;
-    
-    for (let i = 0; i < arr.length; i++) {
-        
+    for (let i = 0; i < arr.length; i++) {   
         sommeTemp += arr[i] * creatureTotal[creaID].profile[i]
     }
     return sommeTemp;
 }
 
-
 function fnTire(t){
-    //Calculer la somme, uniquement des >0
-    somme=0;
-    for (i=0;i<t.length;i++){
-       if (t[i].prob>0) somme+= t[i].prob;
+    somme = 0;//Calculer la somme, uniquement des >0
+    for (i = 0; i < t.length; i++){
+       if (t[i].prob>0) somme += t[i].prob;
     }
-    //Tirer un nombre aléatoire de 0 à somme
-    n=Math.random()*somme;
-    total=0
-    for (i=0;i<t.length;i++){
-        if (t[i].prob>0){
-            total+=t[i].prob;
-            if (total>=n) return i
+    n = Math.random() * somme;//Tirer un nombre aléatoire de 0 à somme
+    total = 0
+    for (i = 0 ;i < t.length; i++){
+        if (t[i].prob > 0){
+            total += t[i].prob;
+            if (total >= n) return i
         }
     }
-
 }
 
 
