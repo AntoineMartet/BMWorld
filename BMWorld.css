@@ -13,7 +13,7 @@ h1{
 /*Display 3D canvas*/
 #canvasDisplay{
     border: 5px solid lightcoral;
-    width: 1000px;
+    width: 1200px;
     height: 850px;
     float: left;
     margin: 10px;
@@ -47,7 +47,7 @@ h1{
     clear: both;
 }
 
-.tab_class {
+.tabPerson {
     width: calc(100%/5);
     height: 40px;
     background-color: darkgrey;
@@ -59,33 +59,33 @@ h1{
     order: -1;
 }
 
-.tab_list {
+#tabCreaturesText {
     text-align: right;
 }
 
-.list_width {
+#listPerson {
     width: 100px;
 }
 
-/*hide all input elements with name "tab_name"*/
-input[name="tab_name"] {
+/* hide all input elements with name "tab_name" */
+input[name="radioPerson"] {
     display: none;
 }
 
-/* color of tab which is just after the checked input*/
-/* div + p	Selects the first <p> element that is placed immediately after <div> elements*/
-input:checked + .tab_class {
+/* color of tab which is just after the checked input */
+/* div + p	Selects the first <p> element that is placed immediately after <div> elements */
+input:checked + .tabPerson {
     background-color: cadetblue;
     color: aliceblue;
 }
 
 /*Hide all contents elements*/
-.content_class {
+.canvasShowHide {
     display: none;
     width: 100%;
 }
 
 /*Show the content which is just after the checked input*/
-input:checked + .tab_class + .content_class {
+input:checked + .tabPerson + .canvasShowHide {
     display: block;
 }

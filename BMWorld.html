@@ -22,42 +22,43 @@ SI-CA1a
     </div>
 
     <div id="person">
+        <!-- input, label et div avec canvas pour l'onglet Etat -->
+        <input type="radio" name="radioPerson" id="radioButtonEtat" checked>
+        <label class="tabPerson" for="radioButtonEtat">Etat</label>
 
-        <input type="radio" name="tab_name" id="tab1" checked>
-        <label class="tab_class" for="tab1">Etat</label>
-
-        <div class="content_class">
-            <canvas id="canvasPerson"></canvas>
+        <div class="canvasShowHide">
+            <canvas id="canvasPersonStatus"></canvas>
         </div>
 
-        <input type="radio" name="tab_name" id="tab2" >
-        <label class="tab_class" for="tab2">Personnalité</label>
+        <!-- input, label et div avec canvas pour l'onglet Personnalité -->
+        <input type="radio" name="radioPerson" id="radioButtonPersonnality">
+        <label class="tabPerson" for="radioButtonPersonnality">Personnalité</label>
 
-        <div class="content_class">
-            <canvas id="canvasPerson2"></canvas>
+        <div class="canvasShowHide">
+            <canvas id="canvasPersonPersonality"></canvas>
         </div>
 
-        <div class="tab_class">
+        <!-- div d'espace vide avant le div avec le texte "Créatures :" -->
+        <div class="tabPerson"></div>
 
-        </div>
-
-        <div class="tab_class tab_list">
+        <!-- div pour afficher le texte "Créatures :" avant le div avec la liste des créatures -->
+        <div id="tabCreaturesText" class="tabPerson">
             <div>Créatures :</div>
         </div>
 
-        <div class="tab_class">
-            <select id="liste2" class="list_width">
+        <!-- div pour afficher la liste des créatures :" -->
+        <div class="tabPerson">
+            <select id="listPerson">
                 <option value="bob">Bob</option>
                 <option value="alice">Alice</option>
                 <option value="me">Me</option>
                 <option value="you">You</option>
             </select>
         </div>
-
     </div>
 
     <div id="devTests">
-        <textarea id="textEngine" rows="50" cols="18">Tests Tests Tests Tests Tests </textarea>
+        <textarea id="textEngine" rows="50" cols="18">Tests Tests Tests Tests Tests</textarea>
     </div>
 
 </body>
