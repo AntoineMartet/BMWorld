@@ -6,10 +6,9 @@
 //  - Créer une liste des individus pour sélectionner l'un d'eux.
 
     let legendsStatus = ["FC","CP","RA","RP","BE","RE"]; // légendes à afficher (bars)
-    let valuesStatus = [0.1,0.5,0.8,0.2,0.7,0.5]; // valeurs à afficher (bars)
     let colors = ["yellow","orange","red","purple","blue","darkblue"]; // couleurs (bars)
     let legendsPersonality = ["I","F","R","P","E"]; // légendes à afficher (spider)
-    let valuesPersonality = [0.1,0.5,0.8,0.2,0.7]; // valeurs à afficher (spider)
+    let selectedCreatureIndex = 0;
 
     let nx = 40; // nombre de tuiles en x
     let nz = 40; // nombre de tuiles en y
@@ -37,14 +36,13 @@
 
 function setup() {
     // fonction appelée au lancement du programme
-    mainDisplay = createCanvas(1200,850,WEBGL);//canvas en 3D
+    mainDisplay = createCanvas(1200,850,WEBGL);// canvas en 3D
     mainDisplay.parent("canvasDisplay");
-    angleMode(DEGREES);//angles en degrés
-    camera(-300,-500,-300,nx/2*unit,-0,nz/2*unit);//placement de la caméra au départ, vise le centre
-    normalMaterial(250);//matériaux solides
+    angleMode(DEGREES);// angles en degrés
+    camera(-300,-500,-300,nx/2*unit,-0,nz/2*unit);// placement de la caméra au départ, vise le centre
+    normalMaterial(250);// matériaux solides
     fnTiles();// Ajoute à aWorld un certain nombre de tuiles pour le sol
-    // fnCreatures(100);//Crée 100 créatures en 3D
-    frameRate(3);//2 fois par secondes on rafraichit
+    frameRate(5);// 5 fois par secondes on rafraichit
     ctxPersonStatus=document.getElementById("canvasPersonStatus").getContext("2d");
     ctxPersonPersonality=document.getElementById("canvasPersonPersonality").getContext("2d");
     ctxWorld=document.getElementById("canvasWorld").getContext("2d");
@@ -54,6 +52,7 @@ function setup() {
     ctxPersonPersonality.canvas.height  = 370;
     ctxWorld.canvas.width  = 600;
     ctxWorld.canvas.height  = 410;
+    createListOfCreatures();
 }
 
 function get_random (list) {
@@ -70,7 +69,7 @@ function fnTiles(){
 }
 
 function draw() {
-    // fonction appelée 2 fois par seconde (suivant le frameRate)
+    // fonction appelée X fois par seconde (selon le frameRate choisi)
     // NB : même les objets statiques (ex: la grille) doivent être redessinés à chaque fois, pas possible de les
     //      dessiner juste une fois dans le setup.
     background("lightblue");
@@ -82,15 +81,13 @@ function draw() {
 }
 
 function fnDisplay(){
-
-    // Dessin le monde : grille, axes et autres objets statiques (ex: bâtiments)
+    // Dessin du monde : grille, axes et autres objets statiques (ex: bâtiments)
     for (let i=0; i<aWorld.length; i++){
         fnDisplayObject(aWorld[i]);
     }
 
     // Dessin des créatures
     for (let i=0; i<creatureTotal.length; i++){
-        // fnDisplayObject(creatureTotal[i]);
         fnDisplayCreature(creatureTotal[i]);
     }
 
@@ -107,8 +104,8 @@ function fnDisplay(){
     ctxWorld.fillRect(0, 0, 600, 600);
 
     // Dessin des graphes
-    bars(valuesStatus, legendsStatus, 130, 335, 300, 300, colors);
-    spider(valuesPersonality, legendsPersonality, 300, 188, 150, "purple", "yellow");
+    bars(legendsStatus, 130, 335, 300, 300, colors);
+    spider(legendsPersonality, 300, 188, 150, "purple", "yellow");
 }
 
 function fnDisplayCreature(o){
@@ -145,16 +142,16 @@ function fnDisplayCreature(o){
             // Pieds et jambes
             push();
             fill("black");
-            translate(o.position.x*unit-10,-6-25,o.position.z*unit)
+            translate(o.position.x*unit-10,-6-25,o.position.z*unit);
             rotateX(0);
             cylinder(legCylinderRadius,legCylinderHeight);
-            translate(20,0,0)
+            translate(20,0,0);
             cylinder(legCylinderRadius,legCylinderHeight);
-            translate(0,25,0)
-            fill("black")
-            sphere(legCylinderRadius)
-            translate(-20,0,0)
-            sphere(legCylinderRadius)
+            translate(0,25,0);
+            fill("black");
+            sphere(legCylinderRadius);
+            translate(-20,0,0);
+            sphere(legCylinderRadius);
             pop();
             break;
 
@@ -185,13 +182,13 @@ function fnDisplayCreature(o){
             translate(o.position.x*unit-10,-6-25,o.position.z*unit)
             rotateX(0);
             cylinder(legCylinderRadius,legCylinderHeight);
-            translate(20,0,0)
+            translate(20,0,0);
             cylinder(legCylinderRadius,legCylinderHeight);
-            translate(0,25,0)
-            fill("black")
-            sphere(legCylinderRadius)
-            translate(-20,0,0)
-            sphere(legCylinderRadius)
+            translate(0,25,0);
+            fill("black");
+            sphere(legCylinderRadius);
+            translate(-20,0,0);
+            sphere(legCylinderRadius);
             pop();
             break;
 
@@ -223,13 +220,13 @@ function fnDisplayCreature(o){
             translate(o.position.x*unit-10,-6-25,o.position.z*unit)
             rotateX(0);
             cylinder(legCylinderRadius,legCylinderHeight);
-            translate(20,0,0)
+            translate(20,0,0);
             cylinder(legCylinderRadius,legCylinderHeight);
-            translate(0,25,0)
-            fill("black")
-            sphere(legCylinderRadius)
-            translate(-20,0,0)
-            sphere(legCylinderRadius)
+            translate(0,25,0);
+            fill("black");
+            sphere(legCylinderRadius);
+            translate(-20,0,0);
+            sphere(legCylinderRadius);
             pop();
             break;
 
@@ -260,29 +257,37 @@ function fnDisplayCreature(o){
             translate(o.position.x*unit-10,-6-25,o.position.z*unit)
             rotateX(0);
             cylinder(legCylinderRadius,legCylinderHeight);
-            translate(20,0,0)
+            translate(20,0,0);
             cylinder(legCylinderRadius,legCylinderHeight);
-            translate(0,25,0)
-            fill("black")
-            sphere(legCylinderRadius)
-            translate(-20,0,0)
-            sphere(legCylinderRadius)
+            translate(0,25,0);
+            fill("black");
+            sphere(legCylinderRadius);
+            translate(-20,0,0);
+            sphere(legCylinderRadius);
             pop();
             break;
     }
 }
 
-function bars(values, legends, x, y, l, h, colors){
+function bars(legends, x, y, l, h, colors){
     //Cette fonction dessine un graphique en barres à partir
     //de x et y, de largeur l et de hauteur h
 
-    // barres
-    largeur = l / values.length; // largeur des barres ("l" et non pas "h" !)
+    // Pour stocker les valeurs de personnalité de l'individu sélectionné
+    let arrayPersonalityStatus = [];
 
-    for (b = 0; b < values.length; b++)
+    for(let x in creatureTotal[selectedCreatureIndex].status)
     {
-        ctxPersonStatus.fillStyle = colors[b];
-        ctxPersonStatus.fillRect(x + b * largeur, y, largeur, -h * values[b])
+        arrayPersonalityStatus.push(creatureTotal[selectedCreatureIndex].status[x]);
+    }
+
+    // barres
+    let largeur = l / arrayPersonalityStatus.length; // largeur des barres ("l" et non pas "h" !)
+
+    for (let i = 0; i < arrayPersonalityStatus.length; i++)
+    {
+        ctxPersonStatus.fillStyle = colors[i];
+        ctxPersonStatus.fillRect(x + i * largeur, y, largeur, -h * arrayPersonalityStatus[i] / 100);
     }
 
     // axes
@@ -299,31 +304,36 @@ function bars(values, legends, x, y, l, h, colors){
     //Ecritures des légendes (noir, 15pt Arial)
     ctxPersonStatus.font = "15pt Arial";
     ctxPersonStatus.fillStyle = "black";
-    for (b = 0; b < legends.length; b++){
-        ctxPersonStatus.fillText(legends[b], x + largeur * (b + 0.25), y + 25);
+    for (let i = 0; i < legends.length; i++){
+        ctxPersonStatus.fillText(legends[i], x + largeur * (i + 0.25), y + 25);
     }
 }
 
-function spider(values, legends, x, y, r, c1, c2){
+function spider(legends, x, y, r, c1, c2){
     // Cette fonction dessine un graphique en toile d'araignée
     // dans le dessin ctx, avec le tableau des valeurs et le tableau des légendes
     // Le graphique est placé en x, y et a pour rayon r
     // Les maxi sont repérés par la couleur c1, les valeurs par c2
     // Ici c'est le milieu du graphe qui est en x, y (pas le coin en haut à gauche)
 
-    // Pour stocker les valeurs de personnalité d'un individu
-    let arrayPersonnalityValues = [];
+    // Pour stocker les valeurs de personnalité de l'individu sélectionné
+    let arrayPersonalityValues = [];
 
-    // Sans dictionnaire
-    for(let x in creatureTotal[0].profile)
+    for(let x in creatureTotal[selectedCreatureIndex].profile)
     {
-        arrayPersonnalityValues.push(creatureTotal[0].profile[x]);
+        arrayPersonalityValues.push(creatureTotal[selectedCreatureIndex].profile[x]);
     }
+
+    // Autre méthode : avec dictionnaire (buggé : les valeurs du array sont toujours 0,1,2,3,4)
+    /* for(const [key] of Object.entries(creatureTotal[selectedCreatureIndex].profile))
+    {
+        arrayPersonalityValues.push(key);
+    } */
 
     // Zone de maxi (en fond)
     ctxPersonPersonality.beginPath();
-    for (i = 0; i < arrayPersonnalityValues.length; i++){
-        angle = -i * 2 * Math.PI / arrayPersonnalityValues.length; // Avec le - on tourne dans le sens horaire
+    for (let i = 0; i < arrayPersonalityValues.length; i++){
+        let angle = -i * 2 * Math.PI / arrayPersonalityValues.length; // Avec le - on tourne dans le sens horaire
         ctxPersonPersonality.lineTo(x + r * Math.cos(angle), y - r * Math.sin(angle));
     }
     ctxPersonPersonality.fillStyle = c1;
@@ -332,9 +342,9 @@ function spider(values, legends, x, y, r, c1, c2){
     //Zone des valeurs (par-dessus le fond)
     ctxPersonPersonality.beginPath();
 
-    for (i = 0; i < arrayPersonnalityValues.length; i++){
-        angle = -i * 2 * Math.PI / arrayPersonnalityValues.length;
-        ctxPersonPersonality.lineTo(x + arrayPersonnalityValues[i] * r * Math.cos(angle), y - arrayPersonnalityValues[i] * r * Math.sin(angle));
+    for (let i = 0; i < arrayPersonalityValues.length; i++){
+        let angle = -i * 2 * Math.PI / arrayPersonalityValues.length;
+        ctxPersonPersonality.lineTo(x + arrayPersonalityValues[i] * r * Math.cos(angle), y - arrayPersonalityValues[i] * r * Math.sin(angle));
     }
 
     ctxPersonPersonality.fillStyle = c2;
@@ -343,15 +353,15 @@ function spider(values, legends, x, y, r, c1, c2){
     // Zone de moitié (par-dessus le fond et les valeurs, épaisseur 1)
     // Pareil que le fond mais r*0,5 au lieu de r et stroke() au lieu de fill()
     ctxPersonPersonality.beginPath();
-    for (a = 0; a <= arrayPersonnalityValues.length; a++){
-        angle = -a * 2 * Math.PI / arrayPersonnalityValues.length;
+    for (let i = 0; i <= arrayPersonalityValues.length; i++){
+        let angle = -i * 2 * Math.PI / arrayPersonalityValues.length;
         ctxPersonPersonality.lineTo(x+0.5*r*Math.cos(angle),y-0.5*r*Math.sin(angle));
     }
     ctxPersonPersonality.stroke();
 
     // Tracé des axes (épaisseur 2, couleur noire)
-    for (a = 0; a < arrayPersonnalityValues.length; a++){
-        angle = a * 2 * Math.PI / arrayPersonnalityValues.length;
+    for (let i = 0; i < arrayPersonalityValues.length; i++){
+        let angle = i * 2 * Math.PI / arrayPersonalityValues.length;
         ctxPersonPersonality.beginPath();
         ctxPersonPersonality.moveTo(x,y);
         ctxPersonPersonality.lineTo(x + 1.1 * r * Math.cos(angle), y - 1.1 * r * Math.sin(angle));
@@ -359,20 +369,12 @@ function spider(values, legends, x, y, r, c1, c2){
         ctxPersonPersonality.stroke();
     }
 
-    // Pour stocker les valeurs de statut d'un individu
-    let arrayPersonnalityLegends = [];
-
-    for(const [key, value] of Object.entries(creatureTotal[0].profile))
-    {
-        arrayPersonnalityLegends.push(key);
-    }
-
     // Ecritures des légendes (noir, 15pt Arial)
     ctxPersonPersonality.font="15pt Arial";
     ctxPersonPersonality.fillStyle = "black";
-    for (i = 0; i < arrayPersonnalityLegends.length; i++){
-        angle = -i * 2 * Math.PI / arrayPersonnalityLegends.length;
-        ctxPersonPersonality.fillText(arrayPersonnalityLegends[i], x - 5 + 1.2 * r * Math.cos(angle), y + 5 - 1.2 * r * Math.sin(angle));
+    for (let i = 0; i < legends.length; i++){
+        let angle = -i * 2 * Math.PI / legends.length;
+        ctxPersonPersonality.fillText(legends[i], x - 5 + 1.2 * r * Math.cos(angle), y + 5 - 1.2 * r * Math.sin(angle));
         // "-5" et "+5" uniquement pour peaufiner l'emplacement des légendes
     }
 }
@@ -457,3 +459,25 @@ function fnDisplayObject(o){
             break;
     }
 }
+
+function createListOfCreatures(){
+    for(let i=0; i<creatureTotal.length; i++){
+        let optElement = document.createElement("option");
+        optElement.setAttribute("value", creatureTotal[i].name); // Peut-être optionnel
+        // optElement.setAttribute("id", i); // Probablement optionnel
+        let optNode = document.createTextNode(creatureTotal[i].name);
+        optElement.appendChild(optNode);
+        let rootElement = document.getElementById("listPerson");
+        rootElement.appendChild(optElement);
+    }
+}
+
+function updateSelectedCreature(){
+    let selectedElement = document.getElementById("listPerson");
+    selectedCreatureIndex = selectedElement.selectedIndex;
+    let selectedCreatureDisplay = selectedCreatureIndex + 1;
+
+    console.log("Index créature sélectionnée : " + selectedCreatureIndex);
+    console.log("Donc créature sélectionnée : " + selectedCreatureDisplay);
+}
+

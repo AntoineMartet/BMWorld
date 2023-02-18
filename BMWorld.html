@@ -31,29 +31,24 @@ SI-CA1a
         </div>
 
         <!-- input, label et div avec canvas pour l'onglet Personnalité -->
-        <input type="radio" name="radioPerson" id="radioButtonPersonnality">
-        <label class="tabPerson" for="radioButtonPersonnality">Personnalité</label>
+        <input type="radio" name="radioPerson" id="radioButtonPersonality">
+        <label class="tabPerson" for="radioButtonPersonality">Personnalité</label>
 
         <div class="canvasShowHide">
             <canvas id="canvasPersonPersonality"></canvas>
         </div>
 
         <!-- div d'espace vide avant le div avec le texte "Créatures :" -->
-        <div class="tabPerson"></div>
+        <div id="tabCreatureName" class="tabPerson"></div>
 
         <!-- div pour afficher le texte "Créatures :" avant le div avec la liste des créatures -->
         <div id="tabCreaturesText" class="tabPerson">
             <div>Créatures :</div>
         </div>
 
-        <!-- div pour afficher la liste des créatures :" -->
+        <!-- div pour afficher la liste des créatures -->
         <div class="tabPerson">
-            <select id="listPerson">
-                <option value="bob">Bob</option>
-                <option value="alice">Alice</option>
-                <option value="me">Me</option>
-                <option value="you">You</option>
-            </select>
+            <select id="listPerson" onchange="updateSelectedCreature()"></select>
         </div>
     </div>
 
@@ -63,6 +58,7 @@ SI-CA1a
 
 </body>
 </html>
+
 <script src="p5.min.js"></script>
 <script src="display.js"></script>
 <script src="engine.js"></script>
