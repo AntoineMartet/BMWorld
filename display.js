@@ -11,9 +11,10 @@
     let legendsPersonality = ["I","F","R","P","E"]; // légendes à afficher (spider)
     let valuesPersonality = [0.1,0.5,0.8,0.2,0.7]; // valeurs à afficher (spider)
 
-    let nx = 40;//nombre de tuiles en x
+    let nx = 40; // nombre de tuiles en x
     let nz = 40; // nombre de tuiles en y
-    let size = 50; // taille des tuiles (carrées)
+    let unit = 50; // taille de l'unité de base du monde. Une tuile fait 50 de côté.
+    let tileSize = unit - 2; // L'affichage d'une tuile fait 48 de côté.
     let aWorld = [
         {"name":"axe X","type":"line","x":0,"y":0,"z":0,"x1":700,"y1":0,"z1":0,"color":"red"},
         {"name":"axe Y","type":"line","x":0,"y":0,"z":0,"x1":0,"y1":700,"z1":0,"color":"green"},
@@ -24,16 +25,26 @@
     let ctxPersonPersonality;
     let ctxWorld;
 
+    let Couleur = ['rgb(0, 115, 86)','rgb(82, 183, 136 )','rgb(144, 190, 109 )','rgb(128, 185, 24)','rgb(128, 128, 0)','rgb(3, 4, 94)','rgb(72, 202, 228)','rgb(114, 9, 183 )','rgb(205, 180, 219)','rgb(193, 28, 173)','rgb(89, 13, 34)','rgb(255, 143, 171 )','rgb(249, 65, 68)','rgb(249, 121, 57)','rgb(255, 127, 81)','rgb(220, 47, 2 )','rgb(252, 112, 8 )','rgb(255, 204, 0)','rgb(255, 218, 61 )','rgb(255, 234, 0 )','rgb(253, 255, 252 )','rgb(206, 212, 218)','rgb(0, 180, 216)','rgb(52, 58, 64 )','rgb(192, 103, 34 )'];
+    let ColorCylinder;
+    let ColorCube;
+    let ColorTorus;
+    let ColorCone;
+    ColorCylinder = get_random(Couleur);
+    ColorCube = get_random(Couleur);
+    ColorTorus = get_random(Couleur);
+    ColorCone = get_random(Couleur);
+
 function setup() {
-    //fonction appelée au lancement du programme
+    // fonction appelée au lancement du programme
     mainDisplay = createCanvas(1200,850,WEBGL);//canvas en 3D
     mainDisplay.parent("canvasDisplay");
     angleMode(DEGREES);//angles en degrés
-    camera(-300,-500,-300,nx/2*size,-0,nz/2*size);//placement de la caméra au départ, vise le centre
+    camera(-300,-500,-300,nx/2*unit,-0,nz/2*unit);//placement de la caméra au départ, vise le centre
     normalMaterial(250);//matériaux solides
-    fnTiles();//Crée des tuiles comme sol
+    fnTiles();// Ajoute à aWorld un certain nombre de tuiles pour le sol
     // fnCreatures(100);//Crée 100 créatures en 3D
-    frameRate(5);//2 fois par secondes on rafraichit
+    frameRate(3);//2 fois par secondes on rafraichit
     ctxPersonStatus=document.getElementById("canvasPersonStatus").getContext("2d");
     ctxPersonPersonality=document.getElementById("canvasPersonPersonality").getContext("2d");
     ctxWorld=document.getElementById("canvasWorld").getContext("2d");
@@ -45,80 +56,225 @@ function setup() {
     ctxWorld.canvas.height  = 410;
 }
 
-function draw() {
-    //fonction appelée 2 fois par seconde (suivant le frameRate)
-    background("lightblue");
-    lights();//Allumer les lumières
-    directionalLight(250, 250, 250, 0.2, 1, 0.6);
-    orbitControl(2,2,2);//autorise le controle par souris
-    fnEngine();// Calcule le monde de l'état suivant (se trouve dans engine.js)
-    fnDisplay();
-    bars(valuesStatus, legendsStatus, 130, 335, 300, 300, colors);
-    spider(valuesPersonality, legendsPersonality, 300, 188, 150, "purple", "yellow");
-}
-
-function fnDisplay(){
-
-    //Tracé du monde
-    for (let i=0;i<aWorld.length;i++){
-        fnDisplayObject(aWorld[i]);
-    }
-    //Dessin des créatures
-    for (let i=0;i<creatureTotal.length;i++){
-        // fnDisplayObject(creatureTotal[i]);
-        fnDisplayCreature(creatureTotal[i]);
-    }
-
-    //Fond du canvas personne
-    ctxPersonStatus.fillStyle = "lightblue";
-    ctxPersonStatus.fillRect(0, 0, 600, 600);
-
-    ctxPersonPersonality.fillStyle = "lightblue";
-    ctxPersonPersonality.fillRect(0, 0, 600, 600);
-
-    //Fond du canvas world
-    ctxWorld.fillStyle = "lightblue";
-    ctxWorld.fillRect(0, 0, 600, 600);
-
+function get_random (list) {
+    return list[Math.floor((Math.random()*list.length))];
 }
 
 function fnTiles(){
     //Crée un certain nb de tuiles
     for (x=0;x<=nx;x++) {
         for (z = 0; z <= nz ; z++) {
-            aWorld.push({"name":"t","type":"plane","x":x*size,"y":0,"z":z*size,"rx":90,"ry":0,"rz":0,"l1":size-2,"l2":size-2,"color":"green"});
+            aWorld.push({"name":"tile","type":"plane","x":x*unit,"y":0,"z":z*unit,"rx":90,"ry":0,"rz":0,"l1":tileSize,"l2":tileSize,"color":"green"});
         }
     }
 }
 
+function draw() {
+    // fonction appelée 2 fois par seconde (suivant le frameRate)
+    // NB : même les objets statiques (ex: la grille) doivent être redessinés à chaque fois, pas possible de les
+    //      dessiner juste une fois dans le setup.
+    background("lightblue");
+    lights();//Allumer les lumières
+    directionalLight(250, 250, 250, 0.2, 1, 0.6);
+    orbitControl(2,2,2);//autorise le controle par souris
+    fnEngine(); // Calcule le monde de l'état suivant (se trouve dans engine.js)
+    fnDisplay(); // Affiche les fonds des 3 canvas, le monde, les créatures et les graphes
+}
+
+function fnDisplay(){
+
+    // Dessin le monde : grille, axes et autres objets statiques (ex: bâtiments)
+    for (let i=0; i<aWorld.length; i++){
+        fnDisplayObject(aWorld[i]);
+    }
+
+    // Dessin des créatures
+    for (let i=0; i<creatureTotal.length; i++){
+        // fnDisplayObject(creatureTotal[i]);
+        fnDisplayCreature(creatureTotal[i]);
+    }
+
+    // Fond du canvas PersonStatus
+    ctxPersonStatus.fillStyle = "lightblue";
+    ctxPersonStatus.fillRect(0, 0, 600, 600);
+
+    // Fond du canvas PersonPersonality
+    ctxPersonPersonality.fillStyle = "lightblue";
+    ctxPersonPersonality.fillRect(0, 0, 600, 600);
+
+    // Fond du canvas World
+    ctxWorld.fillStyle = "lightblue";
+    ctxWorld.fillRect(0, 0, 600, 600);
+
+    // Dessin des graphes
+    bars(valuesStatus, legendsStatus, 130, 335, 300, 300, colors);
+    spider(valuesPersonality, legendsPersonality, 300, 188, 150, "purple", "yellow");
+}
+
 function fnDisplayCreature(o){
-    push();
-    translate(o.position.x*size,-50,o.position.z*size);
-    fill(o.color);
-    box(size/2,size/2,size/2);
-    //pop();
-    //Dessine les yeux à un objet
-    //push();
 
-    translate(-10,-size/2,20);
-    sphere(5);
-    translate(+20,0,0);
-    sphere(5);
-    //nez
-    translate(-10,15,5);
-    cone(10);
+    // Rappel : "translate(o.position.x*unit, 0, o.position.z*unit)" représente LE MILIEU d'une tuile, pas un de ses coins
 
-    //pieds
-    translate(-10,32,-25)
-    cone(-14,80);
-    translate(20,20,0)
-    cone(14,80);
-    pop();
+    let legCylinderHeight = 50;
+    let legCylinderRadius = 6;
+    let legHeight = legCylinderHeight + legCylinderRadius;
+
+    switch (o.type) {
+        case 1: // cylinder
+
+            // Tête
+            push();
+            translate(o.position.x*unit,-legHeight-10,o.position.z*unit);
+            fill(ColorCylinder);
+            rotateZ(90);
+            cylinder(15,90);
+            pop();
+
+            // Yeux et nez
+            push();
+            fill("black");
+            translate(o.position.x*unit-15,-legHeight-20,o.position.z*unit-8);
+            sphere(5);
+            translate(30,0,0);
+            sphere(5);
+            translate(-15,3,-8);
+            fill("black");
+            sphere(3);
+            pop();
+
+            // Pieds et jambes
+            push();
+            fill("black");
+            translate(o.position.x*unit-10,-6-25,o.position.z*unit)
+            rotateX(0);
+            cylinder(legCylinderRadius,legCylinderHeight);
+            translate(20,0,0)
+            cylinder(legCylinderRadius,legCylinderHeight);
+            translate(0,25,0)
+            fill("black")
+            sphere(legCylinderRadius)
+            translate(-20,0,0)
+            sphere(legCylinderRadius)
+            pop();
+            break;
+
+        case 2: // box
+
+            // Tête
+            push();
+            translate(o.position.x*unit,-legHeight-tileSize/2,o.position.z*unit);
+            fill(ColorCube);
+            box(tileSize,tileSize,tileSize);
+            pop();
+
+            // Yeux et nez
+            push();
+            fill("black");
+            translate(o.position.x*unit-10,-legHeight-35,o.position.z*unit-23);
+            sphere(5);
+            translate(+20,0,0);
+            sphere(5);
+            translate(-10,15,0);
+            fill("black");
+            sphere(8);
+            pop();
+
+            // Pieds et jambes
+            push();
+            fill("black");
+            translate(o.position.x*unit-10,-6-25,o.position.z*unit)
+            rotateX(0);
+            cylinder(legCylinderRadius,legCylinderHeight);
+            translate(20,0,0)
+            cylinder(legCylinderRadius,legCylinderHeight);
+            translate(0,25,0)
+            fill("black")
+            sphere(legCylinderRadius)
+            translate(-20,0,0)
+            sphere(legCylinderRadius)
+            pop();
+            break;
+
+        case 3: // cone
+
+            // Tête
+            push();
+            translate(o.position.x*unit,-legHeight-35,o.position.z*unit);
+            fill(ColorCone);
+            rotateZ(180);
+            cone(25,70);
+            pop();
+
+            // Yeux et nez
+            push();
+            fill("black");
+            translate(o.position.x*unit-5,-legHeight-50,o.position.z*unit-2);
+            sphere(5);
+            translate(10,0,0);
+            sphere(5);
+            translate(-5,3,-8);
+            fill("black");
+            sphere(3);
+            pop();
+
+            // Pieds et jambes
+            push();
+            fill("black");
+            translate(o.position.x*unit-10,-6-25,o.position.z*unit)
+            rotateX(0);
+            cylinder(legCylinderRadius,legCylinderHeight);
+            translate(20,0,0)
+            cylinder(legCylinderRadius,legCylinderHeight);
+            translate(0,25,0)
+            fill("black")
+            sphere(legCylinderRadius)
+            translate(-20,0,0)
+            sphere(legCylinderRadius)
+            pop();
+            break;
+
+        case 4: // torus
+
+            // Tête
+            push();
+            translate(o.position.x*unit,-legHeight-30,o.position.z*unit);
+            fill(ColorTorus);
+            torus(30,10);
+            pop();
+
+            // Yeux et nez
+            push();
+            fill("black");
+            translate(o.position.x*unit-15,-legHeight-60,o.position.z*unit-8);
+            sphere(5);
+            translate(30,0,0);
+            sphere(5);
+            translate(-15,3,-8);
+            fill("black");
+            sphere(3);
+            pop();
+
+            // Pieds et jambes
+            push();
+            fill("black");
+            translate(o.position.x*unit-10,-6-25,o.position.z*unit)
+            rotateX(0);
+            cylinder(legCylinderRadius,legCylinderHeight);
+            translate(20,0,0)
+            cylinder(legCylinderRadius,legCylinderHeight);
+            translate(0,25,0)
+            fill("black")
+            sphere(legCylinderRadius)
+            translate(-20,0,0)
+            sphere(legCylinderRadius)
+            pop();
+            break;
+    }
 }
 
 function bars(values, legends, x, y, l, h, colors){
     //Cette fonction dessine un graphique en barres à partir
-    //de x, y, de largeur l, de hauteur h
+    //de x et y, de largeur l et de hauteur h
 
     // barres
     largeur = l / values.length; // largeur des barres ("l" et non pas "h" !)
@@ -300,5 +456,4 @@ function fnDisplayObject(o){
             pop();
             break;
     }
-
 }
