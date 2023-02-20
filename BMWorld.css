@@ -26,6 +26,10 @@ h1{
     width: 600px;
     float: left;
     margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+
+    align-content: flex-start;
 }
 
 #person{
@@ -88,4 +92,50 @@ input:checked + .tabPerson {
 /*Show the content which is just after the checked input*/
 input:checked + .tabPerson + .canvasShowHide {
     display: block;
+}
+
+.tabWorld {
+    width: calc(100%/5);
+    height: 40px;
+    background-color: darkgrey;
+    line-height: 40px;
+    font-size: 15px;
+    text-align: center;
+    display: block;
+    float: left;
+    order: -1;
+}
+
+input[name="radioWorld"]{
+    display: none;
+}
+
+input:checked + .tabWorld {
+    background-color: cadetblue;
+    color: aliceblue;
+}
+
+
+
+input:checked + .tabWorld + .divShowHide{
+    display: block;
+}
+
+.divShowHide {
+    display: none;
+    width: 100%;
+    padding: 10px;
+}
+
+#tableWorldEtat {
+    padding: 10px;
+    border-collapse: collapse;
+    margin: 10px;
+    border: 1px solid;
+    width: 100%;
+
+}
+
+tr, td {
+    border: 1px solid;
 }
