@@ -22,7 +22,6 @@ let aWorld = [
 ];
 let ctxPersonStatus;
 let ctxPersonPersonality;
-let ctxWorld;
 
 let Couleur = ['rgb(0, 115, 86)', 'rgb(82, 183, 136 )', 'rgb(144, 190, 109 )', 'rgb(128, 185, 24)', 'rgb(128, 128, 0)', 'rgb(3, 4, 94)', 'rgb(72, 202, 228)', 'rgb(114, 9, 183 )', 'rgb(205, 180, 219)', 'rgb(193, 28, 173)', 'rgb(89, 13, 34)', 'rgb(255, 143, 171 )', 'rgb(249, 65, 68)', 'rgb(249, 121, 57)', 'rgb(255, 127, 81)', 'rgb(220, 47, 2 )', 'rgb(252, 112, 8 )', 'rgb(255, 204, 0)', 'rgb(255, 218, 61 )', 'rgb(255, 234, 0 )', 'rgb(253, 255, 252 )', 'rgb(206, 212, 218)', 'rgb(0, 180, 216)', 'rgb(52, 58, 64 )', 'rgb(192, 103, 34 )'];
 let ColorCylinder;
@@ -45,13 +44,10 @@ function setup() {
     frameRate(5);// 5 fois par secondes on rafraichit
     ctxPersonStatus = document.getElementById("canvasPersonStatus").getContext("2d");
     ctxPersonPersonality = document.getElementById("canvasPersonPersonality").getContext("2d");
-    ctxWorld = document.getElementById("canvasWorld").getContext("2d");
     ctxPersonStatus.canvas.width = 600;
     ctxPersonStatus.canvas.height = 370;
     ctxPersonPersonality.canvas.width = 600;
     ctxPersonPersonality.canvas.height = 370;
-    ctxWorld.canvas.width = 600;
-    ctxWorld.canvas.height = 410;
     createListOfCreatures();
 }
 
@@ -98,10 +94,6 @@ function fnDisplay() {
     // Fond du canvas PersonPersonality
     ctxPersonPersonality.fillStyle = "lightblue";
     ctxPersonPersonality.fillRect(0, 0, 600, 600);
-
-    // Fond du canvas World
-    ctxWorld.fillStyle = "lightblue";
-    ctxWorld.fillRect(0, 0, 600, 600);
 
     // Dessin des graphes
     bars(legendsStatus, 130, 335, 300, 300, colors);
