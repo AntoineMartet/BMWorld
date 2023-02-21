@@ -9,6 +9,7 @@ let legendsStatus = ["FC", "CP", "RA", "RP", "BE", "RE"]; // légendes à affich
 let colors = ["yellow", "orange", "red", "purple", "blue", "darkblue"]; // couleurs (bars)
 let legendsPersonality = ["I", "F", "R", "P", "E"]; // légendes à afficher (spider)
 let selectedCreatureIndex = 0;
+let displayClock = 0;
 
 let nx = 40; // nombre de tuiles en x
 let nz = 40; // nombre de tuiles en y
@@ -41,7 +42,7 @@ function setup() {
     camera(-300, -500, -300, nx / 2 * unit, -0, nz / 2 * unit);// placement de la caméra au départ, vise le centre
     normalMaterial(250);// matériaux solides
     fnTiles();// Ajoute à aWorld un certain nombre de tuiles pour le sol
-    frameRate(5);// 5 fois par secondes on rafraichit
+    frameRate(30);// 5 fois par secondes on rafraichit
     ctxPersonStatus = document.getElementById("canvasPersonStatus").getContext("2d");
     ctxPersonPersonality = document.getElementById("canvasPersonPersonality").getContext("2d");
     ctxPersonStatus.canvas.width = 600;
@@ -72,8 +73,12 @@ function draw() {
     lights();//Allumer les lumières
     directionalLight(250, 250, 250, 0.2, 1, 0.6);
     orbitControl(2, 2, 2);//autorise le controle par souris
-    fnEngine(); // Calcule le monde de l'état suivant (se trouve dans engine.js)
+    if(displayClock%20==0){
+        fnEngine(); // Calcule le monde de l'état suivant (se trouve dans engine.js)
+        displayClock = 0;
+    }
     fnDisplay(); // Affiche les fonds des 3 canvas, le monde, les créatures et les graphes
+    displayClock += 1;
 }
 
 function fnDisplay() {
