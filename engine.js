@@ -4,6 +4,10 @@
 // début 30.01.2023
 // Ce fichier contient tout pour animer les créatures.
 
+let stepCount = 0;
+
+
+
 
 
 //profil
@@ -185,8 +189,6 @@ for(let i = (creatureDef.length);i < 100; i++) {
 }
 
 
-//POUR TEST
-console.log(creatureTotal);
 
 //-----------------------------------------------------------------------fin 
 
@@ -209,6 +211,9 @@ function fnEngine(){
     //Cette fonction va faire
     //frameRate(0.000001); //permet de mettre le monde en "pause afin de checker l'avancement pas à pas"
     fnMove();
+    fnLog(JSON.stringify(creatureTotal));
+
+    stepCount++;
 }
 
 let PositionCreatures = [];
@@ -507,3 +512,8 @@ function fnActionEffect(){
 
 }
 
+
+function fnLog(text){
+    document.getElementById("textEngine").value += "\n\nstepCount : " + stepCount + "\n\n" + text;
+    console.log(text);
+}
