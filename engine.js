@@ -364,40 +364,40 @@ function fnConsole (text){//pour afficher des textes dans le textbox "textEngine
 
 function fnActionProba(){//pour calculer des probabilité des chaques actions
     for (let i = 0; i < creatureTotal.length; i++){
-        let tab = [];
+        let tempArr = [];
         if (creatureTotal[i].action != null){
             continue;
         }
-        
-        tab.push({"nom" : "ETU", "prob" : fnAddProba(actions[0].prob, i), "type" : actions[0].type})
-        tab.push({"nom" : "TRA", "prob" : fnAddProba(actions[1].prob, i), "type" : actions[1].type})
-        tab.push({"nom" : "JOS", "prob": fnAddProba(actions[2].prob, i), "type" : actions[2].type})
-        tab.push({"nom" : "SPS", "prob" : fnAddProba(actions[3].prob, i), "type" : actions[3].type})
-        tab.push({"nom" : "VOS", "prob" : fnAddProba(actions[4].prob, i), "type" : actions[4].type})
-        tab.push({"nom" : "COS", "prob" : fnAddProba(actions[5].prob, i), "type" : actions[5].type})
-        tab.push({"nom" : "COB", "prob" : fnAddProba(actions[6].prob, i), "type" : actions[6].type})
+
+        tempArr.push({"nom" : "ETU", "prob" : fnAddProba(actions[0].prob, i), "type" : actions[0].type})
+        tempArr.push({"nom" : "TRA", "prob" : fnAddProba(actions[1].prob, i), "type" : actions[1].type})
+        tempArr.push({"nom" : "JOS", "prob": fnAddProba(actions[2].prob, i), "type" : actions[2].type})
+        tempArr.push({"nom" : "SPS", "prob" : fnAddProba(actions[3].prob, i), "type" : actions[3].type})
+        tempArr.push({"nom" : "VOS", "prob" : fnAddProba(actions[4].prob, i), "type" : actions[4].type})
+        tempArr.push({"nom" : "COS", "prob" : fnAddProba(actions[5].prob, i), "type" : actions[5].type})
+        tempArr.push({"nom" : "COB", "prob" : fnAddProba(actions[6].prob, i), "type" : actions[6].type})
 
         if (creatureTotal[i].near != null){
-            tab.push({"nom" : "JO2", "prob" : fnAddProba(actions[7].prob, i), "type" : actions[7].type})
-            tab.push({"nom" : "DI2", "prob" : fnAddProba(actions[8].prob, i), "type" : actions[8].type})
-            tab.push({"nom" : "SP2", "prob" : fnAddProba(actions[9].prob, i), "type" : actions[9].type})
-            tab.push({"nom" : "VO2", "prob" : fnAddProba(actions[10].prob, i), "type" : actions[10].type})
+            tempArr.push({"nom" : "JO2", "prob" : fnAddProba(actions[7].prob, i), "type" : actions[7].type})
+            tempArr.push({"nom" : "DI2", "prob" : fnAddProba(actions[8].prob, i), "type" : actions[8].type})
+            tempArr.push({"nom" : "SP2", "prob" : fnAddProba(actions[9].prob, i), "type" : actions[9].type})
+            tempArr.push({"nom" : "VO2", "prob" : fnAddProba(actions[10].prob, i), "type" : actions[10].type})
         }
 
-        let ii = fnTire(tab);
+        let ii = fnTire(tempArr);
 
-        if (tab[ii].type == 1){
-            creatureTotal[i].action = tab[ii].nom;
+        if (tempArr[ii].type == 1){
+            creatureTotal[i].action = tempArr[ii].nom;
         }
-        else if (tab[ii].type == 2){
-            creatureTotal[i].action = tab[ii].nom;
-            creatureTotal[creatureTotal[i].near].action = tab[ii].nom;
+        else if (tempArr[ii].type == 2){
+            creatureTotal[i].action = tempArr[ii].nom;
+            creatureTotal[creatureTotal[i].near].action = tempArr[ii].nom;
         }
         else{
-            creatureTotal[i].action = tab[ii].nom;
-            creatureTotal[creatureTotal[i].near].action = tab[ii].nom+"b";
+            creatureTotal[i].action = tempArr[ii].nom;
+            creatureTotal[creatureTotal[i].near].action = tempArr[ii].nom+"b";
         }
-    }    
+    }
 }
 
 function fnAddProba(arr, creaID){//pour additioner tous les probabilité
