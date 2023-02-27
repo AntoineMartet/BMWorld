@@ -384,18 +384,18 @@ function fnActionProba(){//pour calculer des probabilité des chaques actions
             tempArr.push({"nom" : "VO2", "prob" : fnAddProba(actions[10].prob, i), "type" : actions[10].type})
         }
 
-        let ii = fnTire(tempArr);
+        let nbIndex = fnTakeOneIndexAction(tempArr);
 
-        if (tempArr[ii].type == 1){
-            creatureTotal[i].action = tempArr[ii].nom;
+        if (tempArr[nbIndex].type == 1){
+            creatureTotal[i].action = tempArr[nbIndex].nom;
         }
-        else if (tempArr[ii].type == 2){
-            creatureTotal[i].action = tempArr[ii].nom;
-            creatureTotal[creatureTotal[i].near].action = tempArr[ii].nom;
+        else if (tempArr[nbIndex].type == 2){
+            creatureTotal[i].action = tempArr[nbIndex].nom;
+            creatureTotal[creatureTotal[i].near].action = tempArr[nbIndex].nom;
         }
         else{
-            creatureTotal[i].action = tempArr[ii].nom;
-            creatureTotal[creatureTotal[i].near].action = tempArr[ii].nom+"b";
+            creatureTotal[i].action = tempArr[nbIndex].nom;
+            creatureTotal[creatureTotal[i].near].action = tempArr[nbIndex].nom+"b";
         }
     }
 }
@@ -408,17 +408,21 @@ function fnAddProba(arr, creaID){//pour additioner tous les probabilité
     return totalProba;
 }
 
-function fnTire(t){
-    somme = 0;//Calculer la somme, uniquement des >0
-    for (i = 0; i < t.length; i++){
-       if (t[i].prob>0) somme += t[i].prob;
+function fnTakeOneIndexAction(arr){
+    let totalProba = 0;//Calculer la somme, uniquement des >0
+    for (i = 0; i < arr.length; i++){
+        if (arr[i].prob>0) {
+            totalProba += arr[i].prob;
+        }
     }
-    n = Math.random() * somme;//Tirer un nombre aléatoire de 0 à somme
-    total = 0
-    for (i = 0 ;i < t.length; i++){
-        if (t[i].prob > 0){
-            total += t[i].prob;
-            if (total >= n) return i
+    let nb = Math.random() * totalProba;//Tirer un nombre aléatoire de 0 à somme
+    let tempTotalProba = 0
+    for (i = 0 ;i < arr.length; i++){
+        if (arr[i].prob > 0){
+            tempTotalProba += arr[i].prob;
+            if (tempTotalProba >= nb){
+                return i
+            }
         }
     }
 }
