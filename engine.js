@@ -401,11 +401,11 @@ function fnActionProba(){//pour calculer des probabilité des chaques actions
 }
 
 function fnAddProba(arr, creaID){//pour additioner tous les probabilité
-    let sommeTemp = 0;
-    for (let i = 0; i < arr.length; i++) {   
-        sommeTemp += arr[i] * creatureTotal[creaID].profile[i]
+    let totalProba = 0;
+    for (let i = 0; i < arr.length; i++) {
+        totalProba += arr[i] * creatureTotal[creaID].profile[i]
     }
-    return sommeTemp;
+    return totalProba;
 }
 
 function fnTire(t){
