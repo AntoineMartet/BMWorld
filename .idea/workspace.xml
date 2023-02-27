@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="750940a2-276d-4ac7-b530-15f2d945770d" name="Changes" comment="Changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/display.js" beforeDir="false" afterPath="$PROJECT_DIR$/display.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine.js" beforeDir="false" afterPath="$PROJECT_DIR$/engine.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,16 +29,19 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP_BMW" />
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
   <component name="ProjectId" id="2L2sSW6fE5wor069dfGGmhtm1mL" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ayami/Documents/CPNV/Trimestre3/306 jeu/BMWorld&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="N:\COMMUN\ELEVE\INFO\SI-CA1a\I-CT 306\BMWorld\protos" />
@@ -75,6 +78,9 @@
       <workItem from="1676754591415" duration="7466000" />
       <workItem from="1676896651775" duration="1787000" />
       <workItem from="1676972708193" duration="112000" />
+      <workItem from="1677510380513" duration="2601000" />
+      <workItem from="1677513346025" duration="40000" />
+      <workItem from="1677513510690" duration="673000" />
     </task>
     <servers />
   </component>
@@ -91,6 +97,5 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

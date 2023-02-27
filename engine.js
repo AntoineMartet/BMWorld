@@ -66,10 +66,10 @@ const valDefStatus = 50;
 
 //15 creatures defaults
 //JSON pour tous les creatures (100)
-let creatureTotal = [
-    {   "ID": 0, "name": "BOB",
+let creatureDef = [
+    {   "ID": 0, "name": "creature 1",
         "position" : {"x": 0, "z": 0},
-        "profile"  : [1.00,   0.00,   0.00,   0.00,   0.00],
+        "profile"  : [0.15,   0.15,   0.15,   0.15,   0.15],
         "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
         "direction": Math.floor(Math.random() * 4),
         "type"     : Math.floor(Math.random() * 4) + 1,
@@ -77,9 +77,9 @@ let creatureTotal = [
         "near"     : null,
         "action"   : null
     },
-    {   "ID": 1, "name": "MICHAEL",
+    {   "ID": 1, "name": "creature 2",
         "position" : {"x": 10, "z": 10},
-        "profile"  : [0.00,   1.00,   0.00,   0.00,   0.00],
+        "profile"  : [0.15,   0.15,   0.15,   0.15,   0.15],
         "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
         "direction": Math.floor(Math.random() * 4),
         "type"     : Math.floor(Math.random() * 4) + 1,
@@ -87,9 +87,9 @@ let creatureTotal = [
         "near"     : null,
         "action"   : null
     },
-    {   "ID": 2, "name": "LEO",
+    {   "ID": 2, "name": "creature 3",
         "position" : {"x": 20, "z": 20},
-        "profile"  : [0.00,   0.00,   1.00,   0.00,   0.00],
+        "profile"  : [0.15,   0.15,   0.15,   0.15,   0.15],
         "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
         "direction": Math.floor(Math.random() * 4),
         "type"     : Math.floor(Math.random() * 4) + 1,
@@ -97,9 +97,9 @@ let creatureTotal = [
         "near"     : null,
         "action"   : null
     },
-    {   "ID": 3, "name": "SIMONNE",
+    {   "ID": 3, "name": "creature 4",
         "position" : {"x": 30, "z": 30},
-        "profile"  : [0.00,   0.00,   0.00,   1.00,   0.00],
+        "profile"  : [0.15,   0.15,   0.15,   0.15,   0.15],
         "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
         "direction": Math.floor(Math.random() * 4),
         "type"     : Math.floor(Math.random() * 4) + 1,
@@ -107,9 +107,9 @@ let creatureTotal = [
         "near"     : null,
         "action"   : null
     },
-    {   "ID": 4, "name": "ROSE",
+    {   "ID": 4, "name": "creature 5",
         "position" : {"x": 30, "z": 29},
-        "profile"  : [0.00,   0.00,   0.00,   0.00,   1.00],
+        "profile"  : [0.15,   0.15,   0.15,   0.15,   0.15],
         "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
         "direction": Math.floor(Math.random() * 4),
         "type"     : Math.floor(Math.random() * 4) + 1,
@@ -117,9 +117,9 @@ let creatureTotal = [
         "near"     : null,
         "action"   : null
     },
-    {   "ID": 5, "name": "NICOLAS",
+    {   "ID": 5, "name": "creature 6",
         "position" : {"x": 34, "z": 34},
-        "profile"  : [1.00,   1.00,   0.00,   0.00,   0.00],
+        "profile"  : [0.15,   0.15,   0.15,   0.15,   0.15],
         "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
         "direction": Math.floor(Math.random() * 4),
         "type"     : Math.floor(Math.random() * 4) + 1,
@@ -127,9 +127,9 @@ let creatureTotal = [
         "near"     : null,
         "action"   : null
     },
-    {   "ID": 6, "name": "ANTOINE",
+    {   "ID": 6, "name": "creature 7",
         "position" : {"x": 35, "z": 35},
-        "profile"  : [1.00,   0.00,   1.00,   0.00,   0.00],
+        "profile"  : [0.15,   0.15,   0.15,   0.15,   0.15],
         "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
         "direction": Math.floor(Math.random() * 4),
         "type"     : Math.floor(Math.random() * 4) + 1,
@@ -137,9 +137,9 @@ let creatureTotal = [
         "near"     : null,
         "action"   : null
     },
-    {   "ID": 7, "name": "KAREN",
+    {   "ID": 7, "name": "creature 8",
         "position" : {"x": 25, "z": 25},
-        "profile"  : [1.00,   0.00,   0.00,   1.00,   0.00],
+        "profile"  : [0.15,   0.15,   0.15,   0.15,   0.15],
         "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
         "direction": Math.floor(Math.random() * 4),
         "type"     : Math.floor(Math.random() * 4) + 1,
@@ -147,9 +147,9 @@ let creatureTotal = [
         "near"     : null,
         "action"   : null
     },
-    {   "ID": 8, "name": "PATRICK",
+    {   "ID": 8, "name": "creature 9",
         "position" : {"x": 15, "z": 15},
-        "profile"  : [1.00,   0.00,   0.00,   0.00,   1.00],
+        "profile"  : [0.15,   0.15,   0.15,   0.15,   0.15],
         "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
         "direction": Math.floor(Math.random() * 4),
         "type"     : Math.floor(Math.random() * 4) + 1,
@@ -157,59 +157,9 @@ let creatureTotal = [
         "near"     : null,
         "action"   : null
     },
-    {   "ID": 9, "name": "MAX",
+    {   "ID": 9, "name": "creature 10",
         "position" : {"x": 5, "z": 5},
-        "profile"  : [1.00,   1.00,   1.00,   0.00,   0.00],
-        "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
-        "direction": Math.floor(Math.random() * 4),
-        "type"     : Math.floor(Math.random() * 4) + 1,
-        "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
-        "near"     : null,
-        "action"   : null
-    },
-    {   "ID": 10, "name": "NICK",
-        "position" : {"x": 5, "z": 5},
-        "profile"  : [1.00,   1.00,   0.00,   1.00,   0.00],
-        "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
-        "direction": Math.floor(Math.random() * 4),
-        "type"     : Math.floor(Math.random() * 4) + 1,
-        "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
-        "near"     : null,
-        "action"   : null
-    },
-    {   "ID": 11, "name": "PAUL",
-        "position" : {"x": 5, "z": 5},
-        "profile"  : [1.00,   1.00,   0.00,   0.00,   1.00],
-        "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
-        "direction": Math.floor(Math.random() * 4),
-        "type"     : Math.floor(Math.random() * 4) + 1,
-        "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
-        "near"     : null,
-        "action"   : null
-    },
-    {   "ID": 12, "name": "HOPE",
-        "position" : {"x": 5, "z": 5},
-        "profile"  : [1.00,   1.00,   1.00,   1.00,   0.00],
-        "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
-        "direction": Math.floor(Math.random() * 4),
-        "type"     : Math.floor(Math.random() * 4) + 1,
-        "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
-        "near"     : null,
-        "action"   : null
-    },
-    {   "ID": 13, "name": "ARTHUR",
-        "position" : {"x": 5, "z": 5},
-        "profile"  : [1.00,   1.00,   1.00,   0.00,   1.00],
-        "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
-        "direction": Math.floor(Math.random() * 4),
-        "type"     : Math.floor(Math.random() * 4) + 1,
-        "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
-        "near"     : null,
-        "action"   : null
-    },
-    {   "ID": 14, "name": "ADAM",
-        "position" : {"x": 5, "z": 5},
-        "profile"  : [1.00,   1.00,   1.00,   1.00,   1.00],
+        "profile"  : [0.15,   0.15,   0.15,   0.15,   0.15],
         "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
         "direction": Math.floor(Math.random() * 4),
         "type"     : Math.floor(Math.random() * 4) + 1,
@@ -218,6 +168,9 @@ let creatureTotal = [
         "action"   : null
     }
 ]
+
+//JSON pour tous les creatures (100)
+let creatureTotal = creatureDef;
 
 
 //Ajouter le reste de creature
