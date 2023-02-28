@@ -9,7 +9,9 @@ let legendsStatus = ["FC", "CP", "RA", "RP", "BE", "RE"]; // légendes à affich
 let colors = ["yellow", "orange", "red", "purple", "blue", "darkblue"]; // couleurs (bars)
 let legendsPersonality = ["I", "F", "R", "P", "E"]; // légendes à afficher (spider)
 let selectedCreatureIndex = 0;
-let displayClock = 0;
+let clock = 0;
+let cycles = 0;
+let booleanPause = 0;
 
 let nx = 40; // nombre de tuiles en x
 let nz = 40; // nombre de tuiles en y
@@ -42,7 +44,7 @@ function setup() {
     camera(-300, -500, -300, nx / 2 * unit, -0, nz / 2 * unit);// placement de la caméra au départ, vise le centre
     normalMaterial(250);// matériaux solides
     fnTiles();// Ajoute à aWorld un certain nombre de tuiles pour le sol
-    frameRate(30);// 5 fois par secondes on rafraichit
+    frameRate(30);// On rafraîchit x fois par seconde
     ctxPersonStatus = document.getElementById("canvasPersonStatus").getContext("2d");
     ctxPersonPersonality = document.getElementById("canvasPersonPersonality").getContext("2d");
     ctxPersonStatus.canvas.width = 600;
@@ -66,19 +68,20 @@ function fnTiles() {
 }
 
 function draw() {
-    // fonction appelée X fois par seconde (selon le frameRate choisi)
+    // fonction appelée x fois par seconde (selon le frameRate choisi)
     // NB : même les objets statiques (ex: la grille) doivent être redessinés à chaque fois, pas possible de les
     //      dessiner juste une fois dans le setup.
     background("lightblue");
     lights();//Allumer les lumières
     directionalLight(250, 250, 250, 0.2, 1, 0.6);
     orbitControl(2, 2, 2);//autorise le controle par souris
-    if(displayClock%20==0){
+    if(clock%15==0 && booleanPause == 0){
         fnEngine(); // Calcule le monde de l'état suivant (se trouve dans engine.js)
-        displayClock = 0;
+        clock = 0;
+        cycles += 1;
     }
+    clock += 1;
     fnDisplay(); // Affiche les fonds des 3 canvas, le monde, les créatures et les graphes
-    displayClock += 1;
 }
 
 function fnDisplay() {
@@ -103,6 +106,20 @@ function fnDisplay() {
     // Dessin des graphes
     bars(legendsStatus, 130, 335, 300, 300, colors);
     spider(legendsPersonality, 300, 188, 150, "purple", "yellow");
+
+    // MAJ de l'affichage du nombre de cycles
+    document.getElementById("cyclesNumber").innerHTML = "Cycles : " + cycles;
+}
+
+function fnUpdatePause(){
+    if(booleanPause == 0){
+        booleanPause = 1;
+        document.getElementById("cyclesPauseButton").innerHTML = "Reprendre";
+    }
+    else{
+        booleanPause = 0;
+        document.getElementById("cyclesPauseButton").innerHTML = "Mettre en pause";
+    }
 }
 
 function fnDisplayCreature(o) {
@@ -291,7 +308,7 @@ function bars(legends, x, y, l, h, colors) {
     }
 
     // barres
-    let largeur = l / arrayPersonalityStatus.length; // largeur des barres ("l" et non pas "h" !)
+    let largeur = l / arrayPersonalityStatus.length;
 
     for (let i = 0; i < arrayPersonalityStatus.length; i++) {
         ctxPersonStatus.fillStyle = colors[i];
