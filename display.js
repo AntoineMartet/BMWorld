@@ -358,7 +358,7 @@ function spider(legends, x, y, r, c1, c2) {
     ctxPersonPersonality.beginPath();
     for (let i = 0; i < arrayPersonalityValues.length; i++) {
         let angle = -i * 2 * Math.PI / arrayPersonalityValues.length; // Avec le - on tourne dans le sens horaire
-        ctxPersonPersonality.lineTo(x + r * Math.cos(angle), y - r * Math.sin(angle));
+        ctxPersonPersonality.lineTo(x + (r+15) * Math.cos(angle), y - (r+15) * Math.sin(angle));
     }
     ctxPersonPersonality.fillStyle = c1;
     ctxPersonPersonality.fill();
@@ -368,10 +368,20 @@ function spider(legends, x, y, r, c1, c2) {
 
     for (let i = 0; i < arrayPersonalityValues.length; i++) {
         let angle = -i * 2 * Math.PI / arrayPersonalityValues.length;
-        ctxPersonPersonality.lineTo(x + arrayPersonalityValues[i] * r * Math.cos(angle), y - arrayPersonalityValues[i] * r * Math.sin(angle));
+
+        ctxPersonPersonality.lineTo(x + (arrayPersonalityValues[i] * r+15) * Math.cos(angle),y - (arrayPersonalityValues[i] * r+15) * Math.sin(angle));
     }
 
     ctxPersonPersonality.fillStyle = c2;
+    ctxPersonPersonality.fill();
+
+    // Zone centrale
+    ctxPersonPersonality.beginPath();
+    for (let i = 0; i < arrayPersonalityValues.length; i++) {
+        let angle = -i * 2 * Math.PI / arrayPersonalityValues.length; // Avec le - on tourne dans le sens horaire
+        ctxPersonPersonality.lineTo(x + 15 * Math.cos(angle), y - 15 * Math.sin(angle));
+    }
+    ctxPersonPersonality.fillStyle = "black";
     ctxPersonPersonality.fill();
 
     // Zone de moitié (par-dessus le fond et les valeurs, épaisseur 1)
@@ -379,7 +389,7 @@ function spider(legends, x, y, r, c1, c2) {
     ctxPersonPersonality.beginPath();
     for (let i = 0; i <= arrayPersonalityValues.length; i++) {
         let angle = -i * 2 * Math.PI / arrayPersonalityValues.length;
-        ctxPersonPersonality.lineTo(x + 0.5 * r * Math.cos(angle), y - 0.5 * r * Math.sin(angle));
+        ctxPersonPersonality.lineTo(x + (0.5 * r+15) * Math.cos(angle), y - (0.5 * r+15) * Math.sin(angle));
     }
     ctxPersonPersonality.stroke();
 
