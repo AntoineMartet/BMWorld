@@ -49,7 +49,7 @@ function setup() {
     mainDisplay.parent("canvasDisplay");
     angleMode(DEGREES);// angles en degrés
     camera2 = createCamera();//création d'une deuxième caméra
-    camera2.setPosition(-100,-500,-1000);
+    camera2.setPosition(0,-500,3000);
     camera2.lookAt(nx / 2 * unit, -0, nz / 2 * unit);
     camera = createCamera();
     camera.setPosition(-300, -500, -300);// placement de la caméra au départ, vise le centre
@@ -86,7 +86,7 @@ function draw() {
     background("lightblue");
     lights();//Allumer les lumières
     directionalLight(250, 250, 250, 0.2, 1, 0.6);
-    orbitControl(2, 2, 2);//autorise le controle par souris
+    orbitControl(0.5, 0.5, 0.5);//autorise le controle par souris
     if(clock%15==0 && booleanPause == 0){
         fnEngine(); // Calcule le monde de l'état suivant (se trouve dans engine.js)
         clock = 0;
@@ -138,10 +138,12 @@ function fnCameraSwitch(){//fonction de changement de caméra
     if(booleanCam == 0){
         booleanCam = 1;
         setCamera(camera2); //changement de caméra
+        document.getElementById("SwitchCameras").innerHTML = "Caméra 1";
     }
     else{
         booleanCam = 0;
         setCamera(camera); //changement de caméra
+        document.getElementById("SwitchCameras").innerHTML = "Caméra 2";
     }
 }
 
