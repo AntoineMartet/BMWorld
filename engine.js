@@ -38,7 +38,7 @@ actions= [
     {"ID":"JOS","type":1,"prob":[2, 0, -1, 0, 0],"effect":{"FC": 0,"CP":0,"RA":0,"RP":0,"BE":2,"RE":0}, "effect2":[0, 0,0,0,0]},
     {"ID":"SPS","type":1,"prob":[0, 1, 0, 0, 0],"effect":{"FC": 2,"CP":0,"RA":0,"RP":0,"BE":1,"RE":0}, "effect2":[0, 0,0,0,0]},
     {"ID":"VOS","type":1,"prob":[1, -1, 0, 2, -2],"effect":{"FC": 0,"CP":0,"RA":200,"RP":2,"BE":0,"RE":-1}, "effect2":[0, 0,0,0,0]},
-    {"ID":"COS","type":1,"prob":[2, 0, 0, 0, -2],"effect":{"FC": -1,"CP":-1,"RA":-500,"RP":0,"BE":1,"RE":0}, "effect2":[0, 0,0,0,0]},      
+    {"ID":"COS","type":1,"prob":[2, 0, 0, 0, -2],"effect":{"FC": -1,"CP":-1,"RA":-500,"RP":0,"BE":1,"RE":0}, "effect2":[-0.02, 0,0,0,0]},      
     {"ID":"COB","type":1,"prob":[1, 0, 0, 2, 0],"effect":{"FC": 0,"CP": 0,"RA":-200,"RP":1,"BE":1,"RE":0}, "effect2":[0, 0,0,0,0]}, 
     
     {"ID":"JO2","type":2,"prob":[1, 0, 2, 0, 0],"effect":{"FC": 0,"CP":0,"RA":0,"RP":0,"BE":2,"RE":2}, "effect2":[0, 0,0,0,0]},
@@ -272,29 +272,29 @@ function fnMove() {
     for (i=0;i<creatureTotal.length;i++){
         switch(creatureTotal[i].direction) { //AYAMI
             case 0: //up
-            if(creatureTotal[i].position.z + 1 < 40) {
-                creatureTotal[i].position.z += 1;
+            if(creatureTotal[i].position.z + 0.1 < 40) {
+                creatureTotal[i].position.z += 0.1;
             } else {
                 fnChangeDirection();
             }
             break;
             case 1: //right
-            if(creatureTotal[i].position.x + 1 < 40) {
-                creatureTotal[i].position.x += 1;
+            if(creatureTotal[i].position.x + 0.1 < 40) {
+                creatureTotal[i].position.x += 0.1;
             } else {
                 fnChangeDirection();
             }
             break;
             case 2: //down
-            if(creatureTotal[i].position.z - 1 >= 0) {
-                creatureTotal[i].position.z -= 1;
+            if(creatureTotal[i].position.z - 0.1 >= 0) {
+                creatureTotal[i].position.z -= 0.1;
             } else {
                 fnChangeDirection();
             }
             break;
             case 3: // left
-            if(creatureTotal[i].position.x - 1 >= 0) {
-                creatureTotal[i].position.x -= 1;
+            if(creatureTotal[i].position.x - 0.1 >= 0) {
+                creatureTotal[i].position.x -= 0.1;
             } else {
                 fnChangeDirection();
             } 
@@ -304,24 +304,29 @@ function fnMove() {
         //Random pour le possibilité à changer le direction
         let randomProbability
         if (creatureTotal[i].direction == 4){//si la créature ne bouge pas, elle a plus de chance de changer de direction
-            randomProbability = 3;
+            randomProbability = 10;
         }
         else{
-            randomProbability = 6;
+            randomProbability = 20;
         }
         let probability = Math.floor(Math.random() *randomProbability) 
         if(probability == 0 ) {
             fnChangeDirection();
         }
-
-        PositionCreatures[creatureTotal[i].position.x][creatureTotal[i].position.z].push(creatureTotal[i].ID);
+        console.log(Math.round(creatureTotal[i].position.x),Math.round(creatureTotal[i].position.z));
+        let x = Math.min(39, Math.round(creatureTotal[i].position.x))
+        let z = Math.min(39, Math.round(creatureTotal[i].position.z))
+        PositionCreatures[x][z].push(creatureTotal[i].ID);
         creatureTotal[i].near = null;//maikol
         creatureTotal[i].action = null;//maikol   
     
+    }
+    if(stepCount%50==0){
+        fnCheckPosOtherCreatures();//maikol 
+        fnActionProba();//maikol 
+        fnActionEffect();//maikol
     }     
-    fnCheckPosOtherCreatures();//maikol 
-    fnActionProba();//maikol 
-    fnActionEffect();//maikol
+    
 }
 
 function fnChangeDirection (){ //pour changer le direction
@@ -340,15 +345,17 @@ function fnCheckPosOtherCreatures (){//pour checker la postion des autres créat
         if (creatureTotal[i].near != null){//Checker si le créature a déjà un autre creature pour jouer
             continue;//passe à la boucle suivante
         }
+        let creatureX = Math.min(39, Math.round(creatureTotal[i].position.x))
+        let creatureZ = Math.min(39, Math.round(creatureTotal[i].position.z))
         for (let x = -1; x < 2; x++)//check les cases autour
         {
             for (let z = -1; z < 2; z++)
             {
-                if (creatureTotal[i].position.x+x>=0 && creatureTotal[i].position.z+z>=0 && creatureTotal[i].position.x+x<40 && creatureTotal[i].position.z+z<40)
+                if (creatureX+x>=0 && creatureZ+z>=0 && creatureX+x<40 && creatureZ+z<40)
                 {
-                    if(PositionCreatures[creatureTotal[i].position.x+x][creatureTotal[i].position.z+z].length != 0)//s'il y a des créatures, alors ajoute à CreatureTemp
+                    if(PositionCreatures[creatureX+x][creatureZ+z].length != 0)//s'il y a des créatures, alors ajoute à CreatureTemp
                     {
-                        PositionCreatures[creatureTotal[i].position.x+x][creatureTotal[i].position.z+z].forEach(element => {
+                        PositionCreatures[creatureX+x][creatureZ+z].forEach(element => {
                             if ( element != creatureTotal[i].ID)
                             {
                                 CreatureTemp.push(element);
@@ -374,7 +381,7 @@ function fnCheckPosOtherCreatures (){//pour checker la postion des autres créat
 }
 
 function fnDeleteCreatureOfArrayPos(position, id){//pour effacer les créatures du tableau des positions afin qu'elles ne soit pas réattribuer à une autre créature
-    PositionCreatures[position.x][position.z].splice(PositionCreatures[position.x][position.z].indexOf(id),1);
+    PositionCreatures[Math.min(39, Math.round(position.x))][Math.min(39, Math.round(position.z))].splice(PositionCreatures[Math.min(39, Math.round(position.x))][Math.min(39, Math.round(position.z))].indexOf(id),1);
 }
 
 function fnConsole (text){//pour afficher des textes dans le textbox "textEngine"
@@ -384,7 +391,7 @@ function fnConsole (text){//pour afficher des textes dans le textbox "textEngine
 
 function fnActionProba(){//pour calculer des probabilité des chaques actions
     for (let i = 0; i < creatureTotal.length; i++){
-        let tempArr = [];
+        let tempArr = [];//Tableau qui 
         if (creatureTotal[i].action != null){
             continue;
         }
@@ -527,10 +534,19 @@ function fnActionEffect(){
 
         }
 
+        for (let j = 0; j < currentActionArray.effect2.length; j++){
+            creatureTotal[i].profile[j] += currentActionArray.effect2[j];
+            if (creatureTotal[i].profile[j] < 0){
+                creatureTotal[i].profile[j] = 0;
+            }
+            else if (creatureTotal[i].profile[j] > 1){
+                creatureTotal[i].profile[j] = 1;
+            }
+        }
 
     }
 
-    fnLog(creatureTotal);
+    //fnLog(creatureTotal);
 
 }
 
