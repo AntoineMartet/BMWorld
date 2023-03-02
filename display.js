@@ -12,6 +12,7 @@ let selectedCreatureIndex = 0;
 let clock = 0;
 let cycles = 0;
 let booleanPause = 0;
+let booleanCam = 0;
 let camera; //création des deux caméras
 let camera2;
 
@@ -26,7 +27,7 @@ let nz = 40; // nombre de tuiles en y
 let unit = 50; // taille de l'unité de base du monde. Une tuile fait 50 de côté.
 let tileSize = unit - 2; // L'affichage d'une tuile fait 48 de côté.
 let aWorld = [
-    {"name":"monde","type":"monde","x":0,"y":-50,"z":0,"rx":0,"ry":0,"rz":0,"l1":100,"l2":100,"l3":100,"color":"green"}
+    {"name":"monde","type":"monde","x":1000,"y":-50,"z":1000,"rx":0,"ry":0,"rz":0,"l1":100,"l2":100,"l3":100,"color":"green"}
 ];
 
 let ctxPersonStatus;
@@ -63,7 +64,6 @@ function setup() {
     ctxPersonPersonality.canvas.width = 600;
     ctxPersonPersonality.canvas.height = 370;
     createListOfCreatures();
-    //setCamera(camera2); //changement de caméra
 }
 
 function get_random(list) {
@@ -131,6 +131,17 @@ function fnUpdatePause(){
     else{
         booleanPause = 0;
         document.getElementById("cyclesPauseButton").innerHTML = "Mettre en pause";
+    }
+}
+
+function fnCameraSwitch(){//fonction de changement de caméra
+    if(booleanCam == 0){
+        booleanCam = 1;
+        setCamera(camera2); //changement de caméra
+    }
+    else{
+        booleanCam = 0;
+        setCamera(camera); //changement de caméra
     }
 }
 
