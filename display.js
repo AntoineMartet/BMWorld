@@ -12,17 +12,23 @@ let selectedCreatureIndex = 0;
 let clock = 0;
 let cycles = 0;
 let booleanPause = 0;
+let camera; //création des deux caméras
+let camera2;
+
+let img; //chargement de l'image de fond
+let matrix;
+function preload(){
+    matrix = loadImage('matrix.jpg');
+}
 
 let nx = 40; // nombre de tuiles en x
 let nz = 40; // nombre de tuiles en y
 let unit = 50; // taille de l'unité de base du monde. Une tuile fait 50 de côté.
 let tileSize = unit - 2; // L'affichage d'une tuile fait 48 de côté.
 let aWorld = [
-    { "name": "axe X", "type": "line", "x": 0, "y": 0, "z": 0, "x1": 700, "y1": 0, "z1": 0, "color": "red" },
-    { "name": "axe Y", "type": "line", "x": 0, "y": 0, "z": 0, "x1": 0, "y1": 700, "z1": 0, "color": "green" },
-    { "name": "axe Z", "type": "line", "x": 0, "y": 0, "z": 0, "x1": 0, "y1": 0, "z1": 700, "color": "blue" },
-    { "name": "batiment", "type": "box", "x": 0, "y": -50, "z": 0, "rx": 0, "ry": 0, "rz": 0, "l1": 100, "l2": 100, "l3": 100, "color": "green" }
+    {"name":"monde","type":"monde","x":0,"y":-50,"z":0,"rx":0,"ry":0,"rz":0,"l1":100,"l2":100,"l3":100,"color":"green"}
 ];
+
 let ctxPersonStatus;
 let ctxPersonPersonality;
 
@@ -41,7 +47,12 @@ function setup() {
     mainDisplay = createCanvas(1200, 850, WEBGL);// canvas en 3D
     mainDisplay.parent("canvasDisplay");
     angleMode(DEGREES);// angles en degrés
-    camera(-300, -500, -300, nx / 2 * unit, -0, nz / 2 * unit);// placement de la caméra au départ, vise le centre
+    camera2 = createCamera();//création d'une deuxième caméra
+    camera2.setPosition(-100,-500,-1000);
+    camera2.lookAt(nx / 2 * unit, -0, nz / 2 * unit);
+    camera = createCamera();
+    camera.setPosition(-300, -500, -300);// placement de la caméra au départ, vise le centre
+    camera.lookAt(nx / 2 * unit, -0, nz / 2 * unit);
     normalMaterial(250);// matériaux solides
     fnTiles();// Ajoute à aWorld un certain nombre de tuiles pour le sol
     frameRate(30);// On rafraîchit x fois par seconde
@@ -52,6 +63,7 @@ function setup() {
     ctxPersonPersonality.canvas.width = 600;
     ctxPersonPersonality.canvas.height = 370;
     createListOfCreatures();
+    //setCamera(camera2); //changement de caméra
 }
 
 function get_random(list) {
@@ -62,7 +74,7 @@ function fnTiles() {
     //Crée un certain nb de tuiles
     for (x = 0; x <= nx; x++) {
         for (z = 0; z <= nz; z++) {
-            aWorld.push({ "name": "tile", "type": "plane", "x": x * unit, "y": 0, "z": z * unit, "rx": 90, "ry": 0, "rz": 0, "l1": tileSize, "l2": tileSize, "color": "green" });
+            aWorld.push({ "name": "tile", "type": "plane", "x": x * unit, "y": 0, "z": z * unit, "rx": 90, "ry": 0, "rz": 0, "l1": tileSize, "l2": tileSize, "color": "#90BE6D" }); //tuiles vertes
         }
     }
 }
@@ -437,7 +449,7 @@ function fnDisplayObject(o) {
             rotateX(o.rx);
             rotateY(o.ry);
             rotateZ(o.rz);
-            fill(o.color);
+            fill(60,225,90,150); // couleur des tuiles, 150 correspond au niveau de transparence de la couleur
             plane(o.l1, o.l2);
             pop();
             break;
@@ -489,6 +501,16 @@ function fnDisplayObject(o) {
             rotateZ(o.rz);
             fill(o.color);
             torus(o.r1, o.r2);
+            pop();
+            break;
+        case "monde":
+            push();
+            translate(o.x,o.y,o.z);
+            rotateX(o.rx);
+            rotateY(180);
+            rotateZ(o.rz);
+            texture(matrix);
+            sphere(4800,4800);
             pop();
             break;
     }
