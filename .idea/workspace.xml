@@ -37,6 +37,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -81,6 +82,7 @@
       <workItem from="1677515392327" duration="7407000" />
       <workItem from="1677613418730" duration="5806000" />
       <workItem from="1677663518500" duration="4153000" />
+      <workItem from="1677741830055" duration="69000" />
     </task>
     <servers />
   </component>
