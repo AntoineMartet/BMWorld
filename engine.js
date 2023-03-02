@@ -33,21 +33,21 @@ let stepCount = 0;
 //Probabilité action
 //les actions: type 1= indiv, type 2= à deux, type=4 avec gagnant ou perdant 
 actions= [
-    {"ID":"ETU","type":1,"prob":[0, 2, 0, 0, 1],"effect":{"FC": 0,"CP":2,"RA":0,"RP":0,"BE":0,"RE":1}},
-    {"ID":"TRA","type":1,"prob":[0, 2, 0, 1, 1],"effect":{"FC": 0,"CP":1,"RA":1000,"RP":0,"BE":0,"RE":1}},
-    {"ID":"JOS","type":1,"prob":[2, 0, -1, 0, 0],"effect":{"FC": 0,"CP":0,"RA":0,"RP":0,"BE":2,"RE":0}},
-    {"ID":"SPS","type":1,"prob":[0, 1, 0, 0, 0],"effect":{"FC": 2,"CP":0,"RA":0,"RP":0,"BE":1,"RE":0}},
-    {"ID":"VOS","type":1,"prob":[1, -1, 0, 2, -2],"effect":{"FC": 0,"CP":0,"RA":200,"RP":2,"BE":0,"RE":-1}},
-    {"ID":"COS","type":1,"prob":[2, 0, 0, 0, -2],"effect":{"FC": -1,"CP":-1,"RA":-500,"RP":0,"BE":1,"RE":0}},      
-    {"ID":"COB","type":1,"prob":[1, 0, 0, 2, 0],"effect":{"FC": 0,"CP": 0,"RA":-200,"RP":1,"BE":1,"RE":0}}, 
+    {"ID":"ETU","type":1,"prob":[0, 2, 0, 0, 1],"effect":{"FC": 0,"CP":2,"RA":0,"RP":0,"BE":0,"RE":1}, "effect2":[0, 0,0,0,0]},
+    {"ID":"TRA","type":1,"prob":[0, 2, 0, 1, 1],"effect":{"FC": 0,"CP":1,"RA":1000,"RP":0,"BE":0,"RE":1}, "effect2":[0, 0,0,0,0]},
+    {"ID":"JOS","type":1,"prob":[2, 0, -1, 0, 0],"effect":{"FC": 0,"CP":0,"RA":0,"RP":0,"BE":2,"RE":0}, "effect2":[0, 0,0,0,0]},
+    {"ID":"SPS","type":1,"prob":[0, 1, 0, 0, 0],"effect":{"FC": 2,"CP":0,"RA":0,"RP":0,"BE":1,"RE":0}, "effect2":[0, 0,0,0,0]},
+    {"ID":"VOS","type":1,"prob":[1, -1, 0, 2, -2],"effect":{"FC": 0,"CP":0,"RA":200,"RP":2,"BE":0,"RE":-1}, "effect2":[0, 0,0,0,0]},
+    {"ID":"COS","type":1,"prob":[2, 0, 0, 0, -2],"effect":{"FC": -1,"CP":-1,"RA":-500,"RP":0,"BE":1,"RE":0}, "effect2":[0, 0,0,0,0]},      
+    {"ID":"COB","type":1,"prob":[1, 0, 0, 2, 0],"effect":{"FC": 0,"CP": 0,"RA":-200,"RP":1,"BE":1,"RE":0}, "effect2":[0, 0,0,0,0]}, 
     
-    {"ID":"JO2","type":2,"prob":[1, 0, 2, 0, 0],"effect":{"FC": 0,"CP":0,"RA":0,"RP":0,"BE":2,"RE":2}},
-    {"ID":"DI2","type":2,"prob":[1, 0, 2, 0, 0],"effect":{"FC": 0,"CP":1,"RA":0,"RP":0,"BE":1,"RE":2}},
-    {"ID":"SP2","type":2,"prob":[1, 1, 1, 0, 0], "effect":{"FC": 2,"CP":0,"RA":0,"RP":0,"BE":1,"RE":1}},//ici les deux sont gagnants
-    {"ID":"VO2","type":4,"prob":[1, -1, 0, 2, -2], "effect":[{"FC": 0,"CP":0,"RA":200,"RP":1,"BE":1,"RE":0},{"FC": 0,"CP":0,"RA":200,"RP":1,"BE":1,"RE":-2},{"FC": 0,"CP":0,"RA":0,"RP":0,"BE":-1,"RE":0},{"FC": 0,"CP":0,"RA":0,"RP":0,"BE":-2,"RE":-2}]},//ici le premier est le gagnant 
+    {"ID":"JO2","type":2,"prob":[1, 0, 2, 0, 0],"effect":{"FC": 0,"CP":0,"RA":0,"RP":0,"BE":2,"RE":2}, "effect2":[0, 0,0,0,0]},
+    {"ID":"DI2","type":2,"prob":[1, 0, 2, 0, 0],"effect":{"FC": 0,"CP":1,"RA":0,"RP":0,"BE":1,"RE":2}, "effect2":[0, 0,0,0,0]},
+    {"ID":"SP2","type":2,"prob":[1, 1, 1, 0, 0], "effect":{"FC": 2,"CP":0,"RA":0,"RP":0,"BE":1,"RE":1}, "effect2":[0, 0,0,0,0]},//ici les deux sont gagnants
+    {"ID":"VO2","type":4,"prob":[1, -1, 0, 2, -2], "effect":[{"FC": 0,"CP":0,"RA":200,"RP":1,"BE":1,"RE":0},{"FC": 0,"CP":0,"RA":200,"RP":1,"BE":1,"RE":-2},{"FC": 0,"CP":0,"RA":0,"RP":0,"BE":-1,"RE":0},{"FC": 0,"CP":0,"RA":0,"RP":0,"BE":-2,"RE":-2}], "effect2":[0, 0,0,0,0]},//ici le premier est le gagnant 
     // effect[0] vole et pas attrapé // effect[1] vole et attrapé // effect[2] vole pas et pas attrapé // effect[3] vole pas et attrapé 
 
-    {"ID":"VO2b","type":4,"effect":[{"FC": 0,"CP":0,"RA":-200,"RP":-1,"BE":-1,"RE":0},{"FC": 0,"CP":0,"RA":-200,"RP":-1,"BE":-1,"RE":-1},{"FC": 0,"CP":0,"RA":0,"RP":0,"BE":0,"RE":0},{"FC": 0,"CP":0,"RA":0,"RP":0,"BE":2,"RE":0}]}//ici le second le perdant   
+    {"ID":"VO2b","type":4,"effect":[{"FC": 0,"CP":0,"RA":-200,"RP":-1,"BE":-1,"RE":0},{"FC": 0,"CP":0,"RA":-200,"RP":-1,"BE":-1,"RE":-1},{"FC": 0,"CP":0,"RA":0,"RP":0,"BE":0,"RE":0},{"FC": 0,"CP":0,"RA":0,"RP":0,"BE":2,"RE":0}], "effect2":[0, 0,0,0,0]}//ici le second le perdant   
     // effect[0] se fait voler et voleur pas attrapé // effect[1] se fait voler et voleur attrapé // effect[2] se fait pas voler et voleur pas attrapé // effect[3] se fait pas voler et voleur attrapé 
 ]
  
@@ -69,7 +69,7 @@ const valDefStatus = 50;
 let creatureTotal = [
     {   "ID": 0, "name": "BOB",
         "position" : {"x": 0, "z": 0},
-        "profile"  : [1.00,0.02,0.00,0.00,0.00],
+        "profile"  : [1.00,0.00,0.00,0.00,0.00],
         "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
         "direction": Math.floor(Math.random() * 4),
         "type"     : Math.floor(Math.random() * 4) + 1,
@@ -89,7 +89,7 @@ let creatureTotal = [
     },
     {   "ID": 2, "name": "LEO",
         "position" : {"x": 20, "z": 20},
-        "profile"  : [0.00,0.02,1.00,0.00,0.00],
+        "profile"  : [0.00,0.00,1.00,0.00,0.00],
         "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
         "direction": Math.floor(Math.random() * 4),
         "type"     : Math.floor(Math.random() * 4) + 1,
@@ -243,25 +243,10 @@ for(let i = (creatureTotal.length);i < 100; i++) {
 //-----------------------------------------------------------------------fin 
 
 
-
-//tableau des créatures
-//let arc=[];
-
-/*
-function creatureTotal(n){
-    //Crée un certain nb de créatures
-    for (c=0;c<n;c++) {
-        x=Math.floor(Math.random()*nx)-nx/2;
-        z=Math.floor(Math.random()*nz)-nz/2;
-        arc.push({"name":c,"type":"box","x":x*size,"y":-size-30,"z":z*size,"rx":0,"ry":0,"rz":0,"r1":size/2,"r2":size,"r3":size/2,"color":'#'+(Math.random()*0xFFFFFF<<0).toString(16)});
-    }
-}*/
-
 function fnEngine(){
     //Cette fonction va faire
     //frameRate(0.000001); //permet de mettre le monde en "pause afin de checker l'avancement pas à pas"
     fnMove();
-    fnLog(JSON.stringify(creatureTotal));
 
     stepCount++;
 }
@@ -279,7 +264,6 @@ function fnResetPositionCreatures(){ //pour initilaliser le tableau "PositionCre
     }
 
 }
-fnResetPositionCreatures();
 
 function fnMove() {
     //fait bouger les créatures de 2 max
@@ -318,26 +302,21 @@ function fnMove() {
         }
 
         //Random pour le possibilité à changer le direction
-        let probability = Math.floor(Math.random() *6) 
+        let randomProbability
+        if (creatureTotal[i].direction == 4){//si la créature ne bouge pas, elle a plus de chance de changer de direction
+            randomProbability = 3;
+        }
+        else{
+            randomProbability = 6;
+        }
+        let probability = Math.floor(Math.random() *randomProbability) 
         if(probability == 0 ) {
             fnChangeDirection();
         }
 
         PositionCreatures[creatureTotal[i].position.x][creatureTotal[i].position.z].push(creatureTotal[i].ID);
         creatureTotal[i].near = null;//maikol
-        creatureTotal[i].action = null;//maikol
-
-
-        /*for (i=0;i<creatureTotal.length;i++){
-            dx=Math.round(Math.random()*2-1);
-            dz=Math.round(Math.random()*2-1);
-            if (creatureTotal[i].position.x+dx>0 && creatureTotal[i].position.x+dx<nx &&
-                creatureTotal[i].position.z+dz>0 && creatureTotal[i].position.z+dz<nz){
-                creatureTotal[i].position.x+=dx;
-                creatureTotal[i].position.z+=dz;
-            }
-        }*/
-    
+        creatureTotal[i].action = null;//maikol   
     
     }     
     fnCheckPosOtherCreatures();//maikol 
@@ -348,7 +327,7 @@ function fnMove() {
 function fnChangeDirection (){ //pour changer le direction
     let newDirection;
     do {
-        newDirection = Math.floor(Math.random() * 4);
+        newDirection = Math.floor(Math.random() * 5);
     }
     while(newDirection == creatureTotal[i].direction)
     creatureTotal[i].direction = newDirection;
@@ -387,25 +366,16 @@ function fnCheckPosOtherCreatures (){//pour checker la postion des autres créat
         if (creatureTotal[CreatureTemp[RandomCreature]].near == null){
             creatureTotal[i].near = CreatureTemp[RandomCreature];//Mettre ID du créature partantaire dans creatureTotal[i].near
             creatureTotal[CreatureTemp[RandomCreature]].near = creatureTotal[i].ID;
-            //console.log(i);//pour tester à supprimer!!!!!!!!!!!!!!!!!!!
             fnDeleteCreatureOfArrayPos(creatureTotal[i].position, i);//efface les 2 créatures du tableau des positions
             fnDeleteCreatureOfArrayPos(creatureTotal[CreatureTemp[RandomCreature]].position, CreatureTemp[RandomCreature]);
-            //console.log("-----------------");//pour tester à supprimer!!!!!!!!!!!!!!!!!!!
         }
     }
-
-    //console.log(creatureTotal);//pour tester à supprimer!!!!!!!!!!!!!!!!!!!
 
 }
 
 function fnDeleteCreatureOfArrayPos(position, id){//pour effacer les créatures du tableau des positions afin qu'elles ne soit pas réattribuer à une autre créature
-    //console.log(PositionCreatures[position.x][position.z]);//pour tester à supprimer!!!!!!!!!!!!!!!!!!!
     PositionCreatures[position.x][position.z].splice(PositionCreatures[position.x][position.z].indexOf(id),1);
-    //console.log(PositionCreatures[position.x][position.z]);//pour tester à supprimer!!!!!!!!!!!!!!!!!!!
 }
-
-
-//fnConsole(JSON.stringify(creatureTotal));//pour tester à supprimer!!!!!!!!!!!!!!!!!!!
 
 function fnConsole (text){//pour afficher des textes dans le textbox "textEngine"
     document.getElementById("textEngine").value += "\n" + text;
@@ -436,6 +406,10 @@ function fnActionProba(){//pour calculer des probabilité des chaques actions
 
         let nbIndex = fnTakeOneIndexAction(tempArr);
 
+        if (nbIndex == 0){
+            continue;
+        }
+
         if (tempArr[nbIndex].type == 1){
             creatureTotal[i].action = tempArr[nbIndex].nom;
         }
@@ -465,6 +439,9 @@ function fnTakeOneIndexAction(arr){
             totalProba += arr[i].prob;
         }
     }
+    if (totalProba == 0){
+        return 0;
+    }
     let nb = Math.random() * totalProba;//Tirer un nombre aléatoire de 0 à somme
     let tempTotalProba = 0
     for (i = 0 ;i < arr.length; i++){
@@ -485,7 +462,7 @@ function fnActionEffect(){
     for (let i = 0; i < creatureTotal.length; i++){
         let currentAction = creatureTotal[i].action
 
-        if (currentAction == "VO2b"){
+        if (currentAction == "VO2b" || currentAction == null){
             continue;
         }
 
@@ -523,46 +500,37 @@ function fnActionEffect(){
                 creatureTotal[creatureTotal[i].near].status.RP = 0;
             }
             creatureTotal[creatureTotal[i].near].status.BE += effectArray.BE;
-            if (creatureTotal[creatureTotal[i].near].status.BE < 0){
-                creatureTotal[creatureTotal[i].near].status.BE = 0;
+            if (creatureTotal[creatureTotal[i].near].status.BE > 100){
+                creatureTotal[creatureTotal[i].near].status.BE = 100;
             }
             creatureTotal[creatureTotal[i].near].status.RE += effectArray.RE;
+            if (creatureTotal[creatureTotal[i].near].status.RE < 0){
+                creatureTotal[creatureTotal[i].near].status.RE = 0;
+            }
 
             effectArray = currentActionArray.effect[steal]; //conséquence pour le voleur
 
 
         }
-
         else{
             effectArray = currentActionArray.effect;
         }
 
-        creatureTotal[i].status.FC += effectArray.FC;
-        if (creatureTotal[i].status.FC < 0){
-            creatureTotal[i].status.FC = 0;
-        }
-        creatureTotal[i].status.CP += effectArray.CP;
-        if (creatureTotal[i].status.CP < 0){
-            creatureTotal[i].status.CP = 0;
-        }
-        creatureTotal[i].status.RA += effectArray.RA;
-        if (creatureTotal[i].status.RA < 0){
-            creatureTotal[i].status.RA = 0;
-        }
-        creatureTotal[i].status.RP += effectArray.RP;
-        if (creatureTotal[i].status.RP < 0){
-            creatureTotal[i].status.RP = 0;
-        }
-        creatureTotal[i].status.BE += effectArray.BE;
-        if (creatureTotal[i].status.BE < 0){
-            creatureTotal[i].status.BE = 0;
-        }
-        creatureTotal[i].status.RE += effectArray.RE;
-        if (creatureTotal[i].status.RE < 0){
-            creatureTotal[i].status.RE = 0;
+        for (const [key, value] of Object.entries(effectArray)) {
+            creatureTotal[i].status[key] += value;
+            if (creatureTotal[i].status[key] < 0){
+                creatureTotal[i].status[key] = 0;
+            }
+            else if (creatureTotal[i].status[key] > 100){
+                creatureTotal[i].status[key] = 100;
+            }
+
         }
 
+
     }
+
+    fnLog(creatureTotal);
 
 }
 
