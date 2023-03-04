@@ -17,16 +17,19 @@ let camera; //création des deux caméras
 let camera2;
 
 let img; //chargement de l'image de fond
-let matrix;
+/*let matrix;
 function preload(){
     matrix = loadImage('matrix.jpg');
-}
+}*/
 
 let nx = 40; // nombre de tuiles en x
 let nz = 40; // nombre de tuiles en y
 let unit = 50; // taille de l'unité de base du monde. Une tuile fait 50 de côté.
 let tileSize = unit - 2; // L'affichage d'une tuile fait 48 de côté.
 let aWorld = [
+    { "name": "axe X", "type": "line", "x": 0, "y": 0, "z": 0, "x1": 700, "y1": 0, "z1": 0, "color": "red" },
+    { "name": "axe Y", "type": "line", "x": 0, "y": 0, "z": 0, "x1": 0, "y1": 700, "z1": 0, "color": "green" },
+    { "name": "axe Z", "type": "line", "x": 0, "y": 0, "z": 0, "x1": 0, "y1": 0, "z1": 700, "color": "blue" },
     {"name":"monde","type":"monde","x":1000,"y":-50,"z":1000,"rx":0,"ry":0,"rz":0,"l1":100,"l2":100,"l3":100,"color":"green"}
 ];
 
@@ -154,12 +157,12 @@ function fnDisplayCreature(o) {
     let legCylinderRadius = 6;
     let legHeight = legCylinderHeight + legCylinderRadius;
 
+    // Met en évidence la créature sélectionnée (jambes blanches + disque blanc en-dessous)
     if (o.ID == selectedCreatureIndex) {
         legsColor = "white";
         push();
         translate(o.position.x * unit, 0, o.position.z * unit);
         fill("white");
-        rotateZ(0);
         cylinder(50, 2);
         pop();
     }
@@ -174,35 +177,45 @@ function fnDisplayCreature(o) {
             push();
             translate(o.position.x * unit, -legHeight - 10, o.position.z * unit);
             fill(ColorCylinder);
-            rotateZ(90);
+            // Les fonctions rotate effectuent une rotation de tout le référentiel : x, y, et z ne pointent plus dans
+            // les mêmes directions qu'à l'origine
+            // Les fonctions rotate effectuent une rotation dans le sens trigonométrique (anti-horaire)
+            if(o.direction == 2 || o.direction == 0) rotateZ(90); // bas et haut
+            else rotateX(90); // gauche et droite
             cylinder(15, 90);
             pop();
 
             // Yeux et nez
             push();
             fill("black");
-            translate(o.position.x * unit - 15, -legHeight - 20, o.position.z * unit - 8);
-            sphere(5);
+            translate(o.position.x * unit, -legHeight - 20, o.position.z * unit);
+            if(o.direction == 2) rotateY(0); // bas
+            else if(o.direction == 0) rotateY(180); // haut
+            else if(o.direction == 3) rotateY(90); // droite
+            else rotateY(-90); // gauche
+            translate(-15, 0, -8);
+            sphere(5); // oeil gauche
             translate(30, 0, 0);
-            sphere(5);
+            sphere(5); // oeil droit
             translate(-15, 3, -8);
             fill("black");
-            sphere(3);
+            sphere(3); // nez
             pop();
 
             // Pieds et jambes
             push();
             fill(legsColor);
-            translate(o.position.x * unit - 10, -6 - 25, o.position.z * unit);
-            rotateX(0);
-            cylinder(legCylinderRadius, legCylinderHeight);
+            translate(o.position.x * unit, -6 - 25, o.position.z * unit);
+            if(o.direction == 1 || o.direction == 3) rotateY(90); // gauche et droite
+            translate(-10, 0, 0);
+            cylinder(legCylinderRadius, legCylinderHeight); // jambe gauche
             translate(20, 0, 0);
-            cylinder(legCylinderRadius, legCylinderHeight);
+            cylinder(legCylinderRadius, legCylinderHeight); // jambe droite
             translate(0, 25, 0);
             fill(legsColor);
-            sphere(legCylinderRadius);
+            sphere(legCylinderRadius); // pied droit
             translate(-20, 0, 0);
-            sphere(legCylinderRadius);
+            sphere(legCylinderRadius); // pied gauche
             pop();
             break;
 
@@ -218,28 +231,34 @@ function fnDisplayCreature(o) {
             // Yeux et nez
             push();
             fill("black");
-            translate(o.position.x * unit - 10, -legHeight - 35, o.position.z * unit - 23);
-            sphere(5);
+            translate(o.position.x * unit, -legHeight - 35, o.position.z * unit);
+            if(o.direction == 2) rotateY(0); // bas
+            else if(o.direction == 0) rotateY(180); // haut
+            else if(o.direction == 3) rotateY(90); // droite
+            else rotateY(-90); // gauche
+            translate(-10, 0, -23);
+            sphere(5); // oeil gauche
             translate(+20, 0, 0);
-            sphere(5);
+            sphere(5); // oeil droit
             translate(-10, 15, 0);
             fill("black");
-            sphere(8);
+            sphere(8); // nez
             pop();
 
             // Pieds et jambes
             push();
             fill(legsColor);
-            translate(o.position.x * unit - 10, -6 - 25, o.position.z * unit)
-            rotateX(0);
-            cylinder(legCylinderRadius, legCylinderHeight);
+            translate(o.position.x * unit, -6 - 25, o.position.z * unit)
+            if(o.direction == 1 || o.direction == 3) rotateY(90); // gauche et droite
+            translate(-10, 0, 0)
+            cylinder(legCylinderRadius, legCylinderHeight); // jambe gauche
             translate(20, 0, 0);
-            cylinder(legCylinderRadius, legCylinderHeight);
+            cylinder(legCylinderRadius, legCylinderHeight); // jambe droite
             translate(0, 25, 0);
             fill(legsColor);
-            sphere(legCylinderRadius);
+            sphere(legCylinderRadius); // pied droit
             translate(-20, 0, 0);
-            sphere(legCylinderRadius);
+            sphere(legCylinderRadius); // pied gauche
             pop();
             break;
 
@@ -256,28 +275,34 @@ function fnDisplayCreature(o) {
             // Yeux et nez
             push();
             fill("black");
-            translate(o.position.x * unit - 5, -legHeight - 50, o.position.z * unit - 2);
-            sphere(5);
+            translate(o.position.x * unit, -legHeight - 50, o.position.z * unit);
+            if(o.direction == 2) rotateY(0); // bas
+            else if(o.direction == 0) rotateY(180); // haut
+            else if(o.direction == 3) rotateY(90); // droite
+            else rotateY(-90); // gauche
+            translate(-5, 0, -2);
+            sphere(5); // oeil gauche
             translate(10, 0, 0);
-            sphere(5);
+            sphere(5); // oeil droit
             translate(-5, 3, -8);
             fill("black");
-            sphere(3);
+            sphere(3); // nez
             pop();
 
             // Pieds et jambes
             push();
             fill(legsColor);
-            translate(o.position.x * unit - 10, -6 - 25, o.position.z * unit)
-            rotateX(0);
-            cylinder(legCylinderRadius, legCylinderHeight);
+            translate(o.position.x * unit, -6 - 25, o.position.z * unit)
+            if(o.direction == 1 || o.direction == 3) rotateY(90); // gauche et droite
+            translate(-10, 0, 0);
+            cylinder(legCylinderRadius, legCylinderHeight); // jambe gauche
             translate(20, 0, 0);
-            cylinder(legCylinderRadius, legCylinderHeight);
+            cylinder(legCylinderRadius, legCylinderHeight); // jambe droite
             translate(0, 25, 0);
             fill(legsColor);
-            sphere(legCylinderRadius);
+            sphere(legCylinderRadius); // pied droit
             translate(-20, 0, 0);
-            sphere(legCylinderRadius);
+            sphere(legCylinderRadius); // pied gauche
             pop();
             break;
 
@@ -286,6 +311,7 @@ function fnDisplayCreature(o) {
             // Tête
             push();
             translate(o.position.x * unit, -legHeight - 30, o.position.z * unit);
+            if(o.direction == 1 || o.direction == 3) rotateY(90); // gauche et droite
             fill(ColorTorus);
             torus(30, 10);
             pop();
@@ -293,28 +319,34 @@ function fnDisplayCreature(o) {
             // Yeux et nez
             push();
             fill("black");
-            translate(o.position.x * unit - 15, -legHeight - 60, o.position.z * unit - 8);
-            sphere(5);
+            translate(o.position.x * unit, -legHeight - 60, o.position.z * unit);
+            if(o.direction == 2) rotateY(0); // bas
+            else if(o.direction == 0) rotateY(180); // haut
+            else if(o.direction == 3) rotateY(90); // droite
+            else rotateY(-90); // gauche
+            translate(-15, 0, -8);
+            sphere(5); // oeil gauche
             translate(30, 0, 0);
-            sphere(5);
+            sphere(5); // oeil droit
             translate(-15, 3, -8);
             fill("black");
-            sphere(3);
+            sphere(3); // nez
             pop();
 
             // Pieds et jambes
             push();
             fill(legsColor);
-            translate(o.position.x * unit - 10, -6 - 25, o.position.z * unit)
-            rotateX(0);
-            cylinder(legCylinderRadius, legCylinderHeight);
+            translate(o.position.x * unit, -6 - 25, o.position.z * unit)
+            if(o.direction == 1 || o.direction == 3) rotateY(90); // gauche et droite
+            translate(-10, 0, 0);
+            cylinder(legCylinderRadius, legCylinderHeight); // jambe gauche
             translate(20, 0, 0);
-            cylinder(legCylinderRadius, legCylinderHeight);
+            cylinder(legCylinderRadius, legCylinderHeight); // jambe droite
             translate(0, 25, 0);
             fill(legsColor);
-            sphere(legCylinderRadius);
+            sphere(legCylinderRadius); // pied droit
             translate(-20, 0, 0);
-            sphere(legCylinderRadius);
+            sphere(legCylinderRadius); // pied gauche
             pop();
             break;
     }
@@ -521,7 +553,7 @@ function fnDisplayObject(o) {
             rotateX(o.rx);
             rotateY(180);
             rotateZ(o.rz);
-            texture(matrix);
+            //texture(matrix);
             sphere(4800,4800);
             pop();
             break;
@@ -545,7 +577,7 @@ function updateSelectedCreature() {
     selectedCreatureIndex = selectedElement.selectedIndex;
     let selectedCreatureDisplay = selectedCreatureIndex + 1;
 
-    console.log("Index créature sélectionnée : " + selectedCreatureIndex);
-    console.log("Donc créature sélectionnée : " + selectedCreatureDisplay);
+    //console.log("Index créature sélectionnée : " + selectedCreatureIndex);
+    //console.log("Donc créature sélectionnée : " + selectedCreatureDisplay);
 }
 
