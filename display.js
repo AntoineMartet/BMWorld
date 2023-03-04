@@ -170,6 +170,8 @@ function fnDisplayCreature(o) {
         legsColor = "black";
     }
 
+    // Quand une créature est immobile, elle est orientée vers le bas. C'est un choix arbitraire en attendant mieux, par exemple
+    // de s'orienter vers la dernière direction connue.
     switch (o.type) {
         case 1: // cylinder
 
@@ -180,8 +182,8 @@ function fnDisplayCreature(o) {
             // Les fonctions rotate effectuent une rotation de tout le référentiel : x, y, et z ne pointent plus dans
             // les mêmes directions qu'à l'origine
             // Les fonctions rotate effectuent une rotation dans le sens trigonométrique (anti-horaire)
-            if(o.direction == 2 || o.direction == 0) rotateZ(90); // bas et haut
-            else rotateX(90); // gauche et droite
+            if(o.direction == 2 || o.direction == 0 || o.direction == 4) rotateZ(90); // bas et haut et immobile
+            else if(o.direction == 1 || o.direction == 3) rotateX(90); // gauche et droite
             cylinder(15, 90);
             pop();
 
@@ -192,7 +194,7 @@ function fnDisplayCreature(o) {
             if(o.direction == 2) rotateY(0); // bas
             else if(o.direction == 0) rotateY(180); // haut
             else if(o.direction == 3) rotateY(90); // droite
-            else rotateY(-90); // gauche
+            else if(o.direction == 1) rotateY(-90); // gauche
             translate(-15, 0, -8);
             sphere(5); // oeil gauche
             translate(30, 0, 0);
@@ -235,7 +237,7 @@ function fnDisplayCreature(o) {
             if(o.direction == 2) rotateY(0); // bas
             else if(o.direction == 0) rotateY(180); // haut
             else if(o.direction == 3) rotateY(90); // droite
-            else rotateY(-90); // gauche
+            else if(o.direction == 1) rotateY(-90); // gauche
             translate(-10, 0, -23);
             sphere(5); // oeil gauche
             translate(+20, 0, 0);
@@ -279,7 +281,7 @@ function fnDisplayCreature(o) {
             if(o.direction == 2) rotateY(0); // bas
             else if(o.direction == 0) rotateY(180); // haut
             else if(o.direction == 3) rotateY(90); // droite
-            else rotateY(-90); // gauche
+            else if(o.direction == 1) rotateY(-90); // gauche
             translate(-5, 0, -2);
             sphere(5); // oeil gauche
             translate(10, 0, 0);
@@ -323,7 +325,7 @@ function fnDisplayCreature(o) {
             if(o.direction == 2) rotateY(0); // bas
             else if(o.direction == 0) rotateY(180); // haut
             else if(o.direction == 3) rotateY(90); // droite
-            else rotateY(-90); // gauche
+            else if(o.direction == 1) rotateY(-90); // gauche
             translate(-15, 0, -8);
             sphere(5); // oeil gauche
             translate(30, 0, 0);
