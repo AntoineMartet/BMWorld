@@ -471,6 +471,7 @@ function spider(legends, x, y, r, c1, c2) {
     }
 }
 
+// Reçoit un objet en argument et le dessine
 function fnDisplayObject(o) {
     switch (o.type) {
         case 'line':
@@ -562,6 +563,7 @@ function fnDisplayObject(o) {
     }
 }
 
+// Crée la liste des créatures sur la page HTML à partir du tableau creatureTotal
 function createListOfCreatures() {
     for (let i = 0; i < creatureTotal.length; i++) {
         let optElement = document.createElement("option");
@@ -574,6 +576,8 @@ function createListOfCreatures() {
     }
 }
 
+// Appelée quand une créature est sélectionnée dans la liste
+// Met à jour la variable globale avec l'index de la créature sélectionnée
 function updateSelectedCreature() {
     let selectedElement = document.getElementById("listPerson");
     selectedCreatureIndex = selectedElement.selectedIndex;
@@ -583,3 +587,38 @@ function updateSelectedCreature() {
     //console.log("Donc créature sélectionnée : " + selectedCreatureDisplay);
 }
 
+// Appelée en cliquant sur l'onglet "État du monde"
+// Lien pour le calcul de la moyenne avec la fonction reduce() : https://www.codingem.com/javascript-calculate-average/
+function fnDisplayWorldStatus() {
+    let textToDisplay = "<tr> <td></td><td>Minimum</td><td>Moyenne</td><td>Maximum</td> </tr>";
+
+    textToDisplay += fnStatusValues("Force", "FC");
+    textToDisplay += fnStatusValues("Compétences", "CP");
+    textToDisplay += fnStatusValues("Argent", "RA");
+    textToDisplay += fnStatusValues("Patrimoine", "RP");
+    textToDisplay += fnStatusValues("Compétences", "CP");
+    textToDisplay += fnStatusValues("Bien-être", "BE");
+    textToDisplay += fnStatusValues("Relations", "RE");
+
+    document.getElementById("tableWorldEtat").innerHTML = textToDisplay;
+}
+
+function fnStatusValues(statusFullName, statusShortName) {
+    let arrayValues = [];
+    for (let i = 0; i < creatureTotal.length; i++)
+    {
+        arrayValues.push(creatureTotal[i].status[statusShortName]);
+    }
+
+    let min = Math.min(...arrayValues);
+    let avg = arrayValues.reduce((a, b) => a + b, 0) / arrayValues.length;
+    let max = Math.max(...arrayValues);
+
+    if(statusShortName == "RA") {
+        min *= 1000;
+        avg *= 1000;
+        max *= 1000;
+    }
+
+    return "<tr> <td>" + statusFullName + "</td><td>" + min + "</td><td>" + avg + "</td><td>" + max + "</td> </tr>";
+}
