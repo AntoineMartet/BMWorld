@@ -8,8 +8,7 @@ let stepCount = 0;
 
 
 
-// CHANGEMENTS DE SOCIETES /!\ CELLE PAR DEFAUT
-let actualSociety = societyModels[0];
+
 
 // Systèmes politiques : 
 
@@ -32,6 +31,12 @@ let societyModels=[ // Max
     {"state":"COM", "penalty":500, "conditionHelp":500, "help":100, "conditionTax": 800, "tax":100, "salary":600},
     {"state":"MON", "penalty":500, "conditionHelp":0, "help":0, "conditionTax": 800, "tax":30, "salary":500}
 ] 
+
+// CHANGEMENTS DE SOCIETES /!\ CELLE PAR DEFAUT
+let actualSociety = societyModels[0];
+
+
+
 
 
 //profil
@@ -359,7 +364,7 @@ function fnMove() {
         cycles += 1;
     }
     if(cycles % 30 == 0){
-        fnSalary();
+        fnSalary(); 
         fnHelp();
         fnTax();
     }
@@ -595,7 +600,9 @@ function fnPenalty(voleuse){
 function fnHelp(){
     for(let i = 0; i < creatureTotal[i].length; i++){
         if(creatureTotal[i].status.RA < actualSociety.conditionHelp){
+
             creatureTotal[i].status.RA += (actualSociety.help*actualSociety.conditionHelp)/100 ;
+
         }
     }
 }
