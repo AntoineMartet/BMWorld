@@ -15,7 +15,7 @@ let booleanPause = 0;
 let booleanCam = 0;
 let camera; //création des deux caméras
 let camera2;
-let framerate = 30;
+let Politic = document.getElementById("WorldTypeList").value ;
 
 let img; //chargement de l'image de fond
 /*let matrix;
@@ -60,7 +60,7 @@ function setup() {
     camera.lookAt(nx / 2 * unit, -0, nz / 2 * unit);
     normalMaterial(250);// matériaux solides
     fnTiles();// Ajoute à aWorld un certain nombre de tuiles pour le sol
-    frameRate(framerate);// On rafraîchit x fois par seconde
+    frameRate(30);// On rafraîchit x fois par seconde
     ctxPersonStatus = document.getElementById("canvasPersonStatus").getContext("2d");
     ctxPersonPersonality = document.getElementById("canvasPersonPersonality").getContext("2d");
     ctxPersonStatus.canvas.width = 600;
@@ -150,9 +150,8 @@ function fnCameraSwitch(){//fonction de changement de caméra
 }
 
 function fnSpeedofCycles() {
-    let frametemp = parseInt(document.getElementById("speed").value)
-    alert(frametemp)
-    frameRate(frametemp)
+    let framerate = parseInt(document.getElementById("speed").value)
+    frameRate(framerate)
 }
 
 function fnDisplayCreature(o) {
@@ -627,4 +626,15 @@ function fnStatusValues(statusFullName, statusShortName) {
     }
 
     return "<tr> <td>" + statusFullName + "</td><td>" + min + "</td><td>" + avg + "</td><td>" + max + "</td> </tr>";
+}
+
+function fnTypeofSociety(){
+    let TexttoDisplay = "<h3>" + actualSociety.state + "\n \n </h3>";
+
+    TexttoDisplay += "<p> Aides : " + actualSociety.help + " % \n \n </p>";
+    TexttoDisplay += "<p> Taxes : " + actualSociety.tax + " % \n \n </p>";
+    TexttoDisplay += "<p> Sanctions : " + actualSociety.penalty + "\n \n </p>";
+    TexttoDisplay += "<p> Salaire : " + actualSociety.salary + " </p>";
+
+    document.getElementById("WorldType").innerHTML = TexttoDisplay;
 }

@@ -8,8 +8,6 @@ let stepCount = 0;
 
 
 
-// CHANGEMENTS DE SOCIETES /!\ CELLE PAR DEFAUT
-let actualSociety = societyModels[0];
 
 // Systèmes politiques : 
 
@@ -19,7 +17,7 @@ let actualSociety = societyModels[0];
 // LIB = LIBERAL DEMOCRACY
 // OLI = OLIGARCHY
 // THE = THEOCRACY
-// COM = COMUNISM
+// COM = COMMUNISM
 // MON = MONARCHY
 
 let societyModels=[ // Max
@@ -31,7 +29,10 @@ let societyModels=[ // Max
     {"state":"THE", "penalty":450, "conditionHelp":500, "help":10, "conditionTax": 700, "tax":20, "salary":600},
     {"state":"COM", "penalty":500, "conditionHelp":500, "help":100, "conditionTax": 800, "tax":100, "salary":600},
     {"state":"MON", "penalty":500, "conditionHelp":0, "help":0, "conditionTax": 800, "tax":30, "salary":500}
-] 
+]
+
+// CHANGEMENTS DE SOCIETES /!\ CELLE PAR DEFAUT
+let actualSociety = societyModels[0];
 
 
 //profil

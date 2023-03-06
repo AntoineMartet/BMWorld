@@ -30,16 +30,29 @@ SI-CA1a
         <input type="range" id="speed" min="0" max="100" onchange="fnSpeedofCycles()">
     </div>
 
+    <div id="WorldTypeSelect">
+        <select name="TypeWorld" id="WorldTypeList" onchange="fnTypeofSociety()">
+            <option value="0">Autocracy</option>
+            <option value="1">Anarchy</option>
+            <option value="2">Democracy</option>
+            <option value="3">Liberal Democracy</option>
+            <option value="4">Oligarchy</option>
+            <option value="5">Theocracy</option>
+            <option value="6">Communism</option>
+            <option value="7">Monarchy</option>
+        </select>
+
+    </div>
+
     <div id="canvasDisplay"></div>
 
     <div id="world">
 
         <input type="radio" name="radioWorld" id="radioButtonWorldType" checked>
-        <label class="tabWorld" for="radioButtonWorldType"> Type de Monde</label>
+        <label class="tabWorld" for="radioButtonWorldType" onclick="fnTypeofSociety()"> Type de Monde</label>
 
         <div class="divShowHide">
-            <h3> Dictature</h3>
-            <p> Sanctions <br><br> Aides <br><br> Taxes <br><br> Salaires</p>
+            <div id="WorldType"></div>
 
 
         </div>
