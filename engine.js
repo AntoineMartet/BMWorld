@@ -35,6 +35,11 @@ let societyModels=[ // Max
 let actualSociety = societyModels[0];
 
 
+
+
+
+
+
 //profil
 //	I = immédiat, envie de plaisir immédiat (par. Ex jouer)
 //	F = future, envie d'investir pour le futur (p. exemple travailler, étudier)
@@ -360,7 +365,7 @@ function fnMove() {
         cycles += 1;
     }
     if(cycles % 30 == 0){
-        fnSalary();
+        fnSalary(); 
         fnHelp();
         fnTax();
     }
@@ -596,7 +601,9 @@ function fnPenalty(voleuse){
 function fnHelp(){
     for(let i = 0; i < creatureTotal[i].length; i++){
         if(creatureTotal[i].status.RA < actualSociety.conditionHelp){
+
             creatureTotal[i].status.RA += (actualSociety.help*actualSociety.conditionHelp)/100 ;
+
         }
     }
 }
