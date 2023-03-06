@@ -8,6 +8,30 @@ let stepCount = 0;
 
 
 
+// CHANGEMENTS DE SOCIETES /!\ CELLE PAR DEFAUT
+let actualSociety = societyModels[0];
+
+// Systèmes politiques : 
+
+// AUT = AUTOCRACY
+// ANA = ANARCHY
+// DEM = DEMOCRACY
+// LIB = LIBERAL DEMOCRACY
+// OLI = OLIGARCHY
+// THE = THEOCRACY
+// COM = COMUNISM
+// MON = MONARCHY
+
+let societyModels=[ // Max
+    {"state":"AUT", "penalty":200,"conditionHelp":500, "help":20, "conditionTax": 800,"tax": 20, "salary":800},
+    {"state":"ANA", "penalty":0, "conditionHelp":0, "help":0, "conditionTax": 0, "tax":0, "salary":0},
+    {"state":"DEM", "penalty": 300, "conditionHelp":1500, "help":15, "conditionTax": 2500, "tax":15, "salary":2500},
+    {"state":"LIB", "penalty":300, "conditionHelp":2000,"help": 15, "conditionTax": 3500, "tax":15, "salary":3500},
+    {"state":"OLI", "penalty":100, "conditionHelp":0, "help":0, "conditionTax": 0, "tax":15, "salary":700},
+    {"state":"THE", "penalty":450, "conditionHelp":500, "help":10, "conditionTax": 700, "tax":20, "salary":600},
+    {"state":"COM", "penalty":500, "conditionHelp":500, "help":100, "conditionTax": 800, "tax":100, "salary":600},
+    {"state":"MON", "penalty":500, "conditionHelp":0, "help":0, "conditionTax": 800, "tax":30, "salary":500}
+] 
 
 
 //profil
@@ -240,6 +264,13 @@ for(let i = (creatureTotal.length);i < 100; i++) {
 
 
 
+
+
+
+
+
+
+
 //-----------------------------------------------------------------------fin
 
 
@@ -326,6 +357,11 @@ function fnMove() {
         fnActionProba();//maikol
         fnActionEffect();//maikol
         cycles += 1;
+    }
+    if(cycles % 30 == 0){
+        fnSalary();
+        fnHelp();
+        fnTax();
     }
 
 }
@@ -493,6 +529,7 @@ function fnActionEffect(){
             let probability = Math.floor(Math.random() * 2) //définit si attrapé ou non
             if(probability == 0 ) {
                 steal++;// voleur attrapé
+                fnPenalty(i);
             }
 
             effectArray = actions[11].effect[steal];
@@ -551,8 +588,40 @@ function fnActionEffect(){
 
 }
 
+function fnPenalty(voleuse){
+    creatureTotal[voleuse].status.RA -= actualSociety.penalty;
+}
+
+function fnHelp(){
+    for(let i = 0; i < creatureTotal[i].length; i++){
+        if(creatureTotal[i].status.RA < actualSociety.conditionHelp){
+            creatureTotal[i].status.RA += (actualSociety.help*actualSociety.conditionHelp)/100 ;
+        }
+    }
+}
+function fnTax(){
+    for(let i = 0; i < creatureTotal.length; i++){
+        if(creatureTotal[i].status.RA >= actualSociety.conditionTax){
+            creatureTotal[i].status.RA -= (actualSociety.tax*creatureTotal[i].status.RA)/100 ;
+        }
+    }
+}
+
+function fnSalary(){
+    for(let i = 0; i < creatureTotal.length; i++){
+            creatureTotal[i].status.RA += actualSociety.salary ;
+    }
+}
 
 function fnLog(text){
     document.getElementById("textEngine").value += "\n\nstepCount : " + stepCount + "\n\n" + text;
     console.log(text);
 }
+
+
+
+
+
+
+
+
