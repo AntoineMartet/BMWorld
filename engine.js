@@ -9,6 +9,7 @@ let stepCount = 0;
 
 
 
+
 // Systèmes politiques : 
 
 // AUT = AUTOCRACY
@@ -29,12 +30,10 @@ let societyModels=[ // Max
     {"state":"THE", "penalty":450, "conditionHelp":500, "help":10, "conditionTax": 700, "tax":20, "salary":600},
     {"state":"COM", "penalty":500, "conditionHelp":500, "help":100, "conditionTax": 800, "tax":100, "salary":600},
     {"state":"MON", "penalty":500, "conditionHelp":0, "help":0, "conditionTax": 800, "tax":30, "salary":500}
-]
+] 
 
 // CHANGEMENTS DE SOCIETES /!\ CELLE PAR DEFAUT
 let actualSociety = societyModels[0];
-
-
 
 
 
@@ -87,6 +86,8 @@ actions= [
 //Creature-----------------------------------------------------------------------
 //fix les valeurs pour tous les satatus à 50
 const valDefStatus = 50;
+
+let creatureTotalLog = []; //2D array to put an array with action, status and profile of all creature
 
 
 /*
@@ -285,26 +286,50 @@ function fnEngine(){
     //frameRate(0.000001); //permet de mettre le monde en "pause afin de checker l'avancement pas à pas"
     fnMove();
 
+    if(stepCount%50==0){
+        let tempCreatureTotalLog = []; //tableau pour tous les créature pour chaque movement (Commence par l'état initial)
+        for (i = 0;i < creatureTotal.length;i++) {
+            //console.log(creatureTotal[i].action);
+            //Mettre état de chaque créature qui est avant action dans le tableau tempCreatureTotalLog
+            tempCreatureTotalLog.push([creatureTotal[i].name,creatureTotal[i].action, creatureTotal[i].status, creatureTotal[i].profile]);
+        }
+        creatureTotalLog.push(tempCreatureTotalLog); //Mettre le tabeau log de cette movement
+        //fnLog(JSON.stringify(tempCreatureTotalLog));
+        fnResetActionCreature();
+        fnCheckPosOtherCreatures();//maikol
+        fnActionProba();//maikol
+        fnActionEffect();//maikol
+
+        cycles += 1;
+        if(cycles % 30 == 0){
+            fnSalary();
+            fnHelp();
+            fnTax();
+        }
+
+    }
+
     stepCount++;
 }
 
 let PositionCreatures = [];
 
-function fnResetPositionCreatures(){ //pour initilaliser le tableau "PositionCreatures" à null
+/*function fnResetPositionCreatures(){ //pour initilaliser le tableau "PositionCreatures" à null
 
     for (let i = 0; i < 40; i++) {
         PositionCreatures[i] = [];
         for(let j = 0; j < 40; j++) {
             PositionCreatures[i][j] = [];
         }
-
     }
 
-}
+}*/
 
 function fnMove() {
     //fait bouger les créatures de 2 max
-    fnResetPositionCreatures();//maikol//reset le tableau qui stock la position des créatures afin de savoir s'il y a des créatures proche les unes des autres
+    //fnResetPositionCreatures();//maikol//reset le tableau qui stock la position des créatures afin de savoir s'il y a des créatures proche les unes des autres
+
+    //let tempCreatureTotalLog = []; //tableau pour tous les créature pour chaque movement (Commence par l'état initial)
 
     for (i=0;i<creatureTotal.length;i++){
         switch(creatureTotal[i].direction) { //AYAMI
@@ -350,24 +375,7 @@ function fnMove() {
         if(probability == 0 ) {
             fnChangeDirection();
         }
-        console.log(Math.round(creatureTotal[i].position.x),Math.round(creatureTotal[i].position.z));
-        let x = Math.min(39, Math.round(creatureTotal[i].position.x))
-        let z = Math.min(39, Math.round(creatureTotal[i].position.z))
-        PositionCreatures[x][z].push(creatureTotal[i].ID);
-        creatureTotal[i].near = null;//maikol
-        creatureTotal[i].action = null;//maikol
 
-    }
-    if(stepCount%50==0){
-        fnCheckPosOtherCreatures();//maikol
-        fnActionProba();//maikol
-        fnActionEffect();//maikol
-        cycles += 1;
-    }
-    if(cycles % 30 == 0){
-        fnSalary(); 
-        fnHelp();
-        fnTax();
     }
 
 }
@@ -379,6 +387,24 @@ function fnChangeDirection (){ //pour changer le direction
     }
     while(newDirection == creatureTotal[i].direction)
     creatureTotal[i].direction = newDirection;
+}
+
+function fnResetActionCreature(){
+    for (let i = 0; i < 40; i++) {
+        PositionCreatures[i] = [];
+        for(let j = 0; j < 40; j++) {
+            PositionCreatures[i][j] = [];
+        }
+    }
+    for (i = 0;i < creatureTotal.length;i++) {
+        let x = Math.min(39, Math.round(creatureTotal[i].position.x))
+        let z = Math.min(39, Math.round(creatureTotal[i].position.z))
+        PositionCreatures[x][z].push(creatureTotal[i].ID);
+        creatureTotal[i].near = null;//maikol
+        creatureTotal[i].action = null;//maikol
+    }
+
+
 }
 
 function fnCheckPosOtherCreatures (){//pour checker la postion des autres créatures afin de déterminer si une créature peut jouer avec une autre ou non
