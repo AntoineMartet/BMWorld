@@ -90,10 +90,9 @@ function draw() {
     lights();//Allumer les lumières
     directionalLight(250, 250, 250, 0.2, 1, 0.6);
     orbitControl(0.5, 0.5, 0.5);//autorise le controle par souris
-
-    fnEngine(); // Calcule le monde de l'état suivant (se trouve dans engine.js)
-
-    cycles += 1;
+    if (booleanPause == 0){
+        fnEngine(); // Calcule le monde de l'état suivant (se trouve dans engine.js)
+    }
 
     fnDisplay(); // Affiche les fonds des 3 canvas, le monde, les créatures et les graphes
 }

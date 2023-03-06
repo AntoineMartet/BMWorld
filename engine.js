@@ -38,19 +38,19 @@ actions= [
     {"ID":"JOS","type":1,"prob":[2, 0, -1, 0, 0],"effect":{"FC": 0,"CP":0,"RA":0,"RP":0,"BE":2,"RE":0}, "effect2":[0, 0,0,0,0]},
     {"ID":"SPS","type":1,"prob":[0, 1, 0, 0, 0],"effect":{"FC": 2,"CP":0,"RA":0,"RP":0,"BE":1,"RE":0}, "effect2":[0, 0,0,0,0]},
     {"ID":"VOS","type":1,"prob":[1, -1, 0, 2, -2],"effect":{"FC": 0,"CP":0,"RA":200,"RP":2,"BE":0,"RE":-1}, "effect2":[0, 0,0,0,0]},
-    {"ID":"COS","type":1,"prob":[2, 0, 0, 0, -2],"effect":{"FC": -1,"CP":-1,"RA":-500,"RP":0,"BE":1,"RE":0}, "effect2":[-0.02, 0,0,0,0]},      
-    {"ID":"COB","type":1,"prob":[1, 0, 0, 2, 0],"effect":{"FC": 0,"CP": 0,"RA":-200,"RP":1,"BE":1,"RE":0}, "effect2":[0, 0,0,0,0]}, 
-    
+    {"ID":"COS","type":1,"prob":[2, 0, 0, 0, -2],"effect":{"FC": -1,"CP":-1,"RA":-500,"RP":0,"BE":1,"RE":0}, "effect2":[-0.02, 0,0,0,0]},
+    {"ID":"COB","type":1,"prob":[1, 0, 0, 2, 0],"effect":{"FC": 0,"CP": 0,"RA":-200,"RP":1,"BE":1,"RE":0}, "effect2":[0, 0,0,0,0]},
+
     {"ID":"JO2","type":2,"prob":[1, 0, 2, 0, 0],"effect":{"FC": 0,"CP":0,"RA":0,"RP":0,"BE":2,"RE":2}, "effect2":[0, 0,0,0,0]},
     {"ID":"DI2","type":2,"prob":[1, 0, 2, 0, 0],"effect":{"FC": 0,"CP":1,"RA":0,"RP":0,"BE":1,"RE":2}, "effect2":[0, 0,0,0,0]},
     {"ID":"SP2","type":2,"prob":[1, 1, 1, 0, 0], "effect":{"FC": 2,"CP":0,"RA":0,"RP":0,"BE":1,"RE":1}, "effect2":[0, 0,0,0,0]},//ici les deux sont gagnants
-    {"ID":"VO2","type":4,"prob":[1, -1, 0, 2, -2], "effect":[{"FC": 0,"CP":0,"RA":200,"RP":1,"BE":1,"RE":0},{"FC": 0,"CP":0,"RA":200,"RP":1,"BE":1,"RE":-2},{"FC": 0,"CP":0,"RA":0,"RP":0,"BE":-1,"RE":0},{"FC": 0,"CP":0,"RA":0,"RP":0,"BE":-2,"RE":-2}], "effect2":[0, 0,0,0,0]},//ici le premier est le gagnant 
-    // effect[0] vole et pas attrapé // effect[1] vole et attrapé // effect[2] vole pas et pas attrapé // effect[3] vole pas et attrapé 
+    {"ID":"VO2","type":4,"prob":[1, -1, 0, 2, -2], "effect":[{"FC": 0,"CP":0,"RA":200,"RP":1,"BE":1,"RE":0},{"FC": 0,"CP":0,"RA":200,"RP":1,"BE":1,"RE":-2},{"FC": 0,"CP":0,"RA":0,"RP":0,"BE":-1,"RE":0},{"FC": 0,"CP":0,"RA":0,"RP":0,"BE":-2,"RE":-2}], "effect2":[0, 0,0,0,0]},//ici le premier est le gagnant
+    // effect[0] vole et pas attrapé // effect[1] vole et attrapé // effect[2] vole pas et pas attrapé // effect[3] vole pas et attrapé
 
-    {"ID":"VO2b","type":4,"effect":[{"FC": 0,"CP":0,"RA":-200,"RP":-1,"BE":-1,"RE":0},{"FC": 0,"CP":0,"RA":-200,"RP":-1,"BE":-1,"RE":-1},{"FC": 0,"CP":0,"RA":0,"RP":0,"BE":0,"RE":0},{"FC": 0,"CP":0,"RA":0,"RP":0,"BE":2,"RE":0}], "effect2":[0, 0,0,0,0]}//ici le second le perdant   
-    // effect[0] se fait voler et voleur pas attrapé // effect[1] se fait voler et voleur attrapé // effect[2] se fait pas voler et voleur pas attrapé // effect[3] se fait pas voler et voleur attrapé 
+    {"ID":"VO2b","type":4,"effect":[{"FC": 0,"CP":0,"RA":-200,"RP":-1,"BE":-1,"RE":0},{"FC": 0,"CP":0,"RA":-200,"RP":-1,"BE":-1,"RE":-1},{"FC": 0,"CP":0,"RA":0,"RP":0,"BE":0,"RE":0},{"FC": 0,"CP":0,"RA":0,"RP":0,"BE":2,"RE":0}], "effect2":[0, 0,0,0,0]}//ici le second le perdant
+    // effect[0] se fait voler et voleur pas attrapé // effect[1] se fait voler et voleur attrapé // effect[2] se fait pas voler et voleur pas attrapé // effect[3] se fait pas voler et voleur attrapé
 ]
- 
+
 
 
 
@@ -59,10 +59,10 @@ actions= [
 const valDefStatus = 50;
 
 
- /*
-   I = immédiat, F = future, R = relation, P = possession, E = Ethique
-   FC = Force, CP = Compétences, RA = Richesse sous forme argent, RP = Richesse sous forme possession, BE = bien-être, o	RE = qualité/quantité de relations
- */
+/*
+  I = immédiat, F = future, R = relation, P = possession, E = Ethique
+  FC = Force, CP = Compétences, RA = Richesse sous forme argent, RP = Richesse sous forme possession, BE = bien-être, o	RE = qualité/quantité de relations
+*/
 
 //15 creatures defaults
 //JSON pour tous les creatures (100)
@@ -223,24 +223,24 @@ let creatureTotal = [
 //Ajouter le reste de creature
 for(let i = (creatureTotal.length);i < 100; i++) {
     creatureTotal.push({
-    "ID"       : i,
-    "name"     : "creature " + (i+1), 
-    "position" : {"x": Math.floor(Math.random() * 40), "z": Math.floor(Math.random() * 40)}, 
-    "profile"  : [(Math.random() * 1.01).toFixed(2),   (Math.random() * 1.01).toFixed(2),
-                  (Math.random() * 1.01).toFixed(2),   (Math.random() * 1.01).toFixed(2),   (Math.random() * 1.01).toFixed(2)],
-    "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, 
-                  "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
-    "direction": Math.floor(Math.random() * 4),
-    "type"     : Math.floor(Math.random() * 4) + 1,
-    "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
-    "near"     : null,
-    "action"   : null
+        "ID"       : i,
+        "name"     : "creature " + (i+1),
+        "position" : {"x": Math.floor(Math.random() * 40), "z": Math.floor(Math.random() * 40)},
+        "profile"  : [(Math.random() * 1.01).toFixed(2),   (Math.random() * 1.01).toFixed(2),
+            (Math.random() * 1.01).toFixed(2),   (Math.random() * 1.01).toFixed(2),   (Math.random() * 1.01).toFixed(2)],
+        "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus,
+            "RP": valDefStatus, "BE": valDefStatus, "RE": valDefStatus},
+        "direction": Math.floor(Math.random() * 4),
+        "type"     : Math.floor(Math.random() * 4) + 1,
+        "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
+        "near"     : null,
+        "action"   : null
     })
 }
 
 
 
-//-----------------------------------------------------------------------fin 
+//-----------------------------------------------------------------------fin
 
 
 function fnEngine(){
@@ -260,7 +260,7 @@ function fnResetPositionCreatures(){ //pour initilaliser le tableau "PositionCre
         for(let j = 0; j < 40; j++) {
             PositionCreatures[i][j] = [];
         }
-        
+
     }
 
 }
@@ -272,32 +272,32 @@ function fnMove() {
     for (i=0;i<creatureTotal.length;i++){
         switch(creatureTotal[i].direction) { //AYAMI
             case 0: //up
-            if(creatureTotal[i].position.z + 0.1 < 40) {
-                creatureTotal[i].position.z += 0.1;
-            } else {
-                fnChangeDirection();
-            }
-            break;
+                if(creatureTotal[i].position.z + 0.1 < 40) {
+                    creatureTotal[i].position.z += 0.1;
+                } else {
+                    fnChangeDirection();
+                }
+                break;
             case 1: //right
-            if(creatureTotal[i].position.x + 0.1 < 40) {
-                creatureTotal[i].position.x += 0.1;
-            } else {
-                fnChangeDirection();
-            }
-            break;
+                if(creatureTotal[i].position.x + 0.1 < 40) {
+                    creatureTotal[i].position.x += 0.1;
+                } else {
+                    fnChangeDirection();
+                }
+                break;
             case 2: //down
-            if(creatureTotal[i].position.z - 0.1 >= 0) {
-                creatureTotal[i].position.z -= 0.1;
-            } else {
-                fnChangeDirection();
-            }
-            break;
+                if(creatureTotal[i].position.z - 0.1 >= 0) {
+                    creatureTotal[i].position.z -= 0.1;
+                } else {
+                    fnChangeDirection();
+                }
+                break;
             case 3: // left
-            if(creatureTotal[i].position.x - 0.1 >= 0) {
-                creatureTotal[i].position.x -= 0.1;
-            } else {
-                fnChangeDirection();
-            } 
+                if(creatureTotal[i].position.x - 0.1 >= 0) {
+                    creatureTotal[i].position.x -= 0.1;
+                } else {
+                    fnChangeDirection();
+                }
 
         }
 
@@ -309,7 +309,7 @@ function fnMove() {
         else{
             randomProbability = 20;
         }
-        let probability = Math.floor(Math.random() *randomProbability) 
+        let probability = Math.floor(Math.random() *randomProbability)
         if(probability == 0 ) {
             fnChangeDirection();
         }
@@ -318,15 +318,16 @@ function fnMove() {
         let z = Math.min(39, Math.round(creatureTotal[i].position.z))
         PositionCreatures[x][z].push(creatureTotal[i].ID);
         creatureTotal[i].near = null;//maikol
-        creatureTotal[i].action = null;//maikol   
-    
+        creatureTotal[i].action = null;//maikol
+
     }
     if(stepCount%50==0){
-        fnCheckPosOtherCreatures();//maikol 
-        fnActionProba();//maikol 
+        fnCheckPosOtherCreatures();//maikol
+        fnActionProba();//maikol
         fnActionEffect();//maikol
-    }     
-    
+        cycles += 1;
+    }
+
 }
 
 function fnChangeDirection (){ //pour changer le direction
@@ -391,7 +392,7 @@ function fnConsole (text){//pour afficher des textes dans le textbox "textEngine
 
 function fnActionProba(){//pour calculer des probabilité des chaques actions
     for (let i = 0; i < creatureTotal.length; i++){
-        let tempArr = [];//Tableau qui 
+        let tempArr = [];//Tableau qui
         if (creatureTotal[i].action != null){
             continue;
         }
@@ -481,7 +482,7 @@ function fnActionEffect(){
         }
 
         if (currentActionArray.type == 4){
- 
+
             if (creatureTotal[i].status.FC > creatureTotal[creatureTotal[i].near].status.FC){//true si le voleur à plus de force que la victime
                 steal = 0; //voleur vole
             }
