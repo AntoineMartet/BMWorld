@@ -934,6 +934,9 @@ function fnStatusValues(statusFullName, statusShortName) {
 }
 
 function fnTypeOfSociety(){
+    let monde = parseInt(document.getElementById("WorldTypeList").value);
+    actualSociety = societyModels[monde];
+
     let textToDisplay = "<h3>" + actualSociety.state + "\n \n </h3>";
 
     textToDisplay += "<p> Aides : " + actualSociety.help + " % \n \n </p>";
