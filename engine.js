@@ -285,13 +285,16 @@ function fnEngine(){
     //Cette fonction va faire
     //frameRate(0.000001); //permet de mettre le monde en "pause afin de checker l'avancement pas à pas"
     fnMove();
+    stepCount++;
 
     if(stepCount%50==0){
+        cycles += 1;
         let tempCreatureTotalLog = []; //tableau pour tous les créature pour chaque movement (Commence par l'état initial)
         for (i = 0;i < creatureTotal.length;i++) {
+            console.log(creatureTotal[i].name,creatureTotal[i].status);
             //console.log(creatureTotal[i].action);
             //Mettre état de chaque créature qui est avant action dans le tableau tempCreatureTotalLog
-            tempCreatureTotalLog.push([creatureTotal[i].name,creatureTotal[i].action, creatureTotal[i].status, creatureTotal[i].profile]);
+            tempCreatureTotalLog.push([cycles,creatureTotal[i].name,creatureTotal[i].action, creatureTotal[i].status, creatureTotal[i].profile]);
         }
         creatureTotalLog.push(tempCreatureTotalLog); //Mettre le tabeau log de cette movement
         //fnLog(JSON.stringify(tempCreatureTotalLog));
@@ -300,7 +303,6 @@ function fnEngine(){
         fnActionProba();//maikol
         fnActionEffect();//maikol
 
-        cycles += 1;
         if(cycles % 30 == 0){
             fnSalary();
             fnHelp();
@@ -309,7 +311,7 @@ function fnEngine(){
 
     }
 
-    stepCount++;
+
 }
 
 let PositionCreatures = [];
