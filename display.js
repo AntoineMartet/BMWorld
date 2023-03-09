@@ -15,7 +15,7 @@ let booleanPause = 0;
 let booleanCam = 0;
 let camera; //création des deux caméras
 let camera2;
-let Politic = document.getElementById("WorldTypeList").value ;
+let politic = document.getElementById("WorldTypeList").value ;
 
 let img; //chargement de l'image de fond
 /*let matrix;
@@ -68,6 +68,7 @@ function setup() {
     ctxPersonPersonality.canvas.width = 600;
     ctxPersonPersonality.canvas.height = 370;
     createListOfCreatures();
+    fnTypeOfSociety();
 }
 
 function get_random(list) {
@@ -628,13 +629,13 @@ function fnStatusValues(statusFullName, statusShortName) {
     return "<tr> <td>" + statusFullName + "</td><td>" + min + "</td><td>" + avg + "</td><td>" + max + "</td> </tr>";
 }
 
-function fnTypeofSociety(){
-    let TexttoDisplay = "<h3>" + actualSociety.state + "\n \n </h3>";
+function fnTypeOfSociety(){
+    let textToDisplay = "<h3>" + actualSociety.state + "\n \n </h3>";
 
-    TexttoDisplay += "<p> Aides : " + actualSociety.help + " % \n \n </p>";
-    TexttoDisplay += "<p> Taxes : " + actualSociety.tax + " % \n \n </p>";
-    TexttoDisplay += "<p> Sanctions : " + actualSociety.penalty + "\n \n </p>";
-    TexttoDisplay += "<p> Salaire : " + actualSociety.salary + " </p>";
+    textToDisplay += "<p> Aides : " + actualSociety.help + " % \n \n </p>";
+    textToDisplay += "<p> Taxes : " + actualSociety.tax + " % \n \n </p>";
+    textToDisplay += "<p> Sanctions : " + actualSociety.penalty + "\n \n </p>";
+    textToDisplay += "<p> Salaire : " + actualSociety.salary + " </p>";
 
-    document.getElementById("WorldType").innerHTML = TexttoDisplay;
+    document.getElementById("WorldType").innerHTML = textToDisplay;
 }
