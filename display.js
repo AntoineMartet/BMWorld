@@ -38,14 +38,23 @@ let ctxPersonStatus;
 let ctxPersonPersonality;
 
 let Couleur = ['rgb(0, 115, 86)', 'rgb(82, 183, 136 )', 'rgb(144, 190, 109 )', 'rgb(128, 185, 24)', 'rgb(128, 128, 0)', 'rgb(3, 4, 94)', 'rgb(72, 202, 228)', 'rgb(114, 9, 183 )', 'rgb(205, 180, 219)', 'rgb(193, 28, 173)', 'rgb(89, 13, 34)', 'rgb(255, 143, 171 )', 'rgb(249, 65, 68)', 'rgb(249, 121, 57)', 'rgb(255, 127, 81)', 'rgb(220, 47, 2 )', 'rgb(252, 112, 8 )', 'rgb(255, 204, 0)', 'rgb(255, 218, 61 )', 'rgb(255, 234, 0 )', 'rgb(253, 255, 252 )', 'rgb(206, 212, 218)', 'rgb(0, 180, 216)', 'rgb(52, 58, 64 )', 'rgb(192, 103, 34 )'];
+let RandomCar=[1,2,3,4];
 let ColorCylinder;
 let ColorCube;
 let ColorTorus;
 let ColorCone;
+let randomCylinder;
+let randomCube;
+let randomTorus;
+let randomCone;
 ColorCylinder = get_random(Couleur);
 ColorCube = get_random(Couleur);
 ColorTorus = get_random(Couleur);
 ColorCone = get_random(Couleur);
+randomCylinder = get_random(RandomCar);
+randomCube = get_random(RandomCar);
+randomTorus = get_random(RandomCar);
+randomCone = get_random(RandomCar);
 
 function setup() {
     // fonction appelée au lancement du programme
@@ -208,6 +217,81 @@ function fnDisplayCreature(o) {
             translate(-15, 3, -8);
             fill("black");
             sphere(3); // nez
+
+            if (randomCylinder == 1){
+                fill(ColorCylinder); //conception de la caractéristique force
+                translate(40,7,10);
+                sphere(14);
+                translate(10,3,-10);
+                sphere(10);
+                translate(-2,6,-8);
+                fill("black");
+                sphere(6);
+                translate(-96,-25,8);
+                cylinder(14,3);
+                translate(0,-10,0)
+                fill("gray")
+                cylinder(2,25);
+                translate(0,-10,0);
+                fill("black");
+                cylinder(14,3);}
+
+
+            if (randomCylinder == 2){
+                translate(-40,25,5);  //monocle et billets
+                fill("green");
+                box(5,14);
+                fill("white");
+                rotateY(90);
+                box(2,6);
+                translate(0,5,0);
+                box(2,6);
+                translate(0,-10,0);
+                box(2,6);
+                rotateY(90);
+                rotateX(45);
+                translate(-25,-20,18);
+                fill("gold");
+                torus(7,1);
+                translate(4,10,-1);
+                rotateX(-20);
+                torus(4,1);
+                translate(5,5,-1);
+                rotateX(-20);
+                torus(2,1);}
+
+
+            if (randomCylinder == 3){
+                translate(0,-20,15);    //caractéristique gentil
+                rotateX(90);
+                emissiveMaterial(255, 249, 21);
+                torus(15,3);
+                fill("white");
+                translate(0,0,-22);
+                rotateZ(90);
+                ellipsoid(5,70);
+                translate(0,0,-5);
+                ellipsoid(5,65);
+                translate(0,0,-5);
+                ellipsoid(5,60);}
+
+            if (randomCylinder == 4){
+                translate(30,7,15);    //Caractéristique compétences
+                rotateZ(90);
+                cylinder(17,5); //bretelle1
+                translate(0,60,0);
+                cylinder(17,5); //bretelle2
+                rotateY(90);
+                rotateX(90);
+                translate(-18,0,30);
+                box(4,35,75); //sac
+                translate(0,5,0);
+                fill("#8400FF");
+                box(10,15,55); //profondeur, hauteur, largeur, poche
+                translate(0,-22,0)
+                rotateY(90);
+                torus(5,1);}
+
             pop();
 
             // Pieds et jambes
@@ -251,6 +335,75 @@ function fnDisplayCreature(o) {
             translate(-10, 15, 0);
             fill("black");
             sphere(8); // nez
+
+            if (randomCube == 1){
+                fill(ColorCube);//conception de la caractéristique force
+                translate(30,7,10);
+                sphere(14);
+                translate(10,3,-10);
+                sphere(10);
+                translate(-2,6,-8);
+                fill("black");
+                sphere(6);
+                translate(-76,-25,8);
+                cylinder(14,3);
+                translate(0,-10,0)
+                fill("gray")
+                cylinder(2,25);
+                translate(0,-10,0);
+                fill("black");
+                cylinder(14,3);}
+
+            if (randomCube == 2){
+                translate(-25,0,5); //monocle et billets
+                fill("green");
+                box(5,14);
+                fill("white");
+                rotateY(90);
+                box(2,6);
+                translate(0,5,0);
+                box(2,6);
+                translate(0,-10,0);
+                box(2,6);
+                rotateY(90);
+                translate(-15,-10,8);
+                fill("gold");
+                torus(7,1);
+                translate(4,10,0);
+                torus(4,1);
+                translate(5,5,0);
+                torus(2,1);}
+
+
+            if (randomCube == 3){
+                translate(0,-40,23);  // caractéristique gentil
+                rotateX(90);
+                emissiveMaterial(255, 249, 21);
+                torus(15,3);
+                fill("white");
+                translate(0,0,-30);
+                rotateZ(90);
+                ellipsoid(5,45);
+                translate(0,0,-5);
+                ellipsoid(5,40);
+                translate(0,0,-5);
+                ellipsoid(5,35);}
+
+            if (randomCube == 4){
+                translate(20,-4,25);    //Caractéristique compétences
+                box(4,53); //bretelle1
+                translate(-40,0,0);
+                box(4,53); //bretelle2
+                rotateY(90);
+                translate(-28,10,20);
+                box(4,35,45); //sac
+                translate(0,5,0);
+                fill("#8400FF");
+                box(10,15,25); //profondeur, hauteur, largeur, poche
+                translate(0,-22,0)
+                rotateY(90);
+                torus(5,1);}
+
             pop();
 
             // Pieds et jambes
@@ -295,6 +448,77 @@ function fnDisplayCreature(o) {
             translate(-5, 3, -8);
             fill("black");
             sphere(3); // nez
+
+            if (randomCone == 1){
+                fill(ColorCone);    //conception de la caractéristique force
+                translate(20,20,10);
+                sphere(14);
+                translate(10,3,-10);
+                sphere(10);
+                translate(-2,6,-8);
+                fill("black");
+                sphere(6);
+                translate(-50,-20,8);
+                cylinder(14,3);
+                translate(0,-10,0)
+                fill("gray")
+                cylinder(2,25);
+                translate(0,-10,0);
+                fill("black");
+                cylinder(14,3);}
+
+
+            if (randomCone == 2){
+                rotateX(90);  // caractéristique gentil
+                translate(0,10,15);
+                emissiveMaterial(255, 249, 21);
+                torus(15,3);
+                fill("white");
+                translate(0,0,-30);
+                rotateZ(90);
+                ellipsoid(5,35);
+                translate(0,0,-5);
+                ellipsoid(5,30);
+                translate(0,0,-5);
+                ellipsoid(5,25);}
+
+
+            if (randomCone == 3){
+                rotateZ(17);    //monocle et billets
+                translate(-13,30,10);
+                fill("green");
+                box(5,14);
+                fill("white");
+                rotateY(90);
+                box(2,6);
+                translate(0,5,0);
+                box(2,6);
+                translate(0,-10,0);
+                box(2,6);
+                rotateY(90);
+                translate(-4,-25,3);
+                rotateY(40);
+                fill("gold");
+                torus(7,1);
+                translate(4,10,0);
+                torus(4,1);
+                translate(5,5,0);
+                torus(2,1);}
+
+            if (randomCone == 4){
+                translate(40,30,10);    //Caractéristique compétences
+                translate(-40,0,0);
+                cylinder(21,7); //bretelle2
+                rotateY(90);
+                translate(-20,-10,0);
+                box(4,35,45); //sac
+                translate(0,5,0);
+                fill("#8400FF");
+                box(10,15,25); //profondeur, hauteur, largeur, poche
+                translate(0,-22,0)
+                rotateY(90);
+                torus(5,1);}
+
             pop();
 
             // Pieds et jambes
@@ -339,6 +563,86 @@ function fnDisplayCreature(o) {
             translate(-15, 3, -8);
             fill("black");
             sphere(3); // nez
+
+            if (randomTorus == 1){
+                fill(ColorTorus);   //conception de la caractéristique force
+                translate(40,30,10);
+                sphere(14);
+                translate(10,3,-10);
+                sphere(10);
+                translate(-2,6,-8);
+                fill("black");
+                sphere(6);
+                translate(-96,-25,8);
+                cylinder(14,3);
+                translate(0,-10,0)
+                fill("gray")
+                cylinder(2,25);
+                translate(0,-10,0);
+                fill("black");
+                cylinder(14,3);}
+
+
+            if (randomTorus == 2){
+                translate(-40,25,3);    //monocle et billets
+                fill("green");
+                box(5,14);
+                fill("white");
+                rotateY(90);
+                box(2,6);
+                translate(0,5,0);
+                box(2,6);
+                translate(0,-10,0);
+                box(2,6);
+                rotateY(90);
+                translate(-25,-23,0);
+                fill("gold");
+                torus(7,1);
+                translate(4,10,0);
+                torus(4,1);
+                translate(5,5,0);
+                torus(2,1);}
+
+
+            if (randomTorus == 3){
+                rotateX(90);    // caractéristique gentil
+                translate(0,12,20);
+                emissiveMaterial(255, 249, 21);
+                torus(15,3);
+                fill("white");
+                translate(40,2,-40);
+                rotateZ(90);
+                ellipsoid(5,20);
+                translate(0,0,-5);
+                ellipsoid(5,15);
+                translate(0,0,-5);
+                ellipsoid(5,10);
+                translate(0,80,10);
+                ellipsoid(5,20);
+                translate(0,0,-5);
+                ellipsoid(5,15);
+                translate(0,0,-5);
+                ellipsoid(5,10);}
+
+            if (randomTorus == 4){
+                translate(22,7,12);    //Caractéristique compétences
+                rotateZ(140);
+                cylinder(12,5); //bretelle1
+                translate(35,28,0);
+                rotateZ(-100);
+                cylinder(12,5); //bretelle2
+                rotateY(90);
+                rotateX(90);
+                translate(-10,30,0);
+                rotateX(-50);
+                box(4,35,75); //sac
+                translate(0,5,0);
+                fill("#8400FF");
+                box(10,15,55); //profondeur, hauteur, largeur, poche
+                translate(0,-22,0)
+                rotateY(90);
+                torus(5,1);}
+
             pop();
 
             // Pieds et jambes
