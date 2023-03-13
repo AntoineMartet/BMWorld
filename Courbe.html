@@ -1,0 +1,189 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+	<title> Courbes </title>
+	Collez dans le textarea l'historique à tester puis pressez "Go". Personnage à analyser:
+	<input type="text" id="creature" value="0">
+	<button onclick="fnAnalyse()">Go</button><br>
+	<textarea id="log" rows="5", cols="160"></textarea>
+	<canvas id="dessin" width="1600" height="1200" style="border:1px solid black;background-color:lightblue">
+	</canvas>
+</body>
+</html>
+<script>
+	//script de test de perspective
+	// JCY 25 janvier 2023
+		//liaison entre le canvas et le code
+	let canvas = document.getElementById("dessin");
+    let ctx = canvas.getContext("2d");
+	let cx=canvas.width;
+	let cy=canvas.height;
+	let creatureTotalLog=[];
+	let profil=["I","F","R","P","E"];
+
+	//fnGraph(0,200,1400,200,50,[10,15,45,0,50,40],true,true,"red","test")
+	//fnGraphCount(0,300,1400,100,["A","B","C"],["red","orange","yellow"],["A","A","C","B","A","C","C","A"],true)
+
+
+	function fnAnalyse(){
+		//Cette fonction prend les valeurs de status et en fait un graphique, puis une analyse des actions
+		ctx.clearRect(0,0,cx, cy)
+		tabtemp=[]
+		//Récupérer la créature
+		nc=parseInt(document.getElementById("creature").value);
+
+		//Récupérer le JSON dans le textarea
+		ta=document.getElementById("log").value;
+		creatureTotalLog=JSON.parse(ta);
+
+		//Tracer les status
+		fnTabGraph(0,220,1400,200,nc,3,"FC",true,100, "red",0);
+		fnTabGraph(0,220,1400,200,nc,3,"CP",false,100,"blue",1);
+		fnTabGraph(0,220,1400,200,nc,3,"RA",false,100,"yellow",2);
+		fnTabGraph(0,220,1400,200,nc,3,"RP",false,100,"orange",3);
+		fnTabGraph(0,220,1400,200,nc,3,"BE",false,100,"green",4);
+		fnTabGraph(0,220,1400,200,nc,3,"RE",false,100,"purple",5);
+
+		//récupérer le tableau des actions faites
+		tabtemp=[];
+		tabActions=["ETU","TRA","JOS","SPS","VOS","COS","COB","JO2","DI2","SP2","VO2","VO2b"]
+		tabColors=["red","orange","yellow","lightgreen","green","darkgreen","darkblue","lightblue","blue","aqua","purple","pink",""]
+		for (t=0;t<creatureTotalLog.length;t++){//boucle sur les times
+			tabtemp.push(creatureTotalLog[t][nc][2])
+		}
+		//Tracer les actions
+		fnGraphCount(0,440,1400,200,tabActions,tabColors,tabtemp,true);
+
+		//Tracer les profils
+		fnTabGraph(0,660,1400,200,nc,4,0,true,1,"red",0);
+		fnTabGraph(0,660,1400,200,nc,4,1,false,1,"orange",1);
+		fnTabGraph(0,660,1400,200,nc,4,2,false,1,"yellow",2);
+		fnTabGraph(0,660,1400,200,nc,4,3,false,1,"green",3);
+		fnTabGraph(0,660,1400,200,nc,4,4,false,1,"blue",4);
+
+		//Tracer les moyennes des status
+		//Tracer les status
+		fnTabGraph(0,880,1400,200,-1,3,"FC",true,100, "red",0);
+		fnTabGraph(0,880,1400,200,-1,3,"CP",false,100,"blue",1);
+		fnTabGraph(0,880,1400,200,-1,3,"RA",false,100,"yellow",2);
+		fnTabGraph(0,880,1400,200,-1,3,"RP",false,100,"orange",3);
+		fnTabGraph(0,880,1400,200,-1,3,"BE",false,100,"green",4);
+		fnTabGraph(0,880,1400,200,-1,3,"RE",false,100,"purple",5);
+
+		//Tracer les moyennes profils
+		fnTabGraph(0,1100,1400,200,-1,4,0,true,1,"red",0);
+		fnTabGraph(0,1100,1400,200,-1,4,1,false,1,"orange",1);
+		fnTabGraph(0,1100,1400,200,-1,4,2,false,1,"yellow",2);
+		fnTabGraph(0,1100,1400,200,-1,4,3,false,1,"green",3);
+		fnTabGraph(0,1100,1400,200,-1,4,4,false,1,"blue",4);
+
+	}
+
+
+
+	function fnTabGraph(x,y,l,h,nc,n_tab,cat,rect,max, color,nLegend){
+		//Recherche les valeurs de catégories
+		//nc est le numéro de créature étudiée
+		//n_tab l'indice dans creatureTotalLog
+		//cat la catégorie (ex: "FC" ou 1 (indice))
+		//rect si on fait un rectangle (oui pour le premier)
+		//max le max du graphique
+		//color la couleur
+		//nLegend le numéro de légend pour écrire l'un au dessus de l'autre
+		tabtemp=[];//remise à 0 du tableau temporaire
+		if (nc>=0) { //cas d'une créature "normale"
+			for (t=0;t<creatureTotalLog.length;t++){//boucle sur les times
+				tabtemp.push(creatureTotalLog[t][nc][n_tab][cat])
+			}
+			//console.log(tabtemp)
+		} else {//cas d'une moyenne
+			for (t=0;t<creatureTotalLog.length;t++) {//boucle sur les times
+				let nbcr=creatureTotalLog[t].length;
+				let tot=0;
+				for (ncr=0;ncr<nbcr;ncr++){//boucle sur les créatures
+					tot+=creatureTotalLog[t][ncr][n_tab][cat]
+				}
+				tabtemp.push(tot/nbcr)
+			}
+		}
+
+		//Lancer un graphique complet
+		fnGraph(x,y,l,h,max,tabtemp,rect,false,color,cat.toString(),nLegend*20)
+	}
+
+function fnGraph(x,y,l,h,max,tab,rect,clear,color,textLegend, hLegend){
+	//x,y,l,h donnent la pos et taille du graphique
+	//max est la valeur max acceptée
+	//tab est le tableau de valeurs à représenter
+	//rect, clear sont des flag (avec rect et clear)
+	//color est la couleur à dessiner
+	//textLegend est ce qu'il faut écrire comme légende
+	//hLegend permet d'écrire plus haut
+	// effacer si besoin
+	if (clear){
+		ctx.fillStyle=canvas.style.backgroundColor;
+		ctx.fillRect(x,y,l,-h);
+	}
+	// cadre si besoin
+	if (rect){
+		ctx.strokeStyle=color;
+		ctx.strokeRect(x,y,l,-h);
+	}
+	if (textLegend.length>0){
+		ctx.fillStyle=color;
+		ctx.font="12pt Arial";
+		ctx.fillText(textLegend + " max="+max,x+3,y-3-hLegend)
+	}
+	n=tab.length
+	incx=l/(n-1);//nb intervalles
+	//Tracé en rouge
+	ctx.strokeStyle=color;
+	ctx.beginPath();
+	ctx.moveTo(0,y-tab[0]/max*h)//premier point
+	for (i=1;i<tab.length;i++){
+		if (tab[i]>max){
+			ctx.lineTo(i*incx,y-(max)/max*h )
+		} else
+			ctx.lineTo(i*incx,y-tab[i]/max*h )
+	}
+	ctx.stroke();
+
+}
+
+function fnGraphCount(x,y,l,h,tabCat,tabColor,tabVal,rect){
+	//Dessine des rectangles pour montrer les occurences des valeurs de tabCat dans tabVal
+	//tabCat contient des catégories (ex ["CO","SP","TR"])
+	//tabVal des valeurs (ex ["CO","SP","CO","CO","TR"])
+	// tabVal des couleurs, exemple ["red","orange","yellow"]
+
+	// cadre si besoin
+	if (rect){
+		ctx.strokeStyle=tabColor[0];
+		ctx.strokeRect(x,y,l,-h);
+	}
+	cl=tabCat.length;
+	n=tabVal.length
+	incx=l/n;//nb intervalles
+
+	//Ecriture des valeurs (petits rectangles
+	for (v=0;v<tabVal.length;v++){
+		for (c=0;c<cl;c++) {
+			if (tabVal[v]==tabCat[c]){
+				//rectangle de hauteur et largeur
+				ctx.fillStyle=tabColor[c];//choix de la bonne couleur
+				ctx.fillRect(x+incx*v,y-c*h/cl,incx,-h/cl);
+			}
+		}
+
+	}
+	ctx.font="12pt Arial";
+	//Ecriture des catégories
+	for (c=0;c<cl;c++){
+		ctx.fillStyle="black";
+		ctx.fillText(tabCat[c],x+3,y-(c+0.2)*h/cl)
+	}
+
+}
+
+
+</script>
