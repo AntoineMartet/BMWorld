@@ -623,29 +623,40 @@ function fnActionEffect(){
 }
 
 function fnPenalty(voleuse){
-    creatureTotal[voleuse].status.RA -= actualSociety.penalty;
+    creatureTotal[voleuse].status.RA -= actualSociety.penalty; //execution de peine
+    if(creatureTotal[voleuse].status.RA < 0){ // si c'est en dessous de 0, remise à zero
+        creatureTotal[voleuse].status.RA = 0;
+    }
 }
 
 function fnHelp(){
     for(let i = 0; i < creatureTotal[i].length; i++){
-        if(creatureTotal[i].status.RA < actualSociety.conditionHelp){
+        if(creatureTotal[i].status.RA < actualSociety.conditionHelp){ // si la créature rempli la condition pour toucher des aides
 
-            creatureTotal[i].status.RA += (actualSociety.help*actualSociety.conditionHelp)/100 ;
-
+            creatureTotal[i].status.RA += (actualSociety.help*actualSociety.conditionHelp)/100; // execution de l'aide 
+            if(creatureTotal[i].status.RA > 100){ // si la créature a plus de 100, remise a 100
+                creatureTotal[i].status.RA = 100;
+            }
         }
     }
 }
 function fnTax(){
     for(let i = 0; i < creatureTotal.length; i++){
-        if(creatureTotal[i].status.RA >= actualSociety.conditionTax){
-            creatureTotal[i].status.RA -= (actualSociety.tax*creatureTotal[i].status.RA)/100 ;
+        if(creatureTotal[i].status.RA >= actualSociety.conditionTax){ // si creature rempli condition pour etre taxé
+            creatureTotal[i].status.RA -= (actualSociety.tax*creatureTotal[i].status.RA)/100 ; // execution tax
+            if (creatureTotal[i].status.RA < 0) { // si en dessous de 0, remise a 0
+                creatureTotal[i].status.RA = 0;
+            }
         }
     }
 }
 
 function fnSalary(){
-    for(let i = 0; i < creatureTotal.length; i++){
-            creatureTotal[i].status.RA += actualSociety.salary ;
+    for(let i = 0; i < creatureTotal.length; i++){ 
+            creatureTotal[i].status.RA += actualSociety.salary; // execution salaire
+            if(creatureTotal[i].status.RA > 100){ // si la créature a plus de 100, remise a 100
+                creatureTotal[i].status.RA = 100;
+            }
     }
 }
 
