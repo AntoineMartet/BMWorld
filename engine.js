@@ -22,14 +22,14 @@ let stepCount = 0;
 // MON = MONARCHY
 
 let societyModels=[ // Max
-    {"state":"AUT", "penalty":0.2,"conditionHelp":0.5, "help":0.02, "conditionTax": 0.8,"tax": 0.02, "salary":0.8},
+    {"state":"AUT", "penalty":0.2,"conditionHelp":0.5, "help":20, "conditionTax": 0.8,"tax": 20, "salary":0.8},
     {"state":"ANA", "penalty":0, "conditionHelp":0, "help":0, "conditionTax": 0, "tax":0, "salary":0},
-    {"state":"DEM", "penalty": 0.3, "conditionHelp":1.5, "help":0.015, "conditionTax": 2.5, "tax":0.015, "salary":2.5},
-    {"state":"LIB", "penalty":0.3, "conditionHelp":2.0,"help": 0.015, "conditionTax": 3.5, "tax":0.015, "salary":3.5},
-    {"state":"OLI", "penalty":0.1, "conditionHelp":0, "help":0, "conditionTax": 0, "tax":0.015, "salary":0.7},
-    {"state":"THE", "penalty":0.45, "conditionHelp":0.5, "help":0.01, "conditionTax": 0.7, "tax":0.02, "salary":0.6},
-    {"state":"COM", "penalty":0.5, "conditionHelp":0.5, "help":0.1, "conditionTax": 0.8, "tax":0.1, "salary":0.6},
-    {"state":"MON", "penalty":0.5, "conditionHelp":0, "help":0, "conditionTax": 0.8, "tax":0.03, "salary":0.5}
+    {"state":"DEM", "penalty": 0.3, "conditionHelp":1.5, "help":15, "conditionTax": 2.5, "tax":15, "salary":2.5},
+    {"state":"LIB", "penalty":0.3, "conditionHelp":2.0,"help": 15, "conditionTax": 3.5, "tax":15, "salary":3.5},
+    {"state":"OLI", "penalty":0.1, "conditionHelp":0, "help":0, "conditionTax": 0, "tax":15, "salary":0.7},
+    {"state":"THE", "penalty":0.45, "conditionHelp":0.5, "help":10, "conditionTax": 0.7, "tax":20, "salary":0.6},
+    {"state":"COM", "penalty":0.5, "conditionHelp":0.5, "help":10, "conditionTax": 0.8, "tax":10, "salary":0.6},
+    {"state":"MON", "penalty":0.5, "conditionHelp":0, "help":0, "conditionTax": 0.8, "tax":30, "salary":0.5}
 ] 
 
 // CHANGEMENTS DE SOCIETES /!\ CELLE PAR DEFAUT
