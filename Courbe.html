@@ -20,6 +20,7 @@
 	let cy=canvas.height;
 	let creatureTotalLog=[];
 	let profil=["I","F","R","P","E"];
+	let tabActions=["ETU","TRA","JOS","SPS","VOS","COS","COB","JO2","DI2","SP2","VO2","VO2b"]
 
 	//fnGraph(0,200,1400,200,50,[10,15,45,0,50,40],true,true,"red","test")
 	//fnGraphCount(0,300,1400,100,["A","B","C"],["red","orange","yellow"],["A","A","C","B","A","C","C","A"],true)
@@ -46,10 +47,9 @@
 
 		//récupérer le tableau des actions faites
 		tabtemp=[];
-		tabActions=["ETU","TRA","JOS","SPS","VOS","COS","COB","JO2","DI2","SP2","VO2","VO2b"]
 		tabColors=["red","orange","yellow","lightgreen","green","darkgreen","darkblue","lightblue","blue","aqua","purple","pink",""]
 		for (t=0;t<creatureTotalLog.length;t++){//boucle sur les times
-			tabtemp.push(creatureTotalLog[t][nc][2])
+			tabtemp.push(creatureTotalLog[t][nc][3])
 		}
 		//Tracer les actions
 		fnGraphCount(0,440,1400,200,tabActions,tabColors,tabtemp,true);
@@ -77,8 +77,26 @@
 		fnTabGraph(0,1100,1400,200,-1,5,3,false,1,"green",3);
 		fnTabGraph(0,1100,1400,200,-1,5,4,false,1,"blue",4);
 
+		//Calculer les nb actions
+		fnNbActions();
 	}
 
+	function fnNbActions(){
+		//Calcule le nb d'actions
+		tabActions=["ETU","TRA","JOS","SPS","VOS","COS","COB","JO2","DI2","SP2","VO2","VO2b"]
+		for (act=0;act<tabActions.length;act++){
+			tot=0;
+			for (t=0;t<creatureTotalLog.length;t++) {//boucle sur les times
+				let nbcr = creatureTotalLog[t].length;
+				for (ncr = 0; ncr < nbcr; ncr++) {//boucle sur les créatures
+					if (creatureTotalLog[t][ncr][3] == tabActions[act])
+						tot++;
+				}
+			}
+			ctx.fillText(tabActions[act]+" : " + Math.round(tot/creatureTotalLog.length),10+100*act,1150);
+		}
+
+	}
 
 
 	function fnTabGraph(x,y,l,h,nc,n_tab,cat,rect,max, color,nLegend){
