@@ -22,14 +22,14 @@ let stepCount = 0;
 // MON = MONARCHY
 
 let societyModels=[ // Max
-    {"state":"AUT", "penalty":200,"conditionHelp":500, "help":20, "conditionTax": 800,"tax": 20, "salary":800},
+    {"state":"AUT", "penalty":0.2,"conditionHelp":0.5, "help":0.02, "conditionTax": 0.8,"tax": 0.02, "salary":0.8},
     {"state":"ANA", "penalty":0, "conditionHelp":0, "help":0, "conditionTax": 0, "tax":0, "salary":0},
-    {"state":"DEM", "penalty": 300, "conditionHelp":1500, "help":15, "conditionTax": 2500, "tax":15, "salary":2500},
-    {"state":"LIB", "penalty":300, "conditionHelp":2000,"help": 15, "conditionTax": 3500, "tax":15, "salary":3500},
-    {"state":"OLI", "penalty":100, "conditionHelp":0, "help":0, "conditionTax": 0, "tax":15, "salary":700},
-    {"state":"THE", "penalty":450, "conditionHelp":500, "help":10, "conditionTax": 700, "tax":20, "salary":600},
-    {"state":"COM", "penalty":500, "conditionHelp":500, "help":100, "conditionTax": 800, "tax":100, "salary":600},
-    {"state":"MON", "penalty":500, "conditionHelp":0, "help":0, "conditionTax": 800, "tax":30, "salary":500}
+    {"state":"DEM", "penalty": 0.3, "conditionHelp":1.5, "help":0.015, "conditionTax": 2.5, "tax":0.015, "salary":2.5},
+    {"state":"LIB", "penalty":0.3, "conditionHelp":2.0,"help": 0.015, "conditionTax": 3.5, "tax":0.015, "salary":3.5},
+    {"state":"OLI", "penalty":0.1, "conditionHelp":0, "help":0, "conditionTax": 0, "tax":0.015, "salary":0.7},
+    {"state":"THE", "penalty":0.45, "conditionHelp":0.5, "help":0.01, "conditionTax": 0.7, "tax":0.02, "salary":0.6},
+    {"state":"COM", "penalty":0.5, "conditionHelp":0.5, "help":0.1, "conditionTax": 0.8, "tax":0.1, "salary":0.6},
+    {"state":"MON", "penalty":0.5, "conditionHelp":0, "help":0, "conditionTax": 0.8, "tax":0.03, "salary":0.5}
 ] 
 
 // CHANGEMENTS DE SOCIETES /!\ CELLE PAR DEFAUT
@@ -291,10 +291,10 @@ function fnEngine(){
         cycles += 1;
         let tempCreatureTotalLog = []; //tableau pour tous les créature pour chaque movement (Commence par l'état initial)
         for (i = 0;i < creatureTotal.length;i++) {
-            console.log(creatureTotal[i].name,creatureTotal[i].status);
             //console.log(creatureTotal[i].action);
             //Mettre état de chaque créature qui est avant action dans le tableau tempCreatureTotalLog
-            tempCreatureTotalLog.push([cycles,creatureTotal[i].name,creatureTotal[i].action, creatureTotal[i].status, creatureTotal[i].profile]);
+            tempCreatureTotalLog.push([cycles,actualSociety.state,creatureTotal[i].name,creatureTotal[i].action,
+                JSON.parse(JSON.stringify(creatureTotal[i].status)), JSON.parse(JSON.stringify(creatureTotal[i].profile))]);
         }
         creatureTotalLog.push(tempCreatureTotalLog); //Mettre le tabeau log de cette movement
         //fnLog(JSON.stringify(tempCreatureTotalLog));
