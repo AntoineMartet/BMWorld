@@ -18,6 +18,7 @@
     let ctx = canvas.getContext("2d");
 	let cx=canvas.width;
 	let cy=canvas.height;
+
 	let creatureTotalLog=[];
 	let profil=["I","F","R","P","E"];
 	let tabActions=["ETU","TRA","JOS","SPS","VOS","COS","COB","JO2","DI2","SP2","VO2","VO2b"]
@@ -29,6 +30,8 @@
 	function fnAnalyse(){
 		//Cette fonction prend les valeurs de status et en fait un graphique, puis une analyse des actions
 		ctx.clearRect(0,0,cx, cy)
+		ctx.fillStyle="lightblue";
+		ctx.fillRect(0,0,cx,cy)
 		tabtemp=[]
 		//Récupérer la créature
 		nc=parseInt(document.getElementById("creature").value);
