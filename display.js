@@ -38,7 +38,7 @@ let ctxPersonStatus;
 let ctxPersonPersonality;
 
 let Couleur = ['rgb(0, 115, 86)', 'rgb(82, 183, 136 )', 'rgb(144, 190, 109 )', 'rgb(128, 185, 24)', 'rgb(128, 128, 0)', 'rgb(3, 4, 94)', 'rgb(72, 202, 228)', 'rgb(114, 9, 183 )', 'rgb(205, 180, 219)', 'rgb(193, 28, 173)', 'rgb(89, 13, 34)', 'rgb(255, 143, 171 )', 'rgb(249, 65, 68)', 'rgb(249, 121, 57)', 'rgb(255, 127, 81)', 'rgb(220, 47, 2 )', 'rgb(252, 112, 8 )', 'rgb(255, 204, 0)', 'rgb(255, 218, 61 )', 'rgb(255, 234, 0 )', 'rgb(253, 255, 252 )', 'rgb(206, 212, 218)', 'rgb(0, 180, 216)', 'rgb(52, 58, 64 )', 'rgb(192, 103, 34 )'];
-let RandomCar=[1,2,3,4];
+let RandomCar=[1,2,3,4,5,6];    //random pour les caractéristiques physiques des créatures
 let ColorCylinder;
 let ColorCube;
 let ColorTorus;
@@ -51,7 +51,7 @@ ColorCylinder = get_random(Couleur);
 ColorCube = get_random(Couleur);
 ColorTorus = get_random(Couleur);
 ColorCone = get_random(Couleur);
-randomCylinder = get_random(RandomCar);
+randomCylinder = get_random(RandomCar); //random pour choisir les caractéristiques physiques des diverses créatures
 randomCube = get_random(RandomCar);
 randomTorus = get_random(RandomCar);
 randomCone = get_random(RandomCar);
@@ -218,8 +218,8 @@ function fnDisplayCreature(o) {
             fill("black");
             sphere(3); // nez
 
-            if (randomCylinder == 1){
-                fill(ColorCylinder); //conception de la caractéristique force
+            if (randomCylinder == 1){ //Caractéristique force
+                fill(ColorCylinder); //bras du personnage
                 translate(40,7,10);
                 sphere(14);
                 translate(10,3,-10);
@@ -227,7 +227,7 @@ function fnDisplayCreature(o) {
                 translate(-2,6,-8);
                 fill("black");
                 sphere(6);
-                translate(-96,-25,8);
+                translate(-96,-25,8); //haltère du personnage
                 cylinder(14,3);
                 translate(0,-10,0)
                 fill("gray")
@@ -237,8 +237,8 @@ function fnDisplayCreature(o) {
                 cylinder(14,3);}
 
 
-            if (randomCylinder == 2){
-                translate(-40,25,5);  //monocle et billets
+            if (randomCylinder == 2){ //Caractéristique richesse argent
+                translate(-40,25,5);    //billet
                 fill("green");
                 box(5,14);
                 fill("white");
@@ -250,7 +250,7 @@ function fnDisplayCreature(o) {
                 box(2,6);
                 rotateY(90);
                 rotateX(45);
-                translate(-25,-20,18);
+                translate(-25,-20,18);  //monocle
                 fill("gold");
                 torus(7,1);
                 translate(4,10,-1);
@@ -261,12 +261,12 @@ function fnDisplayCreature(o) {
                 torus(2,1);}
 
 
-            if (randomCylinder == 3){
-                translate(0,-20,15);    //caractéristique gentil
+            if (randomCylinder == 3){   //caractéristique relation
+                translate(0,-20,15);    //halo de lumière
                 rotateX(90);
                 emissiveMaterial(255, 249, 21);
                 torus(15,3);
-                fill("white");
+                fill("white");  //ailes d'ange
                 translate(0,0,-22);
                 rotateZ(90);
                 ellipsoid(5,70);
@@ -275,16 +275,16 @@ function fnDisplayCreature(o) {
                 translate(0,0,-5);
                 ellipsoid(5,60);}
 
-            if (randomCylinder == 4){
-                translate(30,7,15);    //Caractéristique compétences
+            if (randomCylinder == 4){   //Caractéristique compétence
+                translate(30,7,15); //bretelle1
                 rotateZ(90);
-                cylinder(17,5); //bretelle1
-                translate(0,60,0);
-                cylinder(17,5); //bretelle2
-                rotateY(90);
+                cylinder(17,5);
+                translate(0,60,0);  //bretelle2
+                cylinder(17,5);
+                rotateY(90);    //sac et poche
                 rotateX(90);
                 translate(-18,0,30);
-                box(4,35,75); //sac
+                box(4,35,75);
                 translate(0,5,0);
                 fill("#8400FF");
                 box(10,15,55); //profondeur, hauteur, largeur, poche
@@ -292,8 +292,91 @@ function fnDisplayCreature(o) {
                 rotateY(90);
                 torus(5,1);}
 
-            pop();
+            if (randomCylinder == 5){   //Caractéristique bien-être
+                fill("yellow"); //fleur et pétales
+                rotateX(-30);
+                translate(33,-5,0);
+                sphere(3);
+                fill("rose");
+                translate(0,0,1);
+                ellipsoid(3,6);
+                rotateZ(90);
+                ellipsoid(3,6);
+                rotateZ(-90);
+                rotateX(30);
+                translate(-70,20,-5)//Coco
+                fill("#5E3927");
+                sphere(8);
+                fill("red");
+                translate(0,-10,0);//paillebas
+                rotateZ(90)
+                rotateX(30)
+                box(9.5,2,2);
+                translate(-7,-3,0); //paillehaut
+                rotateZ(45);
+                box(8,2,2);}
 
+            if (randomCylinder == 6){   //Caratéristique richesse possession
+                emissiveMaterial(255, 249, 21); //colliers
+                fill("gold");
+                translate(35,8,16);
+                rotateY(90);
+                torus(16,2);
+                rotateY(-90);
+                translate(-70,0,0);
+                rotateY(90);
+                torus(16,2);
+                rotateY(-90);
+                fill("gold");   //dollar
+                translate(0,17,-1);
+                sphere(1);
+                translate(0,2,0);
+                box(8,2,2);
+                translate(4,4,0);
+                rotateZ(-90);
+                box(8,2,2);
+                rotateZ(90);
+                translate(-4,4,0);
+                box(8,2,2);
+                translate(-4,4,0);
+                rotateZ(-90);
+                box(8,2,2);
+                rotateZ(90);
+                translate(4,4,0);
+                box(8,2,2);
+                translate(-1,-8,0);
+                rotateZ(-90)
+                box(19,1,1);
+                translate(0,2,0);
+                box(19,1,1);
+                rotateZ(90);
+                rotateY(90);
+                translate(0,-27,70);
+                rotateY(-90);
+                fill("gold");   //dollar
+                translate(0,17,-1);
+                sphere(1);
+                translate(0,2,0);
+                box(8,2,2);
+                translate(4,4,0);
+                rotateZ(-90);
+                box(8,2,2);
+                rotateZ(90);
+                translate(-4,4,0);
+                box(8,2,2);
+                translate(-4,4,0);
+                rotateZ(-90);
+                box(8,2,2);
+                rotateZ(90);
+                translate(4,4,0);
+                box(8,2,2);
+                translate(-1,-8,0);
+                rotateZ(-90)
+                box(19,1,1);
+                translate(0,2,0);
+                box(19,1,1);}
+
+            pop();
             // Pieds et jambes
             push();
             fill(legsColor);
@@ -336,8 +419,8 @@ function fnDisplayCreature(o) {
             fill("black");
             sphere(8); // nez
 
-            if (randomCube == 1){
-                fill(ColorCube);//conception de la caractéristique force
+            if (randomCube == 1){ //Caractéristique force
+                fill(ColorCube);    //bras du personnage
                 translate(30,7,10);
                 sphere(14);
                 translate(10,3,-10);
@@ -345,7 +428,7 @@ function fnDisplayCreature(o) {
                 translate(-2,6,-8);
                 fill("black");
                 sphere(6);
-                translate(-76,-25,8);
+                translate(-76,-25,8);   //haltère
                 cylinder(14,3);
                 translate(0,-10,0)
                 fill("gray")
@@ -354,8 +437,8 @@ function fnDisplayCreature(o) {
                 fill("black");
                 cylinder(14,3);}
 
-            if (randomCube == 2){
-                translate(-25,0,5); //monocle et billets
+            if (randomCube == 2){   //Caractéristique richesse argent
+                translate(-25,0,5); //Billet
                 fill("green");
                 box(5,14);
                 fill("white");
@@ -366,7 +449,7 @@ function fnDisplayCreature(o) {
                 translate(0,-10,0);
                 box(2,6);
                 rotateY(90);
-                translate(-15,-10,8);
+                translate(-15,-10,8); //Monocle
                 fill("gold");
                 torus(7,1);
                 translate(4,10,0);
@@ -375,12 +458,12 @@ function fnDisplayCreature(o) {
                 torus(2,1);}
 
 
-            if (randomCube == 3){
-                translate(0,-40,23);  // caractéristique gentil
+            if (randomCube == 3){   //Caractéristique relation
+                translate(0,-40,23);  //Halo de lumière
                 rotateX(90);
                 emissiveMaterial(255, 249, 21);
                 torus(15,3);
-                fill("white");
+                fill("white");  //Ailes d'ange
                 translate(0,0,-30);
                 rotateZ(90);
                 ellipsoid(5,45);
@@ -389,14 +472,14 @@ function fnDisplayCreature(o) {
                 translate(0,0,-5);
                 ellipsoid(5,35);}
 
-            if (randomCube == 4){
-                translate(20,-4,25);    //Caractéristique compétences
+            if (randomCube == 4){   //Caractéristique compétence
+                translate(20,-4,25);
                 box(4,53); //bretelle1
                 translate(-40,0,0);
                 box(4,53); //bretelle2
                 rotateY(90);
                 translate(-28,10,20);
-                box(4,35,45); //sac
+                box(4,35,45); //sac et poche
                 translate(0,5,0);
                 fill("#8400FF");
                 box(10,15,25); //profondeur, hauteur, largeur, poche
@@ -404,8 +487,70 @@ function fnDisplayCreature(o) {
                 rotateY(90);
                 torus(5,1);}
 
-            pop();
+            if (randomCube == 5){   //Caractéristique bien-être
+                fill("yellow"); //Fleur et pétales
+                translate(20,-25,-3);
+                sphere(3);
+                fill("rose");
+                translate(0,0,1);
+                ellipsoid(3,6);
+                rotateZ(90);
+                ellipsoid(3,6);
+                rotateZ(-90);
+                translate(-40,30,-5)//Coco
+                fill("#5E3927");
+                sphere(8);
+                fill("red");
+                translate(0,-10,0);//paillebas
+                rotateZ(90)
+                rotateX(30)
+                box(9.5,2,2);
+                translate(-7,-3,0); //paillehaut
+                rotateZ(45);
+                box(8,2,2);}
 
+            if (randomCube == 6){   //Caractéristique richesse possession
+                emissiveMaterial(255, 249, 21); //Collier
+                fill("gold");
+                translate(21,16,-2);
+                torus(3,1);
+                translate(-7,0,0);
+                torus(3,1);
+                translate(-7,0,0);
+                torus(3,1);
+                translate(-7,0,0);
+                torus(3,1);
+                translate(-7,0,0);
+                torus(3,1);
+                translate(-7,0,0);
+                torus(3,1);
+                translate(-7,0,0);
+                torus(3,1);
+                fill("gold");
+                translate(21,4,-1);
+                sphere(1);  //dollar
+                translate(0,2,0);
+                box(8,2,2);
+                translate(4,4,0);
+                rotateZ(-90);
+                box(8,2,2);
+                rotateZ(90);
+                translate(-4,4,0);
+                box(8,2,2);
+                translate(-4,4,0);
+                rotateZ(-90);
+                box(8,2,2);
+                rotateZ(90);
+                translate(4,4,0);
+                box(8,2,2);
+                translate(-1,-8,0);
+                rotateZ(-90)
+                box(19,1,1);
+                translate(0,2,0);
+                box(19,1,1);}
+
+
+            pop();
             // Pieds et jambes
             push();
             fill(legsColor);
@@ -449,16 +594,18 @@ function fnDisplayCreature(o) {
             fill("black");
             sphere(3); // nez
 
-            if (randomCone == 1){
-                fill(ColorCone);    //conception de la caractéristique force
-                translate(20,20,10);
+
+
+            if (randomCone == 1){   //Caractéristique force
+                fill(ColorCone);
+                translate(20,20,10);    //Bras du personnage
                 sphere(14);
                 translate(10,3,-10);
                 sphere(10);
                 translate(-2,6,-8);
                 fill("black");
                 sphere(6);
-                translate(-50,-20,8);
+                translate(-50,-20,8);   //Haltère
                 cylinder(14,3);
                 translate(0,-10,0)
                 fill("gray")
@@ -468,12 +615,12 @@ function fnDisplayCreature(o) {
                 cylinder(14,3);}
 
 
-            if (randomCone == 2){
-                rotateX(90);  // caractéristique gentil
+            if (randomCone == 2){   //Caractéristique relation
+                rotateX(90);  //Halo de lumière
                 translate(0,10,15);
                 emissiveMaterial(255, 249, 21);
                 torus(15,3);
-                fill("white");
+                fill("white");  //Ailes d'anges
                 translate(0,0,-30);
                 rotateZ(90);
                 ellipsoid(5,35);
@@ -483,8 +630,8 @@ function fnDisplayCreature(o) {
                 ellipsoid(5,25);}
 
 
-            if (randomCone == 3){
-                rotateZ(17);    //monocle et billets
+            if (randomCone == 3){   //Caractéristique richesse argent
+                rotateZ(17);    //Billet
                 translate(-13,30,10);
                 fill("green");
                 box(5,14);
@@ -498,20 +645,20 @@ function fnDisplayCreature(o) {
                 rotateY(90);
                 translate(-4,-25,3);
                 rotateY(40);
-                fill("gold");
+                fill("gold");   //Monocle
                 torus(7,1);
                 translate(4,10,0);
                 torus(4,1);
                 translate(5,5,0);
                 torus(2,1);}
 
-            if (randomCone == 4){
-                translate(40,30,10);    //Caractéristique compétences
+            if (randomCone == 4){   //Caractéristique Compétence
+                translate(40,30,10);
                 translate(-40,0,0);
-                cylinder(21,7); //bretelle2
+                cylinder(21,7); //bretelle1
                 rotateY(90);
                 translate(-20,-10,0);
-                box(4,35,45); //sac
+                box(4,35,45); //sac et poche
                 translate(0,5,0);
                 fill("#8400FF");
                 box(10,15,25); //profondeur, hauteur, largeur, poche
@@ -519,8 +666,77 @@ function fnDisplayCreature(o) {
                 rotateY(90);
                 torus(5,1);}
 
-            pop();
+            if (randomCone == 5){ //Caractéristique bien-être
+                fill("yellow"); //Fleur et pétales
+                rotateX(-15);
+                translate(0,-23,0);
+                sphere(3);
+                fill("rose");
+                translate(0,0,1);
+                ellipsoid(3,6);
+                rotateZ(90);
+                ellipsoid(3,6);
+                rotateZ(-90);
+                rotateX(15);
+                translate(-10,45,-15)//Coco
+                fill("#5E3927");
+                sphere(8);
+                fill("red");
+                translate(0,-10,0);//paillebas
+                rotateZ(90)
+                rotateX(30)
+                box(9.5,2,2);
+                translate(-7,-3,0); //paillehaut
+                rotateZ(45);
+                box(8,2,2);}
 
+            if (randomCone == 6){   //Caractéristique richesse possession
+                rotateX(-20);   //Collier
+                emissiveMaterial(255, 249, 21);
+                fill("gold");
+                translate(0,16,1);
+                torus(3,1);
+                translate(7,-3,2);
+                rotateY(-20);
+                torus(3,1);
+                translate(7,-3,2);
+                rotateY(-30);
+                torus(3,1);
+                rotateY(50);
+                translate(-13,6,-4)
+                translate(-7,-3,0);
+                rotateY(20);
+                torus(3,1);
+                translate(-7,-3,2);
+                rotateY(30);
+                torus(3,1);
+                rotateY(-50);
+                rotateX(20)
+                fill("gold");
+                rotateX(-20);
+                translate(13,11,-7);
+                sphere(1);  //dollar
+                translate(0,2,0);
+                box(8,2,2);
+                translate(4,4,0);
+                rotateZ(-90);
+                box(8,2,2);
+                rotateZ(90);
+                translate(-4,4,0);
+                box(8,2,2);
+                translate(-4,4,0);
+                rotateZ(-90);
+                box(8,2,2);
+                rotateZ(90);
+                translate(4,4,0);
+                box(8,2,2);
+                translate(-1,-8,0);
+                rotateZ(-90)
+                box(19,1,1);
+                translate(0,2,0);
+                box(19,1,1);}
+
+            pop();
             // Pieds et jambes
             push();
             fill(legsColor);
@@ -560,12 +776,13 @@ function fnDisplayCreature(o) {
             sphere(5); // oeil gauche
             translate(30, 0, 0);
             sphere(5); // oeil droit
-            translate(-15, 3, -8);
+            translate(-15, 3, -5);
             fill("black");
             sphere(3); // nez
 
-            if (randomTorus == 1){
-                fill(ColorTorus);   //conception de la caractéristique force
+
+            if (randomTorus == 1){ //Caractéristique force
+                fill(ColorTorus);   //Bras du personnage
                 translate(40,30,10);
                 sphere(14);
                 translate(10,3,-10);
@@ -573,7 +790,7 @@ function fnDisplayCreature(o) {
                 translate(-2,6,-8);
                 fill("black");
                 sphere(6);
-                translate(-96,-25,8);
+                translate(-96,-25,8);   //Haltère
                 cylinder(14,3);
                 translate(0,-10,0)
                 fill("gray")
@@ -583,8 +800,8 @@ function fnDisplayCreature(o) {
                 cylinder(14,3);}
 
 
-            if (randomTorus == 2){
-                translate(-40,25,3);    //monocle et billets
+            if (randomTorus == 2){  //Caractéristique richesse argent
+                translate(-40,25,3);   //Billet
                 fill("green");
                 box(5,14);
                 fill("white");
@@ -595,7 +812,7 @@ function fnDisplayCreature(o) {
                 translate(0,-10,0);
                 box(2,6);
                 rotateY(90);
-                translate(-25,-23,0);
+                translate(-25,-23,0);   //Monocle
                 fill("gold");
                 torus(7,1);
                 translate(4,10,0);
@@ -604,12 +821,12 @@ function fnDisplayCreature(o) {
                 torus(2,1);}
 
 
-            if (randomTorus == 3){
-                rotateX(90);    // caractéristique gentil
+            if (randomTorus == 3){  //Caractéristique relation
+                rotateX(90);    //Halo de lumière
                 translate(0,12,20);
                 emissiveMaterial(255, 249, 21);
                 torus(15,3);
-                fill("white");
+                fill("white");  //Ailes d'anges
                 translate(40,2,-40);
                 rotateZ(90);
                 ellipsoid(5,20);
@@ -624,8 +841,8 @@ function fnDisplayCreature(o) {
                 translate(0,0,-5);
                 ellipsoid(5,10);}
 
-            if (randomTorus == 4){
-                translate(22,7,12);    //Caractéristique compétences
+            if (randomTorus == 4){  //Caractéristique Compétence
+                translate(22,7,12);
                 rotateZ(140);
                 cylinder(12,5); //bretelle1
                 translate(35,28,0);
@@ -635,7 +852,7 @@ function fnDisplayCreature(o) {
                 rotateX(90);
                 translate(-10,30,0);
                 rotateX(-50);
-                box(4,35,75); //sac
+                box(4,35,75); //sac et poche
                 translate(0,5,0);
                 fill("#8400FF");
                 box(10,15,55); //profondeur, hauteur, largeur, poche
@@ -643,8 +860,71 @@ function fnDisplayCreature(o) {
                 rotateY(90);
                 torus(5,1);}
 
-            pop();
+            if (randomTorus == 5){  //Caractéristique bien-être
+                fill("yellow"); //Fleur et pétales
+                rotateX(-15);
+                translate(30,5,5);
+                sphere(3);
+                fill("rose");
+                translate(0,0,1);
+                ellipsoid(3,6);
+                rotateZ(90);
+                ellipsoid(3,6);
+                rotateZ(-90);
+                rotateX(15);
+                translate(-60,20,-5)//Coco
+                fill("#5E3927");
+                sphere(8);
+                fill("red");
+                translate(0,-10,0);//paillebas
+                rotateZ(90)
+                rotateX(30)
+                box(9.5,2,2);
+                translate(-7,-3,0); //paillehaut
+                rotateZ(45);
+                box(8,2,2);}
 
+            if (randomTorus == 6){  //Caractéristique richesse possession
+                emissiveMaterial(255, 249, 21); //collier
+                fill("gold");
+                translate(21,16,-2);
+                torus(3,1);
+                translate(-7,3,0);
+                torus(3,1);
+                translate(-7,3,0);
+                torus(3,1);
+                translate(-7,3,0);
+                torus(3,1);
+                translate(-7,-3,0);
+                torus(3,1);
+                translate(-7,-3,0);
+                torus(3,1);
+                translate(-7,-3,0);
+                torus(3,1);
+                fill("gold");
+                translate(21,13,-1);
+                sphere(1);  //dollar
+                translate(0,2,0);
+                box(8,2,2);
+                translate(4,4,0);
+                rotateZ(-90);
+                box(8,2,2);
+                rotateZ(90);
+                translate(-4,4,0);
+                box(8,2,2);
+                translate(-4,4,0);
+                rotateZ(-90);
+                box(8,2,2);
+                rotateZ(90);
+                translate(4,4,0);
+                box(8,2,2);
+                translate(-1,-8,0);
+                rotateZ(-90)
+                box(19,1,1);
+                translate(0,2,0);
+                box(19,1,1);}
+
+            pop();
             // Pieds et jambes
             push();
             fill(legsColor);
