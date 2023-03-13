@@ -484,7 +484,7 @@ function fnActionProba(){//pour calculer des probabilité des chaques actions
 
         let nbIndex = fnTakeOneIndexAction(tempArr);
 
-        if (nbIndex == 0){
+        if (nbIndex == null){
             continue;
         }
 
@@ -518,7 +518,7 @@ function fnTakeOneIndexAction(arr){
         }
     }
     if (totalProba == 0){
-        return 0;
+        return null;
     }
     let nb = Math.random() * totalProba;//Tirer un nombre aléatoire de 0 à somme
     let tempTotalProba = 0
