@@ -6,6 +6,7 @@ function fnDisplayCreature(o) {
     let legCylinderRadius = 6;
     let legHeight = legCylinderHeight + legCylinderRadius;
 
+
     // Met en évidence la créature sélectionnée (jambes blanches + disque blanc en-dessous)
     if (o.ID == selectedCreatureIndex) {
         legsColor = "white";
