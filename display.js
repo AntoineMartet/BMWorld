@@ -14,6 +14,7 @@ let booleanCam = 0;
 let camera; //création des deux caméras
 let camera2;
 let politic = document.getElementById("WorldTypeList").value ;
+let hasSpecialChar ;
 
 let img; //chargement de l'image de fond
 /*let matrix;
@@ -35,7 +36,10 @@ let aWorld = [
 let ctxPersonStatus;
 let ctxPersonPersonality;
 
-let Couleur = ['rgb(0, 115, 86)', 'rgb(82, 183, 136 )', 'rgb(144, 190, 109 )', 'rgb(128, 185, 24)', 'rgb(128, 128, 0)', 'rgb(3, 4, 94)', 'rgb(72, 202, 228)', 'rgb(114, 9, 183 )', 'rgb(205, 180, 219)', 'rgb(193, 28, 173)', 'rgb(89, 13, 34)', 'rgb(255, 143, 171 )', 'rgb(249, 65, 68)', 'rgb(249, 121, 57)', 'rgb(255, 127, 81)', 'rgb(220, 47, 2 )', 'rgb(252, 112, 8 )', 'rgb(255, 204, 0)', 'rgb(255, 218, 61 )', 'rgb(255, 234, 0 )', 'rgb(253, 255, 252 )', 'rgb(206, 212, 218)', 'rgb(0, 180, 216)', 'rgb(52, 58, 64 )', 'rgb(192, 103, 34 )'];
+let CouleurCube = ['rgb(77, 5, 232)', 'rgb(49, 55, 199)', 'rgb(39, 71, 188)', 'rgb(30, 88, 177)', 'rgb(20, 104, 166)', 'rgb(10, 120, 155)', 'rgb(0, 136, 143)', 'rgb(68, 31, 235)', 'rgb(59, 56, 238)', 'rgb(50, 82, 241)', 'rgb(41, 107, 244)', 'rgb(37, 120, 246)', 'rgb(32, 133, 247)', 'rgb(28, 146, 249)', 'rgb(23, 158, 250)', 'rgb(5, 209, 255)', 'rgb(28, 2, 99)', 'rgb(26, 28, 119)', 'rgb(23, 54, 138)', 'rgb(123, 141, 182)', 'rgb(19, 93, 168)', 'rgb(17, 106, 177)', 'rgb(14, 132, 197)', 'rgb(11, 158, 216)', 'rgb(8, 184, 236)'];
+let CouleurCylinder = ['rgb(255, 128, 0)', 'rgb(255, 144, 0)', 'rgb(255, 160, 0)', 'rgb(255, 176, 0)', 'rgb(255, 192, 0)', 'rgb(255, 200, 0)', 'rgb(255, 208, 0)', 'rgb(255, 224, 0)', 'rgb(255, 240, 0)', 'rgb(255, 255, 0)', 'rgb(255, 121, 0)', 'rgb(255, 106, 0)', 'rgb(255, 98, 0)', 'rgb(255, 91, 0)', 'rgb(255, 83, 0)', 'rgb(255, 68, 0)', 'rgb(143, 0, 0)', 'rgb(152, 6, 0)', 'rgb(162, 11, 0)', 'rgb(171, 17, 0)', 'rgb(185, 26, 0)', 'rgb(199, 34, 0)', 'rgb(213, 43, 0)', 'rgb(227, 51, 0)', 'rgb(241, 60, 0)'];
+let CouleurTorus = ['rgb(217, 0, 224)', 'rgb(203, 0, 217)', 'rgb(188, 0, 209)', 'rgb(173, 0, 202)', 'rgb(158, 0, 194)', 'rgb(143, 0, 187)', 'rgb(136, 0, 183)', 'rgb(128, 0, 179)', 'rgb(113, 0, 171)', 'rgb(98, 0, 163)', 'rgb(210, 0, 200)', 'rgb(206, 0, 188)', 'rgb(203, 0, 179)', 'rgb(200, 0, 170)', 'rgb(197, 0, 161)', 'rgb(194, 0, 151)', 'rgb(255, 0, 47)', 'rgb(248, 0, 60)', 'rgb(240, 0, 73)', 'rgb(237, 0, 80)', 'rgb(233, 0, 88)', 'rgb(226, 0, 100)', 'rgb(218, 0, 112)', 'rgb(210, 0, 125)', 'rgb(202, 0, 138)'];
+let CouleurCone = ['rgb(86, 122, 0)', 'rgb(81, 131, 0)', 'rgb(76, 139, 0)', 'rgb(65, 156, 0)', 'rgb(54, 173, 0)', 'rgb(43, 189, 0)', 'rgb(33, 206, 0)', 'rgb(22, 222, 0)', 'rgb(11, 239, 0)', 'rgb(0, 255, 0)', 'rgb(101, 143, 1)', 'rgb(116, 164, 2)', 'rgb(134, 189, 2)', 'rgb(158, 222, 3)', 'rgb(170, 239, 4)', 'rgb(182, 255, 4)', 'rgb(2, 120, 57)', 'rgb(25, 137, 51)', 'rgb(47, 154, 44)', 'rgb(59, 163, 41)', 'rgb(70, 171, 38)', 'rgb(92, 188, 31)', 'rgb(115, 205, 25)', 'rgb(137, 222, 18)', 'rgb(160, 239, 11)'];
 let RandomCar=[1,2,3,4,5,6];    //random pour les caractéristiques physiques des créatures
 let ColorCylinder;
 let ColorCube;
@@ -45,10 +49,7 @@ let randomCylinder;
 let randomCube;
 let randomTorus;
 let randomCone;
-ColorCylinder = get_random(Couleur);
-ColorCube = get_random(Couleur);
-ColorTorus = get_random(Couleur);
-ColorCone = get_random(Couleur);
+
 randomCylinder = get_random(RandomCar); //random pour choisir les caractéristiques physiques des diverses créatures
 randomCube = get_random(RandomCar);
 randomTorus = get_random(RandomCar);
@@ -114,7 +115,13 @@ function fnDisplay() {
 
     // Dessin des créatures
     for (let i = 0; i < creatureTotal.length; i++) {
-        fnDisplayCreature(creatureTotal[i]);
+        ColorCylinder = CouleurCylinder[creatureTotal[i].color];
+        ColorCube = CouleurCube[creatureTotal[i].color];
+        ColorTorus = CouleurTorus[creatureTotal[i].color];
+        ColorCone = CouleurCone[creatureTotal[i].color];
+        fnDisplayCreature(creatureTotal[i], i);
+
+
     }
 
     // Fond du canvas PersonStatus

@@ -1,10 +1,11 @@
-function fnDisplayCreature(o) {
+function fnDisplayCreature(o, index) {
 
     // Rappel : "translate(o.position.x*unit, 0, o.position.z*unit)" représente LE MILIEU d'une tuile, pas un de ses coins
 
     let legCylinderHeight = 50;
     let legCylinderRadius = 6;
     let legHeight = legCylinderHeight + legCylinderRadius;
+
 
     // Met en évidence la créature sélectionnée (jambes blanches + disque blanc en-dessous)
     if (o.ID == selectedCreatureIndex) {
@@ -52,7 +53,7 @@ function fnDisplayCreature(o) {
             fill("black");
             sphere(3); // nez
 
-            if (randomCylinder == 1){ //Caractéristique force
+            if (creatureTotal[index].status.FC >= 80 && hasSpecialChar == false){ //Caractéristique force
                 fill(ColorCylinder); //bras du personnage
                 translate(40,7,10);
                 sphere(14);
@@ -68,10 +69,12 @@ function fnDisplayCreature(o) {
                 cylinder(2,25);
                 translate(0,-10,0);
                 fill("black");
-                cylinder(14,3);}
+                cylinder(14,3);
+                hasSpecialChar = true ;
+            }
 
 
-            if (randomCylinder == 2){ //Caractéristique richesse argent
+            if (creatureTotal[index].status.RA >= 80 && hasSpecialChar == false){ //Caractéristique richesse argent
                 translate(-40,25,5);    //billet
                 fill("green");
                 box(5,14);
@@ -92,10 +95,12 @@ function fnDisplayCreature(o) {
                 torus(4,1);
                 translate(5,5,-1);
                 rotateX(-20);
-                torus(2,1);}
+                torus(2,1);
+                hasSpecialChar = true;
+            }
 
 
-            if (randomCylinder == 3){   //caractéristique relation
+            if (creatureTotal[index].status.RE >= 80 && hasSpecialChar == false) {   //caractéristique relation
                 translate(0,-20,15);    //halo de lumière
                 rotateX(90);
                 emissiveMaterial(255, 249, 21);
@@ -107,9 +112,11 @@ function fnDisplayCreature(o) {
                 translate(0,0,-5);
                 ellipsoid(5,65);
                 translate(0,0,-5);
-                ellipsoid(5,60);}
+                ellipsoid(5,60);
+                hasSpecialChar = true;
+            }
 
-            if (randomCylinder == 4){   //Caractéristique compétence
+            if (creatureTotal[index].status.CP >= 80 && hasSpecialChar == false){   //Caractéristique compétence
                 translate(30,7,15); //bretelle1
                 rotateZ(90);
                 cylinder(17,5);
@@ -124,9 +131,11 @@ function fnDisplayCreature(o) {
                 box(10,15,55); //profondeur, hauteur, largeur, poche
                 translate(0,-22,0)
                 rotateY(90);
-                torus(5,1);}
+                torus(5,1);
+                hasSpecialChar = true;
+            }
 
-            if (randomCylinder == 5){   //Caractéristique bien-être
+            if (creatureTotal[index].status.BC >= 80 && hasSpecialChar == false){   //Caractéristique bien-être
                 fill("yellow"); //fleur et pétales
                 rotateX(-30);
                 translate(33,-5,0);
@@ -148,10 +157,12 @@ function fnDisplayCreature(o) {
                 box(9.5,2,2);
                 translate(-7,-3,0); //paillehaut
                 rotateZ(45);
-                box(8,2,2);}
+                box(8,2,2);
+                hasSpecialChar = true;
+            }
 
-            if (randomCylinder == 6){   //Caratéristique richesse possession
-                emissiveMaterial(255, 249, 21); //colliers
+            if (creatureTotal[index].status.RE >= 80 && hasSpecialChar == false){   //Caratéristique richesse possession
+                emissiveMaterial(255, 249, 21); //collier
                 fill("gold");
                 translate(35,8,16);
                 rotateY(90);
@@ -208,7 +219,9 @@ function fnDisplayCreature(o) {
                 rotateZ(-90)
                 box(19,1,1);
                 translate(0,2,0);
-                box(19,1,1);}
+                box(19,1,1);
+                hasSpecialChar = true;
+            }
 
             pop();
             // Pieds et jambes
@@ -226,6 +239,8 @@ function fnDisplayCreature(o) {
             translate(-20, 0, 0);
             sphere(legCylinderRadius); // pied gauche
             pop();
+
+            hasSpecialChar = false;
             break;
 
         case 2: // box
