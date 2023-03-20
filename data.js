@@ -201,16 +201,18 @@ actions= [
     {"ID":"TRA","type":1,"prob":[0, 1, 0, 0, 1],"effect":{"FC": 1,"CP":1,"RA":0.9,"RP":2,"BC":-2,"BL":-2,"RE":2}, "effect2":[-0.0025, 0.005,0.0025,0.005,0.005]},
     {"ID":"JOS","type":1,"prob":[2, 0, -1, 0, 0],"effect":{"FC": -1,"CP":0,"RA":-0.1,"RP":0,"BC":2,"BL":2,"RE":-1}, "effect2":[0.005, -0.0025,-0.005,0,0]},
     {"ID":"SPS","type":1,"prob":[0, 1, 0, 0, 0],"effect":{"FC": 3,"CP":0,"RA":-0.1,"RP":0,"BC":1,"BL":1,"RE":-1}, "effect2":[0.0025, 0.0025,-0.0025,0,0.0025]},
-    {"ID":"VOS","type":1,"prob":[2, 0, 0, 0, -2],"effect":{"FC": 0,"CP":0,"RA":0.1,"RP":-2,"BC":-5,"BL":-5,"RE":-1}, "effect2":[0.0025, -0.0025,-0.005,0.0025,-0.005]},
     {"ID":"COS","type":1,"prob":[2, 0, 0, 0, 0],"effect":{"FC": -2,"CP":-4,"RA":-0.4,"RP":-2,"BC":1,"BL":1,"RE":-2}, "effect2":[0.01, 0,0,0,-0.005]},
     {"ID":"COB","type":1,"prob":[2, 0, 0, 1, 0],"effect":{"FC": -1,"CP": 0,"RA":-0.2,"RP":2,"BC":2,"BL":2,"RE":0}, "effect2":[0.01, 0,0,0.005,-0.005]},
 
     {"ID":"JO2","type":2,"prob":[1, 0, 2, 0, 0],"effect":{"FC": -1,"CP":0,"RA":-0.1,"RP":0,"BC":2,"BL":2,"RE":2}, "effect2":[0.01, -0.0025,0.01,0,0.005]},
     {"ID":"DI2","type":2,"prob":[1, 0, 2, 0, 0],"effect":{"FC": -1,"CP":1,"RA":-0.1,"RP":0,"BC":1,"BL":1,"RE":2}, "effect2":[0.01, 0,0.01,0,0.0025]},
     {"ID":"SP2","type":2,"prob":[1, 1, 1, 0, 0], "effect":{"FC": 4,"CP":0,"RA":-0.1,"RP":0,"BC":1,"BL":1,"RE":2}, "effect2":[0.01, 0.005,0.01,0,0.0025]},//ici les deux sont gagnants
-    {"ID":"VO2","type":4,"prob":[1, -1, 0, 2, -2], "effect":[{"FC": 0,"CP":0,"RA":0.2,"RP":2,"BC":2,"BL":2,"RE":0},{"FC": 0,"CP":0,"RA":0.2,"RP":0,"BC":-2,"BL":-2,"RE":-1},{"FC": 0,"CP":0,"RA":0,"RP":0,"BC":2,"BL":2,"RE":0},{"FC": 0,"CP":0,"RA":0,"RP":-1,"BC":-2,"BL":-2,"RE":-1}], "effect2":[-0.01, -0.005,-0.0025,-0.005,-0.005]},//ici le premier est le gagnant
+
+    {"ID":"VOS","type":3,"prob":[2, 0, 0, 0, -2],"effect":[{"FC": 0,"CP":0,"RA":0.1,"RP":-2,"BC":-5,"BL":-5,"RE":-1},{"FC": 0,"CP":0,"RA":0.1,"RP":-2,"BC":-5,"BL":-5,"RE":-1},{"FC": 0,"CP":0,"RA":0.1,"RP":-2,"BC":-5,"BL":-5,"RE":-1},{"FC": 0,"CP":0,"RA":0.1,"RP":-2,"BC":-5,"BL":-5,"RE":-1}], "effect2":[0.0025, -0.0025,-0.005,0.0025,-0.005]},
     // effect[0] vole et pas attrapé // effect[1] vole et attrapé // effect[2] vole pas et pas attrapé // effect[3] vole pas et attrapé
 
+    {"ID":"VO2","type":4,"prob":[1, -1, 0, 2, -2], "effect":[{"FC": 0,"CP":0,"RA":0.2,"RP":2,"BC":2,"BL":2,"RE":0},{"FC": 0,"CP":0,"RA":0.2,"RP":0,"BC":-2,"BL":-2,"RE":-1},{"FC": 0,"CP":0,"RA":0,"RP":0,"BC":2,"BL":2,"RE":0},{"FC": 0,"CP":0,"RA":0,"RP":-1,"BC":-2,"BL":-2,"RE":-1}], "effect2":[-0.01, -0.005,-0.0025,-0.005,-0.005]},//ici le premier est le gagnant
+    // effect[0] vole et pas attrapé // effect[1] vole et attrapé // effect[2] vole pas et pas attrapé // effect[3] vole pas et attrapé
     {"ID":"VO2b","type":4,"effect":[{"FC": 0,"CP":0,"RA":-0.2,"RP":-2,"BC":-4,"BL":-4,"RE":-2},{"FC": 0,"CP":0,"RA":-0.2,"RP":-2,"BC":-2,"BL":-2,"RE":-2},{"FC": 0,"CP":0,"RA":0,"RP":0,"BC":0,"BL":0,"RE":0},{"FC": 0,"CP":0,"RA":0,"RP":0,"BC":0,"BL":0,"RE":0}], "effect2":[-0.0025, -0.0025,-0.0025,0.0025,0.01]}//ici le second le perdant
     // effect[0] se fait voler et voleur pas attrapé // effect[1] se fait voler et voleur attrapé // effect[2] se fait pas voler et voleur pas attrapé // effect[3] se fait pas voler et voleur attrapé
 ]
