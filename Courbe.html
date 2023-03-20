@@ -10,6 +10,9 @@
 	</canvas>
 </body>
 </html>
+
+<script src="displayParameters.js"></script>
+
 <script>
 	//script de test de perspective
 	// JCY 25 janvier 2023
@@ -20,7 +23,6 @@
 	let cy=canvas.height;
 
 	let creatureTotalLog=[];
-	let profil=["I","F","R","P","E"];
 	let tabActions=["ETU","TRA","JOS","SPS","VOS","COS","COB","JO2","DI2","SP2","VO2","VO2b"]
 
 	//fnGraph(0,200,1400,200,50,[10,15,45,0,50,40],true,true,"red","test")
@@ -40,13 +42,15 @@
 		ta=document.getElementById("log").value;
 		creatureTotalLog=JSON.parse(ta);
 
-		//Tracer les status
-		fnTabGraph(0,220,1400,200,nc,4,"FC",true,100, "red",0);
-		fnTabGraph(0,220,1400,200,nc,4,"CP",false,100,"blue",1);
-		fnTabGraph(0,220,1400,200,nc,4,"RA",false,100,"yellow",2);
-		fnTabGraph(0,220,1400,200,nc,4,"RP",false,100,"orange",3);
-		fnTabGraph(0,220,1400,200,nc,4,"BE",false,100,"green",4);
-		fnTabGraph(0,220,1400,200,nc,4,"RE",false,100,"purple",5);
+		//Tracer les status de la créature sélectionnée
+		fnTabGraph(0,220,1400,200,nc,4,"FC",true,100,colors[0],0);
+		fnTabGraph(0,220,1400,200,nc,4,"CP",false,100,colors[1],1);
+		fnTabGraph(0,220,1400,200,nc,4,"RA",false,100,colors[2],2);
+		fnTabGraph(0,220,1400,200,nc,4,"RP",false,100,colors[3],3);
+		//fnTabGraph(0,220,1400,200,nc,4,"BE",false,100,colors[4]);
+		fnTabGraph(0,220,1400,200,nc,4,"BC",false,100,colors[4],4);
+		fnTabGraph(0,220,1400,200,nc,4,"BL",false,100,colors[5],5);
+		fnTabGraph(0,220,1400,200,nc,4,"RE",false,100,colors[6],6);
 
 		//récupérer le tableau des actions faites
 		tabtemp=[];
@@ -66,12 +70,14 @@
 
 		//Tracer les moyennes des status
 		//Tracer les status
-		fnTabGraph(0,880,1400,200,-1,4,"FC",true,100, "red",0);
-		fnTabGraph(0,880,1400,200,-1,4,"CP",false,100,"blue",1);
-		fnTabGraph(0,880,1400,200,-1,4,"RA",false,100,"yellow",2);
-		fnTabGraph(0,880,1400,200,-1,4,"RP",false,100,"orange",3);
-		fnTabGraph(0,880,1400,200,-1,4,"BE",false,100,"green",4);
-		fnTabGraph(0,880,1400,200,-1,4,"RE",false,100,"purple",5);
+		fnTabGraph(0,880,1400,200,-1,4,"FC",true,100,colors[0],0);
+		fnTabGraph(0,880,1400,200,-1,4,"CP",false,100,colors[1],1);
+		fnTabGraph(0,880,1400,200,-1,4,"RA",false,100,colors[2],2);
+		fnTabGraph(0,880,1400,200,-1,4,"RP",false,100,colors[3],3);
+		//fnTabGraph(0,880,1400,200,-1,4,"BE",false,100,"green",4);
+		fnTabGraph(0,880,1400,200,-1,4,"BC",false,100,colors[4],4);
+		fnTabGraph(0,880,1400,200,-1,4,"BL",false,100,colors[5],5);
+		fnTabGraph(0,880,1400,200,-1,4,"RE",false,100,colors[6],6);
 
 		//Tracer les moyennes profils
 		fnTabGraph(0,1100,1400,200,-1,5,0,true,1,"red",0);
@@ -129,7 +135,7 @@
 		}
 
 		//Lancer un graphique complet
-		fnGraph(x,y,l,h,max,tabtemp,rect,false,color,cat.toString(),nLegend*20)
+		fnGraph(x,y,l,h,max,tabtemp,rect,false,color,cat,nLegend*20)
 	}
 
 function fnGraph(x,y,l,h,max,tab,rect,clear,color,textLegend, hLegend){
@@ -147,14 +153,21 @@ function fnGraph(x,y,l,h,max,tab,rect,clear,color,textLegend, hLegend){
 	}
 	// cadre si besoin
 	if (rect){
-		ctx.strokeStyle=color;
+		ctx.strokeStyle="grey";
 		ctx.strokeRect(x,y,l,-h);
 	}
-	if (textLegend.length>0){
+	//if (textLegend.length>0){
 		ctx.fillStyle=color;
 		ctx.font="12pt Arial";
-		ctx.fillText(textLegend + " max="+max,x+3,y-3-hLegend)
-	}
+
+		if(Number.isInteger(textLegend)){
+			textLegend = legendsPersonality[textLegend];
+
+		}
+		console.log(textLegend + "  " + x + "  " + y + "  " + hLegend);
+
+		ctx.fillText(textLegend,x+3,y-3-hLegend)
+	//}
 	n=tab.length
 	incx=l/(n-1);//nb intervalles
 	//Tracé en rouge
@@ -179,7 +192,7 @@ function fnGraphCount(x,y,l,h,tabCat,tabColor,tabVal,rect){
 
 	// cadre si besoin
 	if (rect){
-		ctx.strokeStyle=tabColor[0];
+		ctx.strokeStyle="grey";
 		ctx.strokeRect(x,y,l,-h);
 	}
 	cl=tabCat.length;
