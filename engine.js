@@ -296,24 +296,17 @@ function fnActionEffect(){
 
             effectArray = actions[11].effect[steal];
             //conséquence pour la victime
-            creatureTotal[creatureTotal[i].near].status.FC += effectArray.FC;
-            creatureTotal[creatureTotal[i].near].status.CP += effectArray.CP;
-            creatureTotal[creatureTotal[i].near].status.RA += effectArray.RA;
-            if (creatureTotal[creatureTotal[i].near].status.RA < 0){
-                creatureTotal[creatureTotal[i].near].status.RA = 0;
+            for (const [key, value] of Object.entries(effectArray)) {//parcours la table des actions pour changer le status
+                creatureTotal[creatureTotal[i].near].status[key] += value;
+                if (creatureTotal[creatureTotal[i].near].status[key] < 0){
+                    creatureTotal[i].status[key] = 0;
+                }
+                else if (creatureTotal[creatureTotal[i].near].status[key] > 100){
+                    creatureTotal[creatureTotal[i].near].status[key] = 100;
+                }
+    
             }
-            creatureTotal[creatureTotal[i].near].status.RP += effectArray.RP;
-            if (creatureTotal[creatureTotal[i].near].status.RP < 0){
-                creatureTotal[creatureTotal[i].near].status.RP = 0;
-            }
-            creatureTotal[creatureTotal[i].near].status.BE += effectArray.BE;
-            if (creatureTotal[creatureTotal[i].near].status.BE > 100){
-                creatureTotal[creatureTotal[i].near].status.BE = 100;
-            }
-            creatureTotal[creatureTotal[i].near].status.RE += effectArray.RE;
-            if (creatureTotal[creatureTotal[i].near].status.RE < 0){
-                creatureTotal[creatureTotal[i].near].status.RE = 0;
-            }
+            
 
             effectArray = currentActionArray.effect[steal]; //conséquence pour le voleur
 
@@ -323,7 +316,7 @@ function fnActionEffect(){
             effectArray = currentActionArray.effect;
         }
 
-        for (const [key, value] of Object.entries(effectArray)) {
+        for (const [key, value] of Object.entries(effectArray)) {//parcours la table des actions pour changer le status
             creatureTotal[i].status[key] += value;
             if (creatureTotal[i].status[key] < 0){
                 creatureTotal[i].status[key] = 0;
@@ -334,7 +327,7 @@ function fnActionEffect(){
 
         }
 
-        for (let j = 0; j < currentActionArray.effect2.length; j++){
+        for (let j = 0; j < currentActionArray.effect2.length; j++){//parcours la table des actions pour changer le profil
             creatureTotal[i].profile[j] += currentActionArray.effect2[j];
             if (creatureTotal[i].profile[j] < 0){
                 creatureTotal[i].profile[j] = 0;
@@ -345,8 +338,6 @@ function fnActionEffect(){
         }
 
     }
-
-    //fnLog(creatureTotal);
 
 }
 
