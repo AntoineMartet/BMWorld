@@ -5,9 +5,7 @@
 // À faire :
 //  - Créer une liste des individus pour sélectionner l'un d'eux.
 
-let legendsStatus = ["FC", "CP", "RA", "RP", "BE", "RE"]; // légendes à afficher (bars)
-let colors = ["yellow", "orange", "red", "purple", "blue", "darkblue"]; // couleurs (bars)
-let legendsPersonality = ["I", "F", "R", "P", "E"]; // légendes à afficher (spider)
+
 let selectedCreatureIndex = 0;
 let clock = 0;
 let cycles = 0;
@@ -185,6 +183,7 @@ function bars(legends, x, y, l, h, colors) {
     for (let x in creatureTotal[selectedCreatureIndex].status) {
         arrayPersonalityStatus.push(creatureTotal[selectedCreatureIndex].status[x]);
     }
+
 
     // barres
     let largeur = l / arrayPersonalityStatus.length;
