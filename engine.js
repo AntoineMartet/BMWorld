@@ -11,7 +11,6 @@ let PositionCreatures = [];
 
 function fnEngine(){
     //Cette fonction va faire
-    //frameRate(0.000001); //permet de mettre le monde en "pause afin de checker l'avancement pas à pas"
     fnMove();
     stepCount++;
 
@@ -19,13 +18,11 @@ function fnEngine(){
         cycles += 1; //cycles est declaré dans display.js
         let tempCreatureTotalLog = []; //tableau pour tous les créature pour chaque movement (Commence par l'état initial)
         for (i = 0;i < creatureTotal.length;i++) {
-            //console.log(creatureTotal[i].action);
             //Mettre état de chaque créature qui est avant action dans le tableau tempCreatureTotalLog
             tempCreatureTotalLog.push([cycles,actualSociety.state,creatureTotal[i].name,creatureTotal[i].action,
                 JSON.parse(JSON.stringify(creatureTotal[i].status)), JSON.parse(JSON.stringify(creatureTotal[i].profile))]);
         }
         creatureTotalLog.push(tempCreatureTotalLog); //Mettre le tabeau log de cette movement
-        //fnLog(JSON.stringify(tempCreatureTotalLog));
         fnResetActionCreature();
         fnCheckPosOtherCreatures();//maikol
         fnActionProba();//maikol
@@ -44,22 +41,7 @@ function fnEngine(){
 
 
 
-/*function fnResetPositionCreatures(){ //pour initilaliser le tableau "PositionCreatures" à null
-
-    for (let i = 0; i < 40; i++) {
-        PositionCreatures[i] = [];
-        for(let j = 0; j < 40; j++) {
-            PositionCreatures[i][j] = [];
-        }
-    }
-
-}*/
-
-function fnMove() {
-    //fait bouger les créatures de 2 max
-    //fnResetPositionCreatures();//maikol//reset le tableau qui stock la position des créatures afin de savoir s'il y a des créatures proche les unes des autres
-
-    //let tempCreatureTotalLog = []; //tableau pour tous les créature pour chaque movement (Commence par l'état initial)
+function fnMove() {//fonction qui gère le mouvement des créature
 
     for (i=0;i<creatureTotal.length;i++){
         switch(creatureTotal[i].direction) { //AYAMI
@@ -119,7 +101,7 @@ function fnChangeDirection (){ //pour changer le direction
     creatureTotal[i].direction = newDirection;
 }
 
-function fnResetActionCreature(){
+function fnResetActionCreature(){ // fonction qui reset la position des créatures dans le tableau temporaire et reset les actions
     for (let i = 0; i < 40; i++) {
         PositionCreatures[i] = [];
         for(let j = 0; j < 40; j++) {
@@ -256,7 +238,7 @@ function fnTakeOneIndexAction(arr){
 }
 
 
-function fnActionEffect(){
+function fnActionEffect(){//fonction qui fait les conséquences des actions sur le status et sur le profil
     let currentActionArray;
     let effectArray;
     let effect2Array;
@@ -359,14 +341,14 @@ function fnActionEffect(){
 
 }
 
-function fnPenalty(voleuse){
+function fnPenalty(voleuse){ // fonction qui inflige une pénalité lorsque les voleurs se font attrapé
     creatureTotal[voleuse].status.RA -= actualSociety.penalty; //execution de peine
     if(creatureTotal[voleuse].status.RA < 0){ // si c'est en dessous de 0, remise à zero
         creatureTotal[voleuse].status.RA = 0;
     }
 }
 
-function fnHelp(){
+function fnHelp(){ // fonction qui donne une aide aux créatures selon condition de la société
     for(let i = 0; i < creatureTotal[i].length; i++){
         if(creatureTotal[i].status.RA < actualSociety.conditionHelp){ // si la créature rempli la condition pour toucher des aides
 
@@ -377,7 +359,7 @@ function fnHelp(){
         }
     }
 }
-function fnTax(){
+function fnTax(){ // fonction qui inflige une taxe aux créatures selon condition de la société
     for(let i = 0; i < creatureTotal.length; i++){
         if(creatureTotal[i].status.RA >= actualSociety.conditionTax){ // si creature rempli condition pour etre taxé
             creatureTotal[i].status.RA -= (actualSociety.tax*creatureTotal[i].status.RA)/100 ; // execution tax
@@ -388,7 +370,7 @@ function fnTax(){
     }
 }
 
-function fnSalary(){
+function fnSalary(){// fonction qui donne un salaire aux créatures selon condition de la société
     for(let i = 0; i < creatureTotal.length; i++){ 
             creatureTotal[i].status.RA += actualSociety.salary; // execution salaire
             if(creatureTotal[i].status.RA > 100){ // si la créature a plus de 100, remise a 100
@@ -397,7 +379,7 @@ function fnSalary(){
     }
 }
 
-function fnLog(text){
+function fnLog(text){//fonction qui permet d'écrire des logs
     document.getElementById("textEngine").value += "\n\n" + text;
     console.log(text);
 }
