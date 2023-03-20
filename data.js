@@ -28,7 +28,7 @@ let creatureTotal = [
         "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BC": valDefStatus, "BL": valDefStatus,"RE": valDefStatus},
         "direction": Math.floor(Math.random() * 4),
         "type"     : Math.floor(Math.random() * 4) + 1,
-        "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
+        "color"    : Math.floor(Math.random()*24),
         "near"     : null,
         "action"   : null
     },
@@ -38,7 +38,7 @@ let creatureTotal = [
         "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BC": valDefStatus, "BL": valDefStatus, "RE": valDefStatus},
         "direction": Math.floor(Math.random() * 4),
         "type"     : Math.floor(Math.random() * 4) + 1,
-        "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
+        "color"    :Math.floor(Math.random()*24),
         "near"     : null,
         "action"   : null
     },
@@ -48,7 +48,7 @@ let creatureTotal = [
         "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BC": valDefStatus, "BL": valDefStatus, "RE": valDefStatus},
         "direction": Math.floor(Math.random() * 4),
         "type"     : Math.floor(Math.random() * 4) + 1,
-        "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
+        "color"    :Math.floor(Math.random()*24),
         "near"     : null,
         "action"   : null
     },
@@ -58,7 +58,7 @@ let creatureTotal = [
         "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BC": valDefStatus, "BL": valDefStatus, "RE": valDefStatus},
         "direction": Math.floor(Math.random() * 4),
         "type"     : Math.floor(Math.random() * 4) + 1,
-        "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
+        "color"    :Math.floor(Math.random()*24),
         "near"     : null,
         "action"   : null
     },
@@ -68,7 +68,7 @@ let creatureTotal = [
         "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BC": valDefStatus, "BL": valDefStatus, "RE": valDefStatus},
         "direction": Math.floor(Math.random() * 4),
         "type"     : Math.floor(Math.random() * 4) + 1,
-        "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
+        "color"    :Math.floor(Math.random()*24),
         "near"     : null,
         "action"   : null
     },
@@ -78,7 +78,7 @@ let creatureTotal = [
         "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BC": valDefStatus, "BL": valDefStatus, "RE": valDefStatus},
         "direction": Math.floor(Math.random() * 4),
         "type"     : Math.floor(Math.random() * 4) + 1,
-        "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
+        "color"    :Math.floor(Math.random()*24),
         "near"     : null,
         "action"   : null
     },
@@ -88,7 +88,7 @@ let creatureTotal = [
         "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BC": valDefStatus, "BL": valDefStatus, "RE": valDefStatus},
         "direction": Math.floor(Math.random() * 4),
         "type"     : Math.floor(Math.random() * 4) + 1,
-        "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
+        "color"    :Math.floor(Math.random()*24),
         "near"     : null,
         "action"   : null
     },
@@ -98,7 +98,7 @@ let creatureTotal = [
         "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BC": valDefStatus, "BL": valDefStatus, "RE": valDefStatus},
         "direction": Math.floor(Math.random() * 4),
         "type"     : Math.floor(Math.random() * 4) + 1,
-        "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
+        "color"    :Math.floor(Math.random()*24),
         "near"     : null,
         "action"   : null
     },
@@ -108,7 +108,7 @@ let creatureTotal = [
         "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BC": valDefStatus, "BL": valDefStatus, "RE": valDefStatus},
         "direction": Math.floor(Math.random() * 4),
         "type"     : Math.floor(Math.random() * 4) + 1,
-        "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
+        "color"    :Math.floor(Math.random()*24),
         "near"     : null,
         "action"   : null
     },
@@ -118,7 +118,7 @@ let creatureTotal = [
         "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BC": valDefStatus, "BL": valDefStatus, "RE": valDefStatus},
         "direction": Math.floor(Math.random() * 4),
         "type"     : Math.floor(Math.random() * 4) + 1,
-        "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
+        "color"    :Math.floor(Math.random()*24),
         "near"     : null,
         "action"   : null
     },
@@ -128,7 +128,7 @@ let creatureTotal = [
         "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BC": valDefStatus, "BL": valDefStatus, "RE": valDefStatus},
         "direction": Math.floor(Math.random() * 4),
         "type"     : Math.floor(Math.random() * 4) + 1,
-        "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
+        "color"    :Math.floor(Math.random()*24),
         "near"     : null,
         "action"   : null
     },
@@ -138,7 +138,7 @@ let creatureTotal = [
         "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BC": valDefStatus, "BL": valDefStatus, "RE": valDefStatus},
         "direction": Math.floor(Math.random() * 4),
         "type"     : Math.floor(Math.random() * 4) + 1,
-        "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
+        "color"    :Math.floor(Math.random()*24),
         "near"     : null,
         "action"   : null
     },
@@ -148,7 +148,7 @@ let creatureTotal = [
         "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus,  "BC": valDefStatus, "BL": valDefStatus, "RE": valDefStatus},
         "direction": Math.floor(Math.random() * 4),
         "type"     : Math.floor(Math.random() * 4) + 1,
-        "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
+        "color"    :Math.floor(Math.random()*24),
         "near"     : null,
         "action"   : null
     },
@@ -158,7 +158,7 @@ let creatureTotal = [
         "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BC": valDefStatus, "BL": valDefStatus,  "RE": valDefStatus},
         "direction": Math.floor(Math.random() * 4),
         "type"     : Math.floor(Math.random() * 4) + 1,
-        "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
+        "color"    :Math.floor(Math.random()*24),
         "near"     : null,
         "action"   : null
     },
@@ -168,7 +168,7 @@ let creatureTotal = [
         "status"   : {"FC": valDefStatus, "CP": valDefStatus, "RA": valDefStatus, "RP": valDefStatus, "BC": valDefStatus, "BL": valDefStatus,  "RE": valDefStatus},
         "direction": Math.floor(Math.random() * 4),
         "type"     : Math.floor(Math.random() * 4) + 1,
-        "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
+        "color"    :Math.floor(Math.random()*24),
         "near"     : null,
         "action"   : null
     }
@@ -186,7 +186,7 @@ for(let i = (creatureTotal.length);i < 100; i++) {
             "RP": valDefStatus, "BC": valDefStatus, "BL": valDefStatus,  "RE": valDefStatus},
         "direction": Math.floor(Math.random() * 4),
         "type"     : Math.floor(Math.random() * 4) + 1,
-        "color"    :'#'+(Math.random()*0xFFFFFF<<0).toString(16),
+        "color"    :Math.floor(Math.random()*24),
         "near"     : null,
         "action"   : null
     })
