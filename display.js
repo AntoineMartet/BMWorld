@@ -14,6 +14,7 @@ let booleanCam = 0;
 let camera; //création des deux caméras
 let camera2;
 let politic = document.getElementById("WorldTypeList").value ;
+let hasSpecialChar ;
 
 let img; //chargement de l'image de fond
 /*let matrix;
@@ -48,10 +49,6 @@ let randomCylinder;
 let randomCube;
 let randomTorus;
 let randomCone;
-ColorCylinder = CouleurCylinder[creatureTotal.color];
-ColorCube = get_random(CouleurCube);
-ColorTorus = get_random(CouleurTorus);
-ColorCone = get_random(CouleurCone);
 
 randomCylinder = get_random(RandomCar); //random pour choisir les caractéristiques physiques des diverses créatures
 randomCube = get_random(RandomCar);
@@ -122,7 +119,8 @@ function fnDisplay() {
         ColorCube = CouleurCube[creatureTotal[i].color];
         ColorTorus = CouleurTorus[creatureTotal[i].color];
         ColorCone = CouleurCone[creatureTotal[i].color];
-        fnDisplayCreature(creatureTotal[i]);
+        fnDisplayCreature(creatureTotal[i], i);
+
 
     }
 
