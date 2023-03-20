@@ -30,6 +30,7 @@
 
 
 	function fnAnalyse(){
+
 		//Cette fonction prend les valeurs de status et en fait un graphique, puis une analyse des actions
 		ctx.clearRect(0,0,cx, cy)
 		ctx.fillStyle="lightblue";
@@ -117,6 +118,7 @@
 		//max le max du graphique
 		//color la couleur
 		//nLegend le numéro de légend pour écrire l'un au dessus de l'autre
+
 		tabtemp=[];//remise à 0 du tableau temporaire
 		if (nc>=0) { //cas d'une créature "normale"
 			for (t=0;t<creatureTotalLog.length;t++){//boucle sur les times
@@ -147,6 +149,7 @@ function fnGraph(x,y,l,h,max,tab,rect,clear,color,textLegend, hLegend){
 	//textLegend est ce qu'il faut écrire comme légende
 	//hLegend permet d'écrire plus haut
 	// effacer si besoin
+
 	if (clear){
 		ctx.fillStyle=canvas.style.backgroundColor;
 		ctx.fillRect(x,y,l,-h);
@@ -155,6 +158,8 @@ function fnGraph(x,y,l,h,max,tab,rect,clear,color,textLegend, hLegend){
 	if (rect){
 		ctx.strokeStyle="grey";
 		ctx.strokeRect(x,y,l,-h);
+		ctx.fillStyle="lightgrey";
+		ctx.fillRect(x,y,l,-h);
 	}
 	//if (textLegend.length>0){
 		ctx.fillStyle=color;
@@ -194,6 +199,8 @@ function fnGraphCount(x,y,l,h,tabCat,tabColor,tabVal,rect){
 	if (rect){
 		ctx.strokeStyle="grey";
 		ctx.strokeRect(x,y,l,-h);
+		ctx.fillStyle="lightgrey";
+		ctx.fillRect(x,y,l,-h);
 	}
 	cl=tabCat.length;
 	n=tabVal.length
