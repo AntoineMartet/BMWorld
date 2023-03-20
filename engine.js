@@ -195,20 +195,14 @@ function fnActionProba(){//pour calculer des probabilité des chaques actions
             continue;
         }
 
-        tempArr.push({"nom" : "ETU", "prob" : fnAddProba(actions[0].prob, i), "type" : actions[0].type})
-        tempArr.push({"nom" : "TRA", "prob" : fnAddProba(actions[1].prob, i), "type" : actions[1].type})
-        tempArr.push({"nom" : "JOS", "prob": fnAddProba(actions[2].prob, i), "type" : actions[2].type})
-        tempArr.push({"nom" : "SPS", "prob" : fnAddProba(actions[3].prob, i), "type" : actions[3].type})
-        tempArr.push({"nom" : "COS", "prob" : fnAddProba(actions[4].prob, i), "type" : actions[4].type})
-        tempArr.push({"nom" : "COB", "prob" : fnAddProba(actions[5].prob, i), "type" : actions[5].type})
 
-        tempArr.push({"nom" : "VOS", "prob" : fnAddProba(actions[9].prob, i), "type" : actions[9].type})
-
-        if (creatureTotal[i].near != null){
-            tempArr.push({"nom" : "JO2", "prob" : fnAddProba(actions[6].prob, i), "type" : actions[6].type})
-            tempArr.push({"nom" : "DI2", "prob" : fnAddProba(actions[7].prob, i), "type" : actions[7].type})
-            tempArr.push({"nom" : "SP2", "prob" : fnAddProba(actions[8].prob, i), "type" : actions[8].type})
-            tempArr.push({"nom" : "VO2", "prob" : fnAddProba(actions[10].prob, i), "type" : actions[10].type})
+        for (let j = 0; j < actions.length; j++){
+            if (actions[j].type == 1 || actions[j].type == 3){//si action seul
+                tempArr.push({"nom" : actions[j].ID, "prob" : fnAddProba(actions[j].prob, i), "type" : actions[j].type})
+            }
+            else if((actions[j].type == 2 || actions[j].type == 4) && creatureTotal[i].near != null){//si action à plusieurs, check si quelqu'un est à coté
+                tempArr.push({"nom" : actions[j].ID, "prob" : fnAddProba(actions[j].prob, i), "type" : actions[j].type})
+            }
         }
 
         let nbIndex = fnTakeOneIndexAction(tempArr);
@@ -265,6 +259,7 @@ function fnTakeOneIndexAction(arr){
 function fnActionEffect(){
     let currentActionArray;
     let effectArray;
+    let effect2Array;
     let steal = 0;
     let stealsolo = 0;
     for (let i = 0; i < creatureTotal.length; i++){
@@ -297,6 +292,7 @@ function fnActionEffect(){
             }
 
             effectArray = actions[11].effect[steal];
+            effect2Array = actions[11].effect2[steal];
             //conséquence pour la victime
             for (const [key, value] of Object.entries(effectArray)) {//parcours la table des actions pour changer le status
                 creatureTotal[creatureTotal[i].near].status[key] += value;
@@ -310,7 +306,8 @@ function fnActionEffect(){
             }
             
 
-            effectArray = currentActionArray.effect[steal]; //conséquence pour le voleur
+            effectArray = currentActionArray.effect[steal]; //conséquence pour le voleur sur le status
+            effect2Array = currentActionArray.effect2[steal]; //conséquence pour le voleur sur le profil
 
 
         }
@@ -330,9 +327,11 @@ function fnActionEffect(){
             }
 
             effectArray = currentActionArray.effect[stealsolo];
+            effect2Array = currentActionArray.effect2[stealsolo];
         }
         else{
             effectArray = currentActionArray.effect;
+            effect2Array = currentActionArray.effect2;
         }
 
         for (const [key, value] of Object.entries(effectArray)) {//parcours la table des actions pour changer le status
@@ -346,8 +345,8 @@ function fnActionEffect(){
 
         }
 
-        for (let j = 0; j < currentActionArray.effect2.length; j++){//parcours la table des actions pour changer le profil
-            creatureTotal[i].profile[j] += currentActionArray.effect2[j];
+        for (let j = 0; j < effect2Array.length; j++){//parcours la table des actions pour changer le profil
+            creatureTotal[i].profile[j] += effect2Array[j];
             if (creatureTotal[i].profile[j] < 0){
                 creatureTotal[i].profile[j] = 0;
             }
