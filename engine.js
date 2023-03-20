@@ -199,14 +199,15 @@ function fnActionProba(){//pour calculer des probabilité des chaques actions
         tempArr.push({"nom" : "TRA", "prob" : fnAddProba(actions[1].prob, i), "type" : actions[1].type})
         tempArr.push({"nom" : "JOS", "prob": fnAddProba(actions[2].prob, i), "type" : actions[2].type})
         tempArr.push({"nom" : "SPS", "prob" : fnAddProba(actions[3].prob, i), "type" : actions[3].type})
-        tempArr.push({"nom" : "VOS", "prob" : fnAddProba(actions[4].prob, i), "type" : actions[4].type})
-        tempArr.push({"nom" : "COS", "prob" : fnAddProba(actions[5].prob, i), "type" : actions[5].type})
-        tempArr.push({"nom" : "COB", "prob" : fnAddProba(actions[6].prob, i), "type" : actions[6].type})
+        tempArr.push({"nom" : "COS", "prob" : fnAddProba(actions[4].prob, i), "type" : actions[4].type})
+        tempArr.push({"nom" : "COB", "prob" : fnAddProba(actions[5].prob, i), "type" : actions[5].type})
+
+        tempArr.push({"nom" : "VOS", "prob" : fnAddProba(actions[9].prob, i), "type" : actions[9].type})
 
         if (creatureTotal[i].near != null){
-            tempArr.push({"nom" : "JO2", "prob" : fnAddProba(actions[7].prob, i), "type" : actions[7].type})
-            tempArr.push({"nom" : "DI2", "prob" : fnAddProba(actions[8].prob, i), "type" : actions[8].type})
-            tempArr.push({"nom" : "SP2", "prob" : fnAddProba(actions[9].prob, i), "type" : actions[9].type})
+            tempArr.push({"nom" : "JO2", "prob" : fnAddProba(actions[6].prob, i), "type" : actions[6].type})
+            tempArr.push({"nom" : "DI2", "prob" : fnAddProba(actions[7].prob, i), "type" : actions[7].type})
+            tempArr.push({"nom" : "SP2", "prob" : fnAddProba(actions[8].prob, i), "type" : actions[8].type})
             tempArr.push({"nom" : "VO2", "prob" : fnAddProba(actions[10].prob, i), "type" : actions[10].type})
         }
 
@@ -216,7 +217,7 @@ function fnActionProba(){//pour calculer des probabilité des chaques actions
             continue;
         }
 
-        if (tempArr[nbIndex].type == 1){
+        if (tempArr[nbIndex].type == 1 || tempArr[nbIndex].type == 3){
             creatureTotal[i].action = tempArr[nbIndex].nom;
         }
         else if (tempArr[nbIndex].type == 2){
@@ -265,6 +266,7 @@ function fnActionEffect(){
     let currentActionArray;
     let effectArray;
     let steal = 0;
+    let stealsolo = 0;
     for (let i = 0; i < creatureTotal.length; i++){
         let currentAction = creatureTotal[i].action
 
@@ -311,6 +313,23 @@ function fnActionEffect(){
             effectArray = currentActionArray.effect[steal]; //conséquence pour le voleur
 
 
+        }
+        else if(currentActionArray.type == 3){
+            let probability1 = Math.floor(Math.random() * 2) //définit si vole ou non
+            if(probability1 == 0 ) {
+                stealsolo = 0; //voleur vole
+            }
+            else{
+                stealsolo = 2;//voleur vole pas
+            }
+
+            let probability2 = Math.floor(Math.random() * 2) //définit si attrapé ou non
+            if(probability2 == 0 ) {
+                stealsolo++;// voleur attrapé
+                fnPenalty(i);
+            }
+
+            effectArray = currentActionArray.effect[stealsolo];
         }
         else{
             effectArray = currentActionArray.effect;
