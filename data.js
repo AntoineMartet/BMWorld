@@ -211,7 +211,7 @@ actions= [
     {"ID":"VOS","type":3,"prob":[2, 0, 0, 1, -2],"effect":[{"FC": 0,"CP":0,"RA":0.1,"RP":0,"BC":2,"BL":2,"RE":1},{"FC": 0,"CP":0,"RA":-0.2,"RP":0,"BC":-2,"BL":-2,"RE":-1},
                                                            {"FC": 0,"CP":0,"RA":0,"RP":0,"BC":0.5,"BL":0,"RE":0},{"FC": 0,"CP":0,"RA":-0.2,"RP":0,"BC":-3,"BL":-3,"RE":-2}], 
                                                  "effect2":[[0.0025, -0.0025,0,0.0025,-0.005],[-0.01, -0.005,-0.0025,-0.005,0.0025],
-                                                            [0.0025, 0,0,0,-0.005],[-0.005, 0.0025,-0.0025,0,-0.0025]]},
+                                                             [0.0025, 0,0,0,-0.005],[-0.005, 0.0025,-0.0025,0,-0.0025]]},
     // effect[0] vole et pas attrapé // effect[1] vole et attrapé // effect[2] vole pas et pas attrapé // effect[3] vole pas et attrapé
 
     {"ID":"VO2","type":4,"prob":[1, -1, 0, 1, -2], "effect":[{"FC": 0,"CP":0.5,"RA":0.2,"RP":0.5,"BC":2,"BL":1,"RE":0},{"FC": 0,"CP":0,"RA":-0.1,"RP":0,"BC":-2,"BL":-1,"RE":-1},
@@ -238,13 +238,13 @@ actions= [
 // COM = COMMUNISM
 // MON = MONARCHY
 let societyModels=[
-    {"state":"AUT", "penalty":0.2,"conditionHelp":0.5, "help":20, "conditionTax": 0.8,"tax": 20, "salary":0.8},
-    {"state":"ANA", "penalty":0, "conditionHelp":0, "help":0, "conditionTax": 0, "tax":0, "salary":0},
-    {"state":"DEM", "penalty": 0.3, "conditionHelp":1.5, "help":15, "conditionTax": 2.5, "tax":15, "salary":2.5},
-    {"state":"LIB", "penalty":0.3, "conditionHelp":2.0,"help": 15, "conditionTax": 3.5, "tax":15, "salary":3.5},
-    {"state":"OLI", "penalty":0.1, "conditionHelp":0, "help":0, "conditionTax": 0, "tax":15, "salary":0.7},
-    {"state":"THE", "penalty":0.45, "conditionHelp":0.5, "help":10, "conditionTax": 0.7, "tax":20, "salary":0.6},
-    {"state":"COM", "penalty":0.5, "conditionHelp":0.5, "help":10, "conditionTax": 0.8, "tax":10, "salary":0.6},
-    {"state":"MON", "penalty":0.5, "conditionHelp":0, "help":0, "conditionTax": 0.8, "tax":30, "salary":0.5}
+    {"state":"AUT", "penalty":0.2,"conditionHelp":0.5, "help":20, "conditionTax": 0.8,"tax": 20, "salary":0.8, "probaArrest": 2},
+    {"state":"ANA", "penalty":0, "conditionHelp":0, "help":0, "conditionTax": 0, "tax":0, "salary":0, "probaArrest": 0},
+    {"state":"DEM", "penalty": 0.3, "conditionHelp":1.5, "help":15, "conditionTax": 2.5, "tax":15, "salary":2.5, "probaArrest": 3},
+    {"state":"LIB", "penalty":0.3, "conditionHelp":2.0,"help": 15, "conditionTax": 3.5, "tax":15, "salary":3.5, "probaArrest": 3},
+    {"state":"OLI", "penalty":0.1, "conditionHelp":0, "help":0, "conditionTax": 0, "tax":15, "salary":0.7, "probaArrest": 4},
+    {"state":"THE", "penalty":0.45, "conditionHelp":0.5, "help":10, "conditionTax": 0.7, "tax":20, "salary":0.6, "probaArrest": 2},
+    {"state":"COM", "penalty":0.5, "conditionHelp":0.5, "help":10, "conditionTax": 0.8, "tax":10, "salary":0.6, "probaArrest": 2},
+    {"state":"MON", "penalty":0.5, "conditionHelp":0, "help":0, "conditionTax": 0.8, "tax":30, "salary":0.5, "probaArrest": 2}
 ]
 //Fin les systèmes politiques----------------------------------------------------------------------------------------
