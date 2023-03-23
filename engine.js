@@ -312,7 +312,7 @@ function fnActionEffect(){//fonction qui fait les conséquences des actions sur 
                 stealsolo = 2;//voleur vole pas
             }
 
-            let probability2 = Math.floor(Math.random() * 2) //définit si attrapé ou non
+            let probability2 = Math.floor(Math.random() * actualSociety.probaArrest) //définit si attrapé ou non
             if(probability2 == 0 ) {
                 stealsolo++;// voleur attrapé
                 fnPenalty(i);
