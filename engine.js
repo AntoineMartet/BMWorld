@@ -267,7 +267,7 @@ function fnActionEffect(){//fonction qui fait les conséquences des actions sur 
                 steal = 2;//voleur vole pas
             }
 
-            let probability = Math.floor(Math.random() * 2) //définit si attrapé ou non
+            let probability = Math.floor(Math.random() * actualSociety.probaArrest) //définit si attrapé ou non
             if(probability == 0 ) {
                 steal++;// voleur attrapé
                 fnPenalty(i);
