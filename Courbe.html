@@ -5,6 +5,7 @@
 	Collez dans le textarea l'historique à tester puis pressez "Go". Personnage à analyser:
 	<input type="text" id="creature" value="0">
 	<button onclick="fnAnalyse()">Go</button><br>
+	<button onclick="fnSuiviActionCreature()">Suivi Action creature</button><br>
 	<textarea id="log" rows="5", cols="160"></textarea>
 	<canvas id="dessin" width="1600" height="1200" style="border:1px solid black;background-color:lightblue">
 	</canvas>
@@ -226,5 +227,16 @@ function fnGraphCount(x,y,l,h,tabCat,tabColor,tabVal,rect){
 
 }
 
+function fnSuiviActionCreature() {
+	nc=parseInt(document.getElementById("creature").value)
+	tabtemp=[];
+	for (t = 0; t < creatureTotalLog.length; t++) {//boucle sur les times
+		tabtemp.push({"action":creatureTotalLog[t][nc][3],"RE":creatureTotalLog[t][nc][4].RE})
+	}
+	for (t = 0; t < creatureTotalLog.length; t++) {//boucle sur les times
+		console.log(tabtemp[t].action + "/" + tabtemp[t].RE)
+	}
+
+}
 
 </script>
