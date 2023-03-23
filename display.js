@@ -10,7 +10,7 @@ let selectedCreatureIndex = 0;
 let clock = 0;
 let cycles = 0;
 let booleanPause = 0;
-let booleanCam = 0;
+let cameraNumber = 0;
 let camera; //création des deux caméras
 let camera2;
 let politic = document.getElementById("WorldTypeList").value ;
@@ -61,7 +61,7 @@ function setup() {
     mainDisplay.parent("canvasDisplay");
     angleMode(DEGREES);// angles en degrés
     camera2 = createCamera();//création d'une deuxième caméra
-    camera2.setPosition(0,-500,3000);
+    camera2.setPosition(-300, -500, -300);
     camera2.lookAt(nx / 2 * unit, -0, nz / 2 * unit);
     camera = createCamera();
     camera.setPosition(-300, -500, -300);// placement de la caméra au départ, vise le centre
@@ -103,7 +103,9 @@ function draw() {
     if (booleanPause == 0){
         fnEngine(); // Calcule le monde de l'état suivant (se trouve dans engine.js)
     }
-
+    if(cameraNumber == 2){
+        camera2.setPosition(creatureTotal[selectedCreatureIndex].position.x * unit - 500, - 400, creatureTotal[selectedCreatureIndex].position.z * unit -500);
+    }
     fnDisplay(); // Affiche les fonds des 3 canvas, le monde, les créatures et les graphes
 }
 
@@ -152,13 +154,13 @@ function fnUpdatePause(){
 }
 
 function fnCameraSwitch(){//fonction de changement de caméra
-    if(booleanCam == 0){
-        booleanCam = 1;
+    if(cameraNumber == 1){
+        cameraNumber = 2;
         setCamera(camera2); //changement de caméra
         document.getElementById("SwitchCameras").innerHTML = "Caméra 1";
     }
     else{
-        booleanCam = 0;
+        cameraNumber = 1;
         setCamera(camera); //changement de caméra
         document.getElementById("SwitchCameras").innerHTML = "Caméra 2";
     }
