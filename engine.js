@@ -279,12 +279,22 @@ function fnActionEffect(){//fonction qui fait les conséquences des actions sur 
             for (const [key, value] of Object.entries(effectArray)) {//parcours la table des actions pour changer le status
                 creatureTotal[creatureTotal[i].near].status[key] += value;
                 if (creatureTotal[creatureTotal[i].near].status[key] < 0){
-                    creatureTotal[i].status[key] = 0;
+                    creatureTotal[creatureTotal[i].near].status[key] = 0;
                 }
                 else if (creatureTotal[creatureTotal[i].near].status[key] > 100){
                     creatureTotal[creatureTotal[i].near].status[key] = 100;
                 }
     
+            }
+
+            for (let j = 0; j < effect2Array.length; j++){//parcours la table des actions pour changer le profil
+                creatureTotal[creatureTotal[i].near].profile[j] += effect2Array[j];
+                if (creatureTotal[creatureTotal[i].near].profile[j] < 0){
+                    creatureTotal[creatureTotal[i].near].profile[j] = 0;
+                }
+                else if (creatureTotal[creatureTotal[i].near].profile[j] > 1){
+                    creatureTotal[creatureTotal[i].near].profile[j] = 1;
+                }
             }
             
 
