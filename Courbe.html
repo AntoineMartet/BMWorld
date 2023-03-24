@@ -2,11 +2,12 @@
 <html>
 <body>
 	<title> Courbes </title>
-	Collez dans le textarea l'historique à tester puis pressez "Go". Personnage à analyser:
+	Coller dans le textarea l'historique à tester, choisir une créature, choisir un composant du status (optionnel).<br>
+	Personnage à analyser:
 	<input type="text" id="creature" value="0">
-	<button onclick="fnAnalyse()">Graphes créature + monde</button>
+	<button onclick="fnAnalyse()">Graphes de la créature + monde</button>
 	<input type="text" id="action" value="Exemple : BC">
-	<button onclick="fnSuiviActionCreature()">Suivi actions + statut choisi d'une créature</button><br>
+	<button onclick="fnSuiviActionCreature()">Suivi actions + statut choisi de la créature</button><br>
 	<textarea id="log" rows="5", cols="160"></textarea>
 	<canvas id="dessin" width="1600" height="1200" style="border:1px solid black;background-color:lightblue"></canvas>
 	<div>
@@ -19,19 +20,16 @@
 
 <script>
 	//script de test de perspective
-	// JCY 25 janvier 2023
-		//liaison entre le canvas et le code
+	//JCY 25 janvier 2023
+	//liaison entre le canvas et le code
 	let canvas = document.getElementById("dessin");
     let ctx = canvas.getContext("2d");
 	let cx=canvas.width;
 	let cy=canvas.height;
-
 	let creatureTotalLog=[];
-	let tabActions=["ETU","TRA","JOS","SPS","VOS","COS","COB","JO2","DI2","SP2","VO2","VO2b"]
 
 	//fnGraph(0,200,1400,200,50,[10,15,45,0,50,40],true,true,"red","test")
 	//fnGraphCount(0,300,1400,100,["A","B","C"],["red","orange","yellow"],["A","A","C","B","A","C","C","A"],true)
-
 
 	function fnAnalyse(){
 
@@ -41,48 +39,49 @@
 		ctx.fillRect(0,0,cx,cy)
 		tabtemp=[]
 		//Récupérer la créature
-		nc=parseInt(document.getElementById("creature").value);
+		let nc=parseInt(document.getElementById("creature").value);
 
 		//Récupérer le JSON dans le textarea
 		ta=document.getElementById("log").value;
 		creatureTotalLog=JSON.parse(ta);
 
 		//Tracer les status de la créature sélectionnée
-		fnTabGraph(0,220,1400,200,nc,4,"FC",true,100,colors[0],0);
-		fnTabGraph(0,220,1400,200,nc,4,"CP",false,100,colors[1],1);
-		fnTabGraph(0,220,1400,200,nc,4,"RA",false,100,colors[2],2);
-		fnTabGraph(0,220,1400,200,nc,4,"RP",false,100,colors[3],3);
-		//fnTabGraph(0,220,1400,200,nc,4,"BE",false,100,colors[4]);
-		fnTabGraph(0,220,1400,200,nc,4,"BC",false,100,colors[4],4);
-		fnTabGraph(0,220,1400,200,nc,4,"BL",false,100,colors[5],5);
-		fnTabGraph(0,220,1400,200,nc,4,"RE",false,100,colors[6],6);
+		fnTabGraph(0,220,1400,200,nc,4,"FC",true,100,statusColors[0],0);
+		fnTabGraph(0,220,1400,200,nc,4,"CP",false,100,statusColors[1],1);
+		fnTabGraph(0,220,1400,200,nc,4,"RA",false,100,statusColors[2],2);
+		fnTabGraph(0,220,1400,200,nc,4,"RP",false,100,statusColors[3],3);
+		fnTabGraph(0,220,1400,200,nc,4,"BC",false,100,statusColors[4],4);
+		fnTabGraph(0,220,1400,200,nc,4,"BL",false,100,statusColors[5],5);
+		fnTabGraph(0,220,1400,200,nc,4,"RE",false,100,statusColors[6],6);
 
 		//récupérer le tableau des actions faites
 		tabtemp=[];
-		tabColors=["red","orange","yellow","lightgreen","green","darkgreen","darkblue","lightblue","blue","aqua","purple","pink",""]
-		for (t=0;t<creatureTotalLog.length;t++){//boucle sur les times
+		for (let t=0;t<creatureTotalLog.length;t++){//boucle sur les times
 			tabtemp.push(creatureTotalLog[t][nc][3])
 		}
+
 		//Tracer les actions
-		fnGraphCount(0,440,1400,200,tabActions,tabColors,tabtemp,true);
+		fnGraphCount(0,660,1400,200,actionsLegends,actionsColors,tabtemp,true);
 
 		//Tracer les profils
-		fnTabGraph(0,660,1400,200,nc,5,0,true,1,"red",0);
-		fnTabGraph(0,660,1400,200,nc,5,1,false,1,"orange",1);
-		fnTabGraph(0,660,1400,200,nc,5,2,false,1,"yellow",2);
-		fnTabGraph(0,660,1400,200,nc,5,3,false,1,"green",3);
-		fnTabGraph(0,660,1400,200,nc,5,4,false,1,"blue",4);
+		fnTabGraph(0,440,1400,200,nc,5,0,true,1,"red",0);
+		fnTabGraph(0,440,1400,200,nc,5,1,false,1,"orange",1);
+		fnTabGraph(0,440,1400,200,nc,5,2,false,1,"yellow",2);
+		fnTabGraph(0,440,1400,200,nc,5,3,false,1,"green",3);
+		fnTabGraph(0,440,1400,200,nc,5,4,false,1,"blue",4);
+
+
 
 		//Tracer les moyennes des status
 		//Tracer les status
-		fnTabGraph(0,880,1400,200,-1,4,"FC",true,100,colors[0],0);
-		fnTabGraph(0,880,1400,200,-1,4,"CP",false,100,colors[1],1);
-		fnTabGraph(0,880,1400,200,-1,4,"RA",false,100,colors[2],2);
-		fnTabGraph(0,880,1400,200,-1,4,"RP",false,100,colors[3],3);
+		fnTabGraph(0,880,1400,200,-1,4,"FC",true,100,statusColors[0],0);
+		fnTabGraph(0,880,1400,200,-1,4,"CP",false,100,statusColors[1],1);
+		fnTabGraph(0,880,1400,200,-1,4,"RA",false,100,statusColors[2],2);
+		fnTabGraph(0,880,1400,200,-1,4,"RP",false,100,statusColors[3],3);
 		//fnTabGraph(0,880,1400,200,-1,4,"BE",false,100,"green",4);
-		fnTabGraph(0,880,1400,200,-1,4,"BC",false,100,colors[4],4);
-		fnTabGraph(0,880,1400,200,-1,4,"BL",false,100,colors[5],5);
-		fnTabGraph(0,880,1400,200,-1,4,"RE",false,100,colors[6],6);
+		fnTabGraph(0,880,1400,200,-1,4,"BC",false,100,statusColors[4],4);
+		fnTabGraph(0,880,1400,200,-1,4,"BL",false,100,statusColors[5],5);
+		fnTabGraph(0,880,1400,200,-1,4,"RE",false,100,statusColors[6],6);
 
 		//Tracer les moyennes profils
 		fnTabGraph(0,1100,1400,200,-1,5,0,true,1,"red",0);
@@ -97,17 +96,17 @@
 
 	function fnNbActions(){
 		//Calcule le nb d'actions
-		tabActions=["ETU","TRA","JOS","SPS","VOS","COS","COB","JO2","DI2","SP2","VO2","VO2b"]
-		for (act=0;act<tabActions.length;act++){
+		actionsLegends=["ETU","TRA","JOS","SPS","VOS","COS","COB","JO2","DI2","SP2","VO2","VO2b"]
+		for (act=0; act<actionsLegends.length; act++){
 			tot=0;
 			for (t=0;t<creatureTotalLog.length;t++) {//boucle sur les times
 				let nbcr = creatureTotalLog[t].length;
 				for (ncr = 0; ncr < nbcr; ncr++) {//boucle sur les créatures
-					if (creatureTotalLog[t][ncr][3] == tabActions[act])
+					if (creatureTotalLog[t][ncr][3] == actionsLegends[act])
 						tot++;
 				}
 			}
-			ctx.fillText(tabActions[act]+" : " + Math.round(tot/creatureTotalLog.length),10+100*act,1150);
+			ctx.fillText(actionsLegends[act]+" : " + Math.round(tot/creatureTotalLog.length),10+100*act,1150);
 		}
 
 	}
@@ -130,10 +129,10 @@
 			}
 			//console.log(tabtemp)
 		} else {//cas d'une moyenne
-			for (t=0;t<creatureTotalLog.length;t++) {//boucle sur les times
+			for (let t=0;t<creatureTotalLog.length;t++) {//boucle sur les times
 				let nbcr=creatureTotalLog[t].length;
 				let tot=0;
-				for (ncr=0;ncr<nbcr;ncr++){//boucle sur les créatures
+				for (let ncr=0;ncr<nbcr;ncr++){//boucle sur les créatures
 					tot+=creatureTotalLog[t][ncr][n_tab][cat]
 				}
 				tabtemp.push(tot/nbcr)
@@ -170,15 +169,15 @@ function fnGraph(x,y,l,h,max,tab,rect,clear,color,textLegend, hLegend){
 		ctx.font="12pt Arial";
 
 		if(Number.isInteger(textLegend)){
-			textLegend = legendsPersonality[textLegend];
+			textLegend = personalityLegends[textLegend];
 
 		}
 		console.log(textLegend + "  " + x + "  " + y + "  " + hLegend);
 
 		ctx.fillText(textLegend,x+3,y-3-hLegend)
 	//}
-	n=tab.length
-	incx=l/(n-1);//nb intervalles
+	let n = tab.length
+	let incx = l/(n-1);//nb intervalles
 	//Tracé en rouge
 	ctx.strokeStyle=color;
 	ctx.beginPath();
@@ -197,7 +196,7 @@ function fnGraphCount(x,y,l,h,tabCat,tabColor,tabVal,rect){
 	//Dessine des rectangles pour montrer les occurences des valeurs de tabCat dans tabVal
 	//tabCat contient des catégories (ex ["CO","SP","TR"])
 	//tabVal des valeurs (ex ["CO","SP","CO","CO","TR"])
-	// tabVal des couleurs, exemple ["red","orange","yellow"]
+	// tabColor des couleurs, exemple ["red","orange","yellow"]
 
 	// cadre si besoin
 	if (rect){
@@ -206,13 +205,13 @@ function fnGraphCount(x,y,l,h,tabCat,tabColor,tabVal,rect){
 		ctx.fillStyle="lightgrey";
 		ctx.fillRect(x,y,l,-h);
 	}
-	cl=tabCat.length;
-	n=tabVal.length
-	incx=l/n;//nb intervalles
+	let cl = tabCat.length;
+	let n = tabVal.length
+	let incx = l/n;//nb intervalles
 
-	//Ecriture des valeurs (petits rectangles
-	for (v=0;v<tabVal.length;v++){
-		for (c=0;c<cl;c++) {
+	//Ecriture des valeurs (petits rectangles)
+	for (let v=0;v<tabVal.length;v++){
+		for (let c=0;c<cl;c++) {
 			if (tabVal[v]==tabCat[c]){
 				//rectangle de hauteur et largeur
 				ctx.fillStyle=tabColor[c];//choix de la bonne couleur
@@ -223,21 +222,21 @@ function fnGraphCount(x,y,l,h,tabCat,tabColor,tabVal,rect){
 	}
 	ctx.font="12pt Arial";
 	//Ecriture des catégories
-	for (c=0;c<cl;c++){
+	for (let c=0;c<cl;c++){
 		ctx.fillStyle="black";
 		ctx.fillText(tabCat[c],x+3,y-(c+0.2)*h/cl)
 	}
 }
 
 function fnSuiviActionCreature() {
-	nc=parseInt(document.getElementById("creature").value);
-	selectedStatus=document.getElementById("action").value;
+	let nc=parseInt(document.getElementById("creature").value);
+	let selectedStatus=document.getElementById("action").value;
 	document.getElementById("creatureActions").value = "";
-	tabtemp=[];
-	for (t = 0; t < creatureTotalLog.length; t++) {//boucle sur les times
+	let tabtemp=[];
+	for (let t = 0; t < creatureTotalLog.length; t++) {//boucle sur les times
 		tabtemp.push({"action":creatureTotalLog[t][nc][3],"status":creatureTotalLog[t][nc][4][selectedStatus]})
 	}
-	for (t = 0; t < creatureTotalLog.length; t++) {//boucle sur les times
+	for (let t = 0; t < creatureTotalLog.length; t++) {//boucle sur les times
 		//console.log(tabtemp[t].action + "/" + tabtemp[t].BC)
 		document.getElementById("creatureActions").value += tabtemp[t].action + "/" + tabtemp[t].status + "\n";
 	}
