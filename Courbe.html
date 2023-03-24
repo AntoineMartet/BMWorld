@@ -4,11 +4,14 @@
 	<title> Courbes </title>
 	Collez dans le textarea l'historique à tester puis pressez "Go". Personnage à analyser:
 	<input type="text" id="creature" value="0">
-	<button onclick="fnAnalyse()">Go</button>
-	<button onclick="fnSuiviActionCreature()">Suivi Action creature</button><br>
+	<button onclick="fnAnalyse()">Graphes créature + monde</button>
+	<input type="text" id="action" value="Exemple : BC">
+	<button onclick="fnSuiviActionCreature()">Suivi actions + statut choisi d'une créature</button><br>
 	<textarea id="log" rows="5", cols="160"></textarea>
-	<canvas id="dessin" width="1600" height="1200" style="border:1px solid black;background-color:lightblue">
-	</canvas>
+	<canvas id="dessin" width="1600" height="1200" style="border:1px solid black;background-color:lightblue"></canvas>
+	<div>
+		<textarea id="creatureActions" rows="50" cols="180"></textarea>
+	</div>
 </body>
 </html>
 
@@ -224,19 +227,20 @@ function fnGraphCount(x,y,l,h,tabCat,tabColor,tabVal,rect){
 		ctx.fillStyle="black";
 		ctx.fillText(tabCat[c],x+3,y-(c+0.2)*h/cl)
 	}
-
 }
 
 function fnSuiviActionCreature() {
-	nc=parseInt(document.getElementById("creature").value)
+	nc=parseInt(document.getElementById("creature").value);
+	selectedStatus=document.getElementById("action").value;
+	document.getElementById("creatureActions").value = "";
 	tabtemp=[];
 	for (t = 0; t < creatureTotalLog.length; t++) {//boucle sur les times
-		tabtemp.push({"action":creatureTotalLog[t][nc][3],"BC":creatureTotalLog[t][nc][4].BC})
+		tabtemp.push({"action":creatureTotalLog[t][nc][3],"status":creatureTotalLog[t][nc][4][selectedStatus]})
 	}
 	for (t = 0; t < creatureTotalLog.length; t++) {//boucle sur les times
-		console.log(tabtemp[t].action + "/" + tabtemp[t].BC)
+		//console.log(tabtemp[t].action + "/" + tabtemp[t].BC)
+		document.getElementById("creatureActions").value += tabtemp[t].action + "/" + tabtemp[t].status + "\n";
 	}
-
 }
 
 </script>
