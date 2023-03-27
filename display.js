@@ -14,7 +14,6 @@ let camera1; //création des deux caméras
 let camera2;
 let camera3;
 let politic = document.getElementById("WorldTypeList").value ;
-let hasSpecialChar ;
 let actualSpecialChar = 0;
 
 let img; //chargement de l'image de fond

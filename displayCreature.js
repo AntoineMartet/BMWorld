@@ -72,7 +72,7 @@ function fnDisplayCreature(o, index) {
                 cylinder(14,3);
                 actualSpecialChar = 1;
             } else if (creatureTotal[index].status.FC <= 80 && actualSpecialChar == 1){
-                actualSpecialChar == 0
+                actualSpecialChar == 0;
             }
 
 
@@ -101,7 +101,7 @@ function fnDisplayCreature(o, index) {
                 actualSpecialChar = 2;
 
             } else if (creatureTotal[index].status.RA <= 80 && actualSpecialChar == 2){
-                actualSpecialChar == 0
+                actualSpecialChar == 0;
             }
 
 
@@ -121,7 +121,7 @@ function fnDisplayCreature(o, index) {
                 actualSpecialChar =3;
 
             } else if (creatureTotal[index].status.RE <= 80 && actualSpecialChar == 3){
-                actualSpecialChar = 0
+                actualSpecialChar = 0;
             }
 
             if (creatureTotal[index].status.CP >= 80 && actualSpecialChar == 0){   //Caractéristique compétence
@@ -144,7 +144,7 @@ function fnDisplayCreature(o, index) {
 
 
             }else if (creatureTotal[index].status.CP <= 80 && actualSpecialChar == 4){
-                actualSpecialChar == 0
+                actualSpecialChar == 0;
             }
 
             if (creatureTotal[index].status.BC >= 80 && actualSpecialChar == 0){   //Caractéristique bien-être
@@ -173,7 +173,7 @@ function fnDisplayCreature(o, index) {
                 actualSpecialChar = 5;
 
             }else if (creatureTotal[index].status.BC <= 80 && actualSpecialChar == 5){
-                actualSpecialChar == 0
+                actualSpecialChar == 0;
             }
 
             if (creatureTotal[index].status.RP >= 80 && actualSpecialChar == 0){   //Caratéristique richesse possession
@@ -237,7 +237,51 @@ function fnDisplayCreature(o, index) {
                 box(19,1,1);
                 actualSpecialChar = 6;
             }else if (creatureTotal[index].status.RP <= 80 && actualSpecialChar == 6){
-                actualSpecialChar == 0
+                actualSpecialChar == 0;
+            }
+
+            if (creatureTotal[index].status.BL >= 80 && actualSpecialChar == 0){
+                translate(-5,-20,0);
+                emissiveMaterial(255, 249, 21); //brillant
+                fill("#FFFF80");
+                sphere(2);
+                translate(30,-5,-8);
+                sphere(4);
+                translate(20,-10,30);
+                sphere(2);
+                translate(-70,5,5);
+                sphere(5);
+                translate(40,-5,15);
+                sphere(2);
+                translate(-25,-15,-10);
+                sphere(3);
+                translate(-22,121,-27);
+                fill("darkgreen");
+                cylinder(18,3); //base du lotus
+                translate(0,-9,0);
+                fill("pink");
+                rotateZ(90);
+                rotateX(90);
+                ellipsoid(9,1,3); //pétale central
+                translate(1,0,5);
+                fill("pink");
+                rotateY(20);
+                ellipsoid(9,1,3); //premier pétale gauche
+                translate(1,0,5);
+                fill("pink");
+                rotateY(20);
+                ellipsoid(9,1,3);//deuxième pétale gauche
+                translate(7,0,-13);
+                fill("pink");
+                rotateY(-60);
+                ellipsoid(9,1,3);//premier pétale droite
+                translate(1,0,-4);
+                fill("pink");
+                rotateY(-25);
+                ellipsoid(9,1,3);//deuxième pétale droite
+                actualSpecialChar = 7;
+            } else if (creatureTotal[index].status.BL <= 80 && actualSpecialChar == 7){
+                actualSpecialChar == 0;
             }
 
             pop();
@@ -257,7 +301,7 @@ function fnDisplayCreature(o, index) {
             sphere(legCylinderRadius); // pied gauche
             pop();
 
-            Char = false;
+
             break;
 
         case 2: // box
@@ -304,7 +348,7 @@ function fnDisplayCreature(o, index) {
                 cylinder(14,3);
                 actualSpecialChar = 1;
             }else if (creatureTotal[index].status.FC <= 80 && actualSpecialChar == 1){
-                actualSpecialChar == 0
+                actualSpecialChar == 0;
             }
             if (creatureTotal[index].status.RA >= 80 && actualSpecialChar == 0){   //Caractéristique richesse argent
                 translate(-25,0,5); //Billet
@@ -327,7 +371,7 @@ function fnDisplayCreature(o, index) {
                 torus(2,1);
                 actualSpecialChar = 2;
             } else if (creatureTotal[index].status.RA <= 80 && actualSpecialChar == 2){
-                actualSpecialChar == 0
+                actualSpecialChar == 0;
             }
 
 
@@ -346,7 +390,7 @@ function fnDisplayCreature(o, index) {
                 ellipsoid(5,35);
                 actualSpecialChar = 3;
             }else if (creatureTotal[index].status.RE <= 80 && actualSpecialChar == 3){
-                actualSpecialChar == 0
+                actualSpecialChar == 0;
             }
 
             if (creatureTotal[index].status.CP >= 80 && actualSpecialChar == 0){   //Caractéristique compétence
@@ -366,7 +410,7 @@ function fnDisplayCreature(o, index) {
                 actualSpecialChar = 4;
 
             } else if (creatureTotal[index].status.CP <= 80 && actualSpecialChar == 4){
-                actualSpecialChar == 0
+                actualSpecialChar == 0;
             }
 
             if (creatureTotal[index].status.BC >= 80 && actualSpecialChar == 0){   //Caractéristique bien-être
@@ -393,7 +437,7 @@ function fnDisplayCreature(o, index) {
                 actualSpecialChar = 5 ;
 
             } else if (creatureTotal[index].status.BC <= 80 && actualSpecialChar == 5){
-                actualSpecialChar == 0
+                actualSpecialChar == 0;
             }
 
             if (creatureTotal[index].status.RP >= 80 && actualSpecialChar == 0){   //Caractéristique richesse possession
@@ -437,7 +481,51 @@ function fnDisplayCreature(o, index) {
                 box(19,1,1);
                 actualSpecialChar = 6 ;
             } else if (creatureTotal[index].status.RP    <= 80 && actualSpecialChar == 6){
-                actualSpecialChar == 0
+                actualSpecialChar == 0;
+            }
+
+            if (crea<creatureTotal[index].status.BL >= 80 && actualSpecialChar == 0) {
+                translate(-12,-32,0);
+                emissiveMaterial(255, 249, 21); //brillant
+                fill("#FFFF80");
+                sphere(2);
+                translate(30,-5,-8);
+                sphere(4);
+                translate(20,-10,30);
+                sphere(2);
+                translate(-70,5,5);
+                sphere(5);
+                translate(40,-5,15);
+                sphere(2);
+                translate(-25,-15,-10);
+                sphere(3);
+                translate(-16,136,-27);
+                fill("darkgreen");
+                cylinder(18,3); //base du lotus
+                translate(0,-9,0);
+                fill("pink");
+                rotateZ(90);
+                rotateX(90);
+                ellipsoid(9,1,3); //pétale central
+                translate(1,0,5);
+                fill("pink");
+                rotateY(20);
+                ellipsoid(9,1,3); //premier pétale gauche
+                translate(1,0,5);
+                fill("pink");
+                rotateY(20);
+                ellipsoid(9,1,3);//deuxième pétale gauche
+                translate(7,0,-13);
+                fill("pink");
+                rotateY(-60);
+                ellipsoid(9,1,3);//premier pétale droite
+                translate(1,0,-4);
+                fill("pink");
+                rotateY(-25);
+                ellipsoid(9,1,3);//deuxième pétale droite
+                actualSpecialChar = 7;
+            } else if (creatureTotal[index].status.BL    <= 80 && actualSpecialChar == 7){
+                actualSpecialChar == 0;
             }
 
 
@@ -506,7 +594,7 @@ function fnDisplayCreature(o, index) {
                 cylinder(14,3);
                 actualSpecialChar = 1;
             } else if (creatureTotal[index].status.FC <= 80 && actualSpecialChar == 1){
-                actualSpecialChar == 0
+                actualSpecialChar == 0;
             }
 
 
@@ -525,7 +613,7 @@ function fnDisplayCreature(o, index) {
                 ellipsoid(5,25);
                 actualSpecialChar = 2;
             } else if (creatureTotal[index].status.RE <= 80 && actualSpecialChar == 2){
-                actualSpecialChar == 0
+                actualSpecialChar == 0;
             }
 
 
@@ -552,7 +640,7 @@ function fnDisplayCreature(o, index) {
                 torus(2,1);
                 actualSpecialChar = 3 ;
             } else if (creatureTotal[index].status.RA <= 80 && actualSpecialChar == 3){
-                actualSpecialChar == 0
+                actualSpecialChar == 0;
             }
 
             if (creatureTotal[index].status.CP >= 80 && actualSpecialChar == 0){   //Caractéristique Compétence
@@ -570,7 +658,7 @@ function fnDisplayCreature(o, index) {
                 torus(5,1);
                 actualSpecialChar = 4;
             } else if (creatureTotal[index].status.CP <= 80 && actualSpecialChar == 4){
-                actualSpecialChar == 0
+                actualSpecialChar == 0;
             }
 
             if (creatureTotal[index].status.BC  >= 80 && actualSpecialChar == 0){ //Caractéristique bien-être
@@ -598,7 +686,7 @@ function fnDisplayCreature(o, index) {
                 box(8,2,2);
                 actualSpecialChar = 5;
             } else if (creatureTotal[index].status.BC <= 80 && actualSpecialChar == 5){
-                actualSpecialChar == 0
+                actualSpecialChar == 0;
             }
 
             if (creatureTotal[index].status.RP >= 80 && actualSpecialChar == 0){   //Caractéristique richesse possession
@@ -648,7 +736,51 @@ function fnDisplayCreature(o, index) {
                 box(19,1,1);
                 actualSpecialChar = 6;
             } else if (creatureTotal[index].status.RP <= 80 && actualSpecialChar == 6){
-                actualSpecialChar == 0
+                actualSpecialChar == 0;
+            }
+
+            if(creatureTotal[index].status.BL >= 80 && actualSpecialChar == 0 ){
+                translate(-12,-20,-10);
+                emissiveMaterial(255, 249, 21); //brillant
+                fill("#FFFF80");
+                sphere(2);
+                translate(30,-5,-8);
+                sphere(4);
+                translate(20,-10,30);
+                sphere(2);
+                translate(-70,5,5);
+                sphere(5);
+                translate(40,-5,15);
+                sphere(2);
+                translate(-25,-15,-10);
+                sphere(3);
+                translate(-14,151,-27);
+                fill("darkgreen");
+                cylinder(18,3); //base du lotus
+                translate(0,-9,0);
+                fill("pink");
+                rotateZ(90);
+                rotateX(90);
+                ellipsoid(9,1,3); //pétale central
+                translate(1,0,5);
+                fill("pink");
+                rotateY(20);
+                ellipsoid(9,1,3); //premier pétale gauche
+                translate(1,0,5);
+                fill("pink");
+                rotateY(20);
+                ellipsoid(9,1,3);//deuxième pétale gauche
+                translate(7,0,-13);
+                fill("pink");
+                rotateY(-60);
+                ellipsoid(9,1,3);//premier pétale droite
+                translate(1,0,-4);
+                fill("pink");
+                rotateY(-25);
+                ellipsoid(9,1,3);//deuxième pétale droite
+                actualSpecialChar = 7;
+            } else if (creatureTotal[index].status.BL <= 80 && actualSpecialChar == 7){
+                actualSpecialChar == 0;
             }
 
             pop();
@@ -715,7 +847,7 @@ function fnDisplayCreature(o, index) {
                 cylinder(14,3);
                 actualSpecialChar = 1;
             } else if (creatureTotal[index].status.FC <= 80 && actualSpecialChar == 1){
-                actualSpecialChar == 0
+                actualSpecialChar == 0;
             }
 
 
@@ -740,7 +872,7 @@ function fnDisplayCreature(o, index) {
                 torus(2,1);
                 actualSpecialChar = 2;
             } else if (creatureTotal[index].status.RA <= 80 && actualSpecialChar == 2){
-                actualSpecialChar == 0
+                actualSpecialChar == 0;
             }
 
 
@@ -765,7 +897,7 @@ function fnDisplayCreature(o, index) {
                 ellipsoid(5,10);
                 actualSpecialChar = 3;
             } else if (creatureTotal[index].status.RE <= 80 && actualSpecialChar == 3){
-                actualSpecialChar == 0
+                actualSpecialChar == 0;
             }
 
             if (creatureTotal[index].status.CP >= 80 && actualSpecialChar == 0){  //Caractéristique Compétence
@@ -788,7 +920,7 @@ function fnDisplayCreature(o, index) {
                 torus(5,1);
                 actualSpecialChar = 4
             } else if (creatureTotal[index].status.CP <= 80 && actualSpecialChar == 4){
-                actualSpecialChar == 0
+                actualSpecialChar == 0;
             }
 
             if (creatureTotal[index].status.BC  >= 80 && actualSpecialChar == false){  //Caractéristique bien-être
@@ -817,7 +949,7 @@ function fnDisplayCreature(o, index) {
                 actualSpecialChar = 5
             }
             else if (creatureTotal[index].status.BC <= 80 && actualSpecialChar == 5){
-                actualSpecialChar == 0
+                actualSpecialChar == 0;
             }
 
             if (creatureTotal[index].status.RP >= 80 && actualSpecialChar == false){  //Caractéristique richesse possession
@@ -861,7 +993,51 @@ function fnDisplayCreature(o, index) {
                 box(19,1,1);
                 actualSpecialChar = 6;
             } else if (creatureTotal[index].status.RP <= 80 && actualSpecialChar == 6){
-                actualSpecialChar == 0
+                actualSpecialChar == 0;
+            }
+
+            if(creatureTotal[index].status.BL >= 80 && actualSpecialChar == 0){
+                translate(-12,-20,0);
+                emissiveMaterial(255, 249, 21); //brillant
+                fill("#FFFF80");
+                sphere(2);
+                translate(30,-5,-8);
+                sphere(4);
+                translate(20,-10,30);
+                sphere(2);
+                translate(-70,5,5);
+                sphere(5);
+                translate(40,-5,15);
+                sphere(2);
+                translate(-25,-15,-10);
+                sphere(3);
+                translate(-18,161,-27);
+                fill("darkgreen");
+                cylinder(18,3); //base du lotus
+                translate(0,-9,0);
+                fill("pink");
+                rotateZ(90);
+                rotateX(90);
+                ellipsoid(9,1,3); //pétale central
+                translate(1,0,5);
+                fill("pink");
+                rotateY(20);
+                ellipsoid(9,1,3); //premier pétale gauche
+                translate(1,0,5);
+                fill("pink");
+                rotateY(20);
+                ellipsoid(9,1,3);//deuxième pétale gauche
+                translate(7,0,-13);
+                fill("pink");
+                rotateY(-60);
+                ellipsoid(9,1,3);//premier pétale droite
+                translate(1,0,-4);
+                fill("pink");
+                rotateY(-25);
+                ellipsoid(9,1,3);//deuxième pétale droite
+                actualSpecialChar = 7;
+            } else if (creatureTotal[index].status.BL <= 80 && actualSpecialChar == 7){
+                actualSpecialChar == 0;
             }
 
             pop();
