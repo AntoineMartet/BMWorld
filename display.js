@@ -15,6 +15,7 @@ let camera; //création des deux caméras
 let camera2;
 let politic = document.getElementById("WorldTypeList").value ;
 let hasSpecialChar ;
+let actualSpecialChar = 0;
 
 let img; //chargement de l'image de fond
 /*let matrix;

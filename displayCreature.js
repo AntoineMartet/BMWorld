@@ -53,7 +53,7 @@ function fnDisplayCreature(o, index) {
             fill("black");
             sphere(3); // nez
 
-            if (creatureTotal[index].status.FC >= 80 && hasSpecialChar == false){ //Caractéristique force
+            if (creatureTotal[index].status.FC >= 80 && actualSpecialChar == 0){ //Caractéristique force
                 fill(ColorCylinder); //bras du personnage
                 translate(40,7,10);
                 sphere(14);
@@ -70,11 +70,13 @@ function fnDisplayCreature(o, index) {
                 translate(0,-10,0);
                 fill("black");
                 cylinder(14,3);
-                hasSpecialChar = true ;
+                actualSpecialChar = 1;
+            } else if (creatureTotal[index].status.FC <= 80 && actualSpecialChar == 1){
+                actualSpecialChar == 0
             }
 
 
-            if (creatureTotal[index].status.RA >= 80 && hasSpecialChar == false){ //Caractéristique richesse argent
+            if (creatureTotal[index].status.RA >= 80 && actualSpecialChar == 0){ //Caractéristique richesse argent
                 translate(-40,25,5);    //billet
                 fill("green");
                 box(5,14);
@@ -96,11 +98,14 @@ function fnDisplayCreature(o, index) {
                 translate(5,5,-1);
                 rotateX(-20);
                 torus(2,1);
-                hasSpecialChar = true;
+                actualSpecialChar = 2;
+
+            } else if (creatureTotal[index].status.RA <= 80 && actualSpecialChar == 2){
+                actualSpecialChar == 0
             }
 
 
-            if (creatureTotal[index].status.RE >= 80 && hasSpecialChar == false) {   //caractéristique relation
+            if (creatureTotal[index].status.RE >= 80 && actualSpecialChar == 0) {   //caractéristique relation
                 translate(0,-20,15);    //halo de lumière
                 rotateX(90);
                 emissiveMaterial(255, 249, 21);
@@ -113,10 +118,13 @@ function fnDisplayCreature(o, index) {
                 ellipsoid(5,65);
                 translate(0,0,-5);
                 ellipsoid(5,60);
-                hasSpecialChar = true;
+                actualSpecialChar =3;
+
+            } else if (creatureTotal[index].status.RE <= 80 && actualSpecialChar == 3){
+                actualSpecialChar = 0
             }
 
-            if (creatureTotal[index].status.CP >= 80 && hasSpecialChar == false){   //Caractéristique compétence
+            if (creatureTotal[index].status.CP >= 80 && actualSpecialChar == 0){   //Caractéristique compétence
                 translate(30,7,15); //bretelle1
                 rotateZ(90);
                 cylinder(17,5);
@@ -132,10 +140,14 @@ function fnDisplayCreature(o, index) {
                 translate(0,-22,0)
                 rotateY(90);
                 torus(5,1);
-                hasSpecialChar = true;
+                actualSpecialChar = 4
+
+
+            }else if (creatureTotal[index].status.CP <= 80 && actualSpecialChar == 4){
+                actualSpecialChar == 0
             }
 
-            if (creatureTotal[index].status.BC >= 80 && hasSpecialChar == false){   //Caractéristique bien-être
+            if (creatureTotal[index].status.BC >= 80 && actualSpecialChar == 0){   //Caractéristique bien-être
                 fill("yellow"); //fleur et pétales
                 rotateX(-30);
                 translate(33,-5,0);
@@ -158,10 +170,13 @@ function fnDisplayCreature(o, index) {
                 translate(-7,-3,0); //paillehaut
                 rotateZ(45);
                 box(8,2,2);
-                hasSpecialChar = true;
+                actualSpecialChar = 5;
+
+            }else if (creatureTotal[index].status.BC <= 80 && actualSpecialChar == 5){
+                actualSpecialChar == 0
             }
 
-            if (creatureTotal[index].status.RE >= 80 && hasSpecialChar == false){   //Caratéristique richesse possession
+            if (creatureTotal[index].status.RP >= 80 && actualSpecialChar == 0){   //Caratéristique richesse possession
                 emissiveMaterial(255, 249, 21); //collier
                 fill("gold");
                 translate(35,8,16);
@@ -220,7 +235,9 @@ function fnDisplayCreature(o, index) {
                 box(19,1,1);
                 translate(0,2,0);
                 box(19,1,1);
-                hasSpecialChar = true;
+                actualSpecialChar = 6;
+            }else if (creatureTotal[index].status.RP <= 80 && actualSpecialChar == 6){
+                actualSpecialChar == 0
             }
 
             pop();
@@ -240,7 +257,7 @@ function fnDisplayCreature(o, index) {
             sphere(legCylinderRadius); // pied gauche
             pop();
 
-            hasSpecialChar = false;
+            Char = false;
             break;
 
         case 2: // box
@@ -268,7 +285,7 @@ function fnDisplayCreature(o, index) {
             fill("black");
             sphere(8); // nez
 
-            if (randomCube == 1){ //Caractéristique force
+            if (creatureTotal[index].status.FC >= 80 && actualSpecialChar == 0){ //Caractéristique force
                 fill(ColorCube);    //bras du personnage
                 translate(30,7,10);
                 sphere(14);
@@ -284,9 +301,12 @@ function fnDisplayCreature(o, index) {
                 cylinder(2,25);
                 translate(0,-10,0);
                 fill("black");
-                cylinder(14,3);}
-
-            if (randomCube == 2){   //Caractéristique richesse argent
+                cylinder(14,3);
+                actualSpecialChar = 1;
+            }else if (creatureTotal[index].status.FC <= 80 && actualSpecialChar == 1){
+                actualSpecialChar == 0
+            }
+            if (creatureTotal[index].status.RA >= 80 && actualSpecialChar == 0){   //Caractéristique richesse argent
                 translate(-25,0,5); //Billet
                 fill("green");
                 box(5,14);
@@ -304,10 +324,14 @@ function fnDisplayCreature(o, index) {
                 translate(4,10,0);
                 torus(4,1);
                 translate(5,5,0);
-                torus(2,1);}
+                torus(2,1);
+                actualSpecialChar = 2;
+            } else if (creatureTotal[index].status.RA <= 80 && actualSpecialChar == 2){
+                actualSpecialChar == 0
+            }
 
 
-            if (randomCube == 3){   //Caractéristique relation
+            if (creatureTotal[index].status.RE >= 80 && actualSpecialChar == 0){   //Caractéristique relation
                 translate(0,-40,23);  //Halo de lumière
                 rotateX(90);
                 emissiveMaterial(255, 249, 21);
@@ -319,9 +343,13 @@ function fnDisplayCreature(o, index) {
                 translate(0,0,-5);
                 ellipsoid(5,40);
                 translate(0,0,-5);
-                ellipsoid(5,35);}
+                ellipsoid(5,35);
+                actualSpecialChar = 3;
+            }else if (creatureTotal[index].status.RE <= 80 && actualSpecialChar == 3){
+                actualSpecialChar == 0
+            }
 
-            if (randomCube == 4){   //Caractéristique compétence
+            if (creatureTotal[index].status.CP >= 80 && actualSpecialChar == 0){   //Caractéristique compétence
                 translate(20,-4,25);
                 box(4,53); //bretelle1
                 translate(-40,0,0);
@@ -334,9 +362,14 @@ function fnDisplayCreature(o, index) {
                 box(10,15,25); //profondeur, hauteur, largeur, poche
                 translate(0,-22,0)
                 rotateY(90);
-                torus(5,1);}
+                torus(5,1);
+                actualSpecialChar = 4;
 
-            if (randomCube == 5){   //Caractéristique bien-être
+            } else if (creatureTotal[index].status.CP <= 80 && actualSpecialChar == 4){
+                actualSpecialChar == 0
+            }
+
+            if (creatureTotal[index].status.BC >= 80 && actualSpecialChar == 0){   //Caractéristique bien-être
                 fill("yellow"); //Fleur et pétales
                 translate(20,-25,-3);
                 sphere(3);
@@ -356,9 +389,14 @@ function fnDisplayCreature(o, index) {
                 box(9.5,2,2);
                 translate(-7,-3,0); //paillehaut
                 rotateZ(45);
-                box(8,2,2);}
+                box(8,2,2);
+                actualSpecialChar = 5 ;
 
-            if (randomCube == 6){   //Caractéristique richesse possession
+            } else if (creatureTotal[index].status.BC <= 80 && actualSpecialChar == 5){
+                actualSpecialChar == 0
+            }
+
+            if (creatureTotal[index].status.RP >= 80 && actualSpecialChar == 0){   //Caractéristique richesse possession
                 emissiveMaterial(255, 249, 21); //Collier
                 fill("gold");
                 translate(21,16,-2);
@@ -396,7 +434,11 @@ function fnDisplayCreature(o, index) {
                 rotateZ(-90)
                 box(19,1,1);
                 translate(0,2,0);
-                box(19,1,1);}
+                box(19,1,1);
+                actualSpecialChar = 6 ;
+            } else if (creatureTotal[index].status.RP    <= 80 && actualSpecialChar == 6){
+                actualSpecialChar == 0
+            }
 
 
             pop();
@@ -445,7 +487,7 @@ function fnDisplayCreature(o, index) {
 
 
 
-            if (randomCone == 1){   //Caractéristique force
+            if (creatureTotal[index].status.FC >= 80 && actualSpecialChar == 0){   //Caractéristique force
                 fill(ColorCone);
                 translate(20,20,10);    //Bras du personnage
                 sphere(14);
@@ -461,10 +503,14 @@ function fnDisplayCreature(o, index) {
                 cylinder(2,25);
                 translate(0,-10,0);
                 fill("black");
-                cylinder(14,3);}
+                cylinder(14,3);
+                actualSpecialChar = 1;
+            } else if (creatureTotal[index].status.FC <= 80 && actualSpecialChar == 1){
+                actualSpecialChar == 0
+            }
 
 
-            if (randomCone == 2){   //Caractéristique relation
+            if (creatureTotal[index].status.RE >= 80 && actualSpecialChar  == 0){   //Caractéristique relation
                 rotateX(90);  //Halo de lumière
                 translate(0,10,15);
                 emissiveMaterial(255, 249, 21);
@@ -476,10 +522,14 @@ function fnDisplayCreature(o, index) {
                 translate(0,0,-5);
                 ellipsoid(5,30);
                 translate(0,0,-5);
-                ellipsoid(5,25);}
+                ellipsoid(5,25);
+                actualSpecialChar = 2;
+            } else if (creatureTotal[index].status.RE <= 80 && actualSpecialChar == 2){
+                actualSpecialChar == 0
+            }
 
 
-            if (randomCone == 3){   //Caractéristique richesse argent
+            if (creatureTotal[index].status.RA >= 80 && actualSpecialChar == 0){   //Caractéristique richesse argent
                 rotateZ(17);    //Billet
                 translate(-13,30,10);
                 fill("green");
@@ -499,9 +549,13 @@ function fnDisplayCreature(o, index) {
                 translate(4,10,0);
                 torus(4,1);
                 translate(5,5,0);
-                torus(2,1);}
+                torus(2,1);
+                actualSpecialChar = 3 ;
+            } else if (creatureTotal[index].status.RA <= 80 && actualSpecialChar == 3){
+                actualSpecialChar == 0
+            }
 
-            if (randomCone == 4){   //Caractéristique Compétence
+            if (creatureTotal[index].status.CP >= 80 && actualSpecialChar == 0){   //Caractéristique Compétence
                 translate(40,30,10);
                 translate(-40,0,0);
                 cylinder(21,7); //bretelle1
@@ -513,9 +567,13 @@ function fnDisplayCreature(o, index) {
                 box(10,15,25); //profondeur, hauteur, largeur, poche
                 translate(0,-22,0)
                 rotateY(90);
-                torus(5,1);}
+                torus(5,1);
+                actualSpecialChar = 4;
+            } else if (creatureTotal[index].status.CP <= 80 && actualSpecialChar == 4){
+                actualSpecialChar == 0
+            }
 
-            if (randomCone == 5){ //Caractéristique bien-être
+            if (creatureTotal[index].status.BC  >= 80 && actualSpecialChar == 0){ //Caractéristique bien-être
                 fill("yellow"); //Fleur et pétales
                 rotateX(-15);
                 translate(0,-23,0);
@@ -537,9 +595,13 @@ function fnDisplayCreature(o, index) {
                 box(9.5,2,2);
                 translate(-7,-3,0); //paillehaut
                 rotateZ(45);
-                box(8,2,2);}
+                box(8,2,2);
+                actualSpecialChar = 5;
+            } else if (creatureTotal[index].status.BC <= 80 && actualSpecialChar == 5){
+                actualSpecialChar == 0
+            }
 
-            if (randomCone == 6){   //Caractéristique richesse possession
+            if (creatureTotal[index].status.RP >= 80 && actualSpecialChar == 0){   //Caractéristique richesse possession
                 rotateX(-20);   //Collier
                 emissiveMaterial(255, 249, 21);
                 fill("gold");
@@ -583,7 +645,11 @@ function fnDisplayCreature(o, index) {
                 rotateZ(-90)
                 box(19,1,1);
                 translate(0,2,0);
-                box(19,1,1);}
+                box(19,1,1);
+                actualSpecialChar = 6;
+            } else if (creatureTotal[index].status.RP <= 80 && actualSpecialChar == 6){
+                actualSpecialChar == 0
+            }
 
             pop();
             // Pieds et jambes
@@ -630,7 +696,7 @@ function fnDisplayCreature(o, index) {
             sphere(3); // nez
 
 
-            if (randomTorus == 1){ //Caractéristique force
+            if (creatureTotal[index].status.FC >= 80 && actualSpecialChar == 0){ //Caractéristique force
                 fill(ColorTorus);   //Bras du personnage
                 translate(40,30,10);
                 sphere(14);
@@ -646,10 +712,14 @@ function fnDisplayCreature(o, index) {
                 cylinder(2,25);
                 translate(0,-10,0);
                 fill("black");
-                cylinder(14,3);}
+                cylinder(14,3);
+                actualSpecialChar = 1;
+            } else if (creatureTotal[index].status.FC <= 80 && actualSpecialChar == 1){
+                actualSpecialChar == 0
+            }
 
 
-            if (randomTorus == 2){  //Caractéristique richesse argent
+            if (creatureTotal[index].status.RA >= 80 && actualSpecialChar == 0){  //Caractéristique richesse argent
                 translate(-40,25,3);   //Billet
                 fill("green");
                 box(5,14);
@@ -667,10 +737,14 @@ function fnDisplayCreature(o, index) {
                 translate(4,10,0);
                 torus(4,1);
                 translate(5,5,0);
-                torus(2,1);}
+                torus(2,1);
+                actualSpecialChar = 2;
+            } else if (creatureTotal[index].status.RA <= 80 && actualSpecialChar == 2){
+                actualSpecialChar == 0
+            }
 
 
-            if (randomTorus == 3){  //Caractéristique relation
+            if (creatureTotal[index].status.RE >= 80 && actualSpecialChar == 0){  //Caractéristique relation
                 rotateX(90);    //Halo de lumière
                 translate(0,12,20);
                 emissiveMaterial(255, 249, 21);
@@ -688,9 +762,13 @@ function fnDisplayCreature(o, index) {
                 translate(0,0,-5);
                 ellipsoid(5,15);
                 translate(0,0,-5);
-                ellipsoid(5,10);}
+                ellipsoid(5,10);
+                actualSpecialChar = 3;
+            } else if (creatureTotal[index].status.RE <= 80 && actualSpecialChar == 3){
+                actualSpecialChar == 0
+            }
 
-            if (randomTorus == 4){  //Caractéristique Compétence
+            if (creatureTotal[index].status.CP >= 80 && actualSpecialChar == 0){  //Caractéristique Compétence
                 translate(22,7,12);
                 rotateZ(140);
                 cylinder(12,5); //bretelle1
@@ -707,9 +785,13 @@ function fnDisplayCreature(o, index) {
                 box(10,15,55); //profondeur, hauteur, largeur, poche
                 translate(0,-22,0)
                 rotateY(90);
-                torus(5,1);}
+                torus(5,1);
+                actualSpecialChar = 4
+            } else if (creatureTotal[index].status.CP <= 80 && actualSpecialChar == 4){
+                actualSpecialChar == 0
+            }
 
-            if (randomTorus == 5){  //Caractéristique bien-être
+            if (creatureTotal[index].status.BC  >= 80 && actualSpecialChar == false){  //Caractéristique bien-être
                 fill("yellow"); //Fleur et pétales
                 rotateX(-15);
                 translate(30,5,5);
@@ -731,9 +813,14 @@ function fnDisplayCreature(o, index) {
                 box(9.5,2,2);
                 translate(-7,-3,0); //paillehaut
                 rotateZ(45);
-                box(8,2,2);}
+                box(8,2,2);
+                actualSpecialChar = 5
+            }
+            else if (creatureTotal[index].status.BC <= 80 && actualSpecialChar == 5){
+                actualSpecialChar == 0
+            }
 
-            if (randomTorus == 6){  //Caractéristique richesse possession
+            if (creatureTotal[index].status.RP >= 80 && actualSpecialChar == false){  //Caractéristique richesse possession
                 emissiveMaterial(255, 249, 21); //collier
                 fill("gold");
                 translate(21,16,-2);
@@ -771,7 +858,11 @@ function fnDisplayCreature(o, index) {
                 rotateZ(-90)
                 box(19,1,1);
                 translate(0,2,0);
-                box(19,1,1);}
+                box(19,1,1);
+                actualSpecialChar = 6;
+            } else if (creatureTotal[index].status.RP <= 80 && actualSpecialChar == 6){
+                actualSpecialChar == 0
+            }
 
             pop();
             // Pieds et jambes
