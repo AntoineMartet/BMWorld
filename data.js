@@ -238,13 +238,13 @@ actions= [
 // COM = COMMUNISM
 // MON = MONARCHY
 let societyModels=[
-    {"state":"AUT", "penalty":0.2,"conditionHelp":0.5, "help":20, "conditionTax": 0.8,"tax": 20, "salary":0.8, "probaArrest": 2},
-    {"state":"ANA", "penalty":0, "conditionHelp":0, "help":0, "conditionTax": 0, "tax":0, "salary":0, "probaArrest": 1000},
-    {"state":"DEM", "penalty": 0.3, "conditionHelp":1.5, "help":15, "conditionTax": 2.5, "tax":15, "salary":2.5, "probaArrest": 3},
-    {"state":"LIB", "penalty":0.3, "conditionHelp":2.0,"help": 15, "conditionTax": 3.5, "tax":15, "salary":3.5, "probaArrest": 3},
-    {"state":"OLI", "penalty":0.1, "conditionHelp":0, "help":0, "conditionTax": 0, "tax":15, "salary":0.7, "probaArrest": 4},
-    {"state":"THE", "penalty":0.45, "conditionHelp":0.5, "help":10, "conditionTax": 0.7, "tax":20, "salary":0.6, "probaArrest": 2},
-    {"state":"COM", "penalty":0.5, "conditionHelp":0.5, "help":10, "conditionTax": 0.8, "tax":10, "salary":0.6, "probaArrest": 2},
-    {"state":"MON", "penalty":0.5, "conditionHelp":0, "help":0, "conditionTax": 0.8, "tax":30, "salary":0.5, "probaArrest": 2}
+    {"state":"AUT", "penalty":0.2,"conditionHelp":0, "help":0, "conditionTax": 30,"tax": 10, "salary":0.8, "probaArrest": 2},
+    {"state":"ANA", "penalty":0, "conditionHelp":0, "help":0, "conditionTax": 100, "tax":0, "salary":0, "probaArrest": 1000},
+    {"state":"DEM", "penalty": 0.3, "conditionHelp":20, "help":20, "conditionTax": 70, "tax":15, "salary":2.5, "probaArrest": 3},
+    {"state":"LIB", "penalty":0.3, "conditionHelp":20,"help": 15, "conditionTax": 60, "tax":15, "salary":3.5, "probaArrest": 3},
+    {"state":"OLI", "penalty":0.1, "conditionHelp":0, "help":0, "conditionTax": 0, "tax": 7, "salary":0.7, "probaArrest": 4},
+    {"state":"THE", "penalty":0.45, "conditionHelp":0, "help":0, "conditionTax": 25, "tax":10, "salary":0.6, "probaArrest": 2},
+    {"state":"COM", "penalty":0.5, "conditionHelp":30, "help":20, "conditionTax": 50, "tax":10, "salary":0.6, "probaArrest": 2},
+    {"state":"MON", "penalty":0.5, "conditionHelp":0, "help":0, "conditionTax": 30, "tax":15, "salary":0.5, "probaArrest": 2}
 ]
 //Fin les systèmes politiques----------------------------------------------------------------------------------------
