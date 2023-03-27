@@ -7,12 +7,12 @@
 
 
 let selectedCreatureIndex = 0;
-let clock = 0;
 let cycles = 0;
 let booleanPause = 0;
-let booleanCam = 0;
-let camera; //création des deux caméras
+let cameraNumber = 1;
+let camera1; //création des deux caméras
 let camera2;
+let camera3;
 let politic = document.getElementById("WorldTypeList").value ;
 let hasSpecialChar ;
 let actualSpecialChar = 0;
@@ -61,12 +61,15 @@ function setup() {
     mainDisplay = createCanvas(1200, 850, WEBGL);// canvas en 3D
     mainDisplay.parent("canvasDisplay");
     angleMode(DEGREES);// angles en degrés
+    camera1 = createCamera();
+    camera1.setPosition(-300, -500, -300);// placement de la caméra au départ, vise le centre
+    camera1.lookAt(nx / 2 * unit, -0, nz / 2 * unit);
     camera2 = createCamera();//création d'une deuxième caméra
-    camera2.setPosition(0,-500,3000);
+    camera2.setPosition(-300, -500, -300);
     camera2.lookAt(nx / 2 * unit, -0, nz / 2 * unit);
-    camera = createCamera();
-    camera.setPosition(-300, -500, -300);// placement de la caméra au départ, vise le centre
-    camera.lookAt(nx / 2 * unit, -0, nz / 2 * unit);
+    camera3 = createCamera();//création d'une troisième caméra
+    camera3.setPosition(-300, -500, -300);
+    camera3.lookAt(nx / 2 * unit, -0, nz / 2 * unit);
     normalMaterial(250);// matériaux solides
     fnTiles();// Ajoute à aWorld un certain nombre de tuiles pour le sol
     frameRate(30);// On rafraîchit x fois par seconde
@@ -104,7 +107,12 @@ function draw() {
     if (booleanPause == 0){
         fnEngine(); // Calcule le monde de l'état suivant (se trouve dans engine.js)
     }
-
+    if(cameraNumber == 2){
+        camera2.setPosition(creatureTotal[selectedCreatureIndex].position.x * unit - 500, - 400, creatureTotal[selectedCreatureIndex].position.z * unit -500);
+    }
+    if(cameraNumber == 3){
+        camera3.lookAt(creatureTotal[selectedCreatureIndex].position.x * unit, -20, creatureTotal[selectedCreatureIndex].position.z * unit);
+    }
     fnDisplay(); // Affiche les fonds des 3 canvas, le monde, les créatures et les graphes
 }
 
@@ -134,8 +142,8 @@ function fnDisplay() {
     ctxPersonPersonality.fillRect(0, 0, 600, 600);
 
     // Dessin des graphes
-    bars(legendsStatus, 130, 335, 300, 300, colors);
-    spider(legendsPersonality, 300, 188, 150, "purple", "yellow");
+    bars(statusLegends, 130, 335, 300, 300, statusColors);
+    spider(personalityLegends, 300, 188, 150, "purple", "yellow");
 
     // MAJ de l'affichage du nombre de cycles
     document.getElementById("cyclesNumber").innerHTML = "Cycles : " + cycles;
@@ -153,15 +161,20 @@ function fnUpdatePause(){
 }
 
 function fnCameraSwitch(){//fonction de changement de caméra
-    if(booleanCam == 0){
-        booleanCam = 1;
+    if(cameraNumber == 1){
+        cameraNumber = 2;
         setCamera(camera2); //changement de caméra
-        document.getElementById("SwitchCameras").innerHTML = "Caméra 1";
+        document.getElementById("SwitchCameras").innerHTML = "Passer à caméra 2";
+    }
+    else if(cameraNumber == 2){
+        cameraNumber = 3;
+        setCamera(camera3); //changement de caméra
+        document.getElementById("SwitchCameras").innerHTML = "Passer à caméra 3";
     }
     else{
-        booleanCam = 0;
-        setCamera(camera); //changement de caméra
-        document.getElementById("SwitchCameras").innerHTML = "Caméra 2";
+        cameraNumber = 1;
+        setCamera(camera1); //changement de caméra
+        document.getElementById("SwitchCameras").innerHTML = "Passer à caméra 1";
     }
 }
 
