@@ -198,7 +198,7 @@ for(let i = (creatureTotal.length);i < 100; i++) {
 //les actions: type 1= indiv, type 2= à deux, type=4 avec gagnant ou perdant
 actions= [
     {"ID":"ETU","type":1,"prob":[0, 2, 0, 0, 1],"effect":{"FC": -1,"CP":3,"RA":-0.2,"RP":-0.5,"BC":0,"BL":1,"RE":1}, "effect2":[0, 0.005,0,0,0.0025]},
-    {"ID":"TRA","type":1,"prob":[0, 1, 0, 1, 1],"effect":{"FC": 1,"CP":1,"RA":0.9,"RP":0.5,"BC":0,"BL":1,"RE":2}, "effect2":[-0.0025, 0.005,0,0.005,0.005]},
+    {"ID":"TRA","type":1,"prob":[0, 1, 0, 1, 1],"effect":{"FC": 1,"CP":1,"RA":2,"RP":0.5,"BC":0,"BL":1,"RE":2}, "effect2":[-0.0025, 0.005,0,0.005,0.005]},
     {"ID":"JOS","type":1,"prob":[2, 0, -1, 0, 0],"effect":{"FC": -1,"CP":0.5,"RA":0,"RP":0,"BC":2,"BL":1,"RE":-1}, "effect2":[0.005, -0.0025,0,0,0]},
     {"ID":"SPS","type":1,"prob":[0.5, 1, 0, 0, 0],"effect":{"FC":3,"CP":0,"RA":-0.1,"RP":0,"BC":0.5,"BL":1,"RE":-1}, "effect2":[0.0025, 0.0025,0,0,0]},
     {"ID":"COS","type":1,"prob":[2, -1, 0, 0, -1],"effect":{"FC":-2,"CP":-3,"RA":-0.4,"RP":-1,"BC":1,"BL":-2,"RE":-2}, "effect2":[0.005, -0.005,-0.0025,0,-0.005]},
@@ -208,18 +208,18 @@ actions= [
     {"ID":"DI2","type":2,"prob":[1, 0, 2, 0, 0],"effect":{"FC":0,"CP":1,"RA":0,"RP":0,"BC":1,"BL":0,"RE":2}, "effect2":[0.0025, 0.0025,0.01,0,0.0025]},
     {"ID":"SP2","type":2,"prob":[1, 1, 1, 0, 0], "effect":{"FC":4,"CP":0,"RA":-0.1,"RP":0,"BC":0.5,"BL":1,"RE":2}, "effect2":[0.01, 0.0025,0.01,0,0]},//ici les deux sont gagnants
 
-    {"ID":"VOS","type":3,"prob":[2, 0, 0, 1, -2],"effect":[{"FC":0,"CP":0,"RA":0.1,"RP":0,"BC":2,"BL":2,"RE":1},{"FC":0,"CP":0,"RA":-0.2,"RP":0,"BC":-2,"BL":-2,"RE":-1},
-                                                           {"FC":0,"CP":0,"RA":0,"RP":0,"BC":0.5,"BL":0,"RE":0},{"FC":0,"CP":0,"RA":-0.2,"RP":0,"BC":-3,"BL":-3,"RE":-2}], 
+    {"ID":"VOS","type":3,"prob":[2, 0, 0, 1, -2],"effect":[{"FC":0,"CP":0,"RA":0.1,"RP":0,"BC":2,"BL":2,"RE":1},{"FC":0,"CP":0,"RA":0,"RP":0,"BC":-2,"BL":-2,"RE":-1},
+                                                           {"FC":0,"CP":0,"RA":0,"RP":0,"BC":0.5,"BL":0,"RE":0},{"FC":0,"CP":0,"RA":0,"RP":0,"BC":-3,"BL":-3,"RE":-2}], 
                                                  "effect2":[[0.0025, -0.0025,0,0.0025,-0.005],[-0.01, -0.005,-0.0025,-0.005,0.0025],
                                                             [0.0025, 0,0,0,-0.005],[-0.005, 0.0025,-0.0025,0,-0.0025]]},
     // effect[0] vole et pas attrapé // effect[1] vole et attrapé // effect[2] vole pas et pas attrapé // effect[3] vole pas et attrapé
 
-    {"ID":"VO2","type":4,"prob":[1, -1, 0, 1, -2], "effect":[{"FC":0,"CP":0.5,"RA":0.2,"RP":0.5,"BC":2,"BL":1,"RE":0},{"FC":0,"CP":0,"RA":-0.1,"RP":0,"BC":-2,"BL":-1,"RE":-1},
-                                                             {"FC":0,"CP":0,"RA":0,"RP":0,"BC":0.5,"BL":-0.5,"RE":0},{"FC":0,"CP":0,"RA":-0.1,"RP":0,"BC":-3,"BL":-2,"RE":-1}], 
+    {"ID":"VO2","type":4,"prob":[1, -1, 0, 1, -2], "effect":[{"FC":0,"CP":0.5,"RA":0.2,"RP":0.5,"BC":2,"BL":1,"RE":0},{"FC":0,"CP":0,"RA":0,"RP":0,"BC":-2,"BL":-1,"RE":-1},
+                                                             {"FC":0,"CP":0,"RA":0,"RP":0,"BC":0.5,"BL":-0.5,"RE":0},{"FC":0,"CP":0,"RA":0,"RP":0,"BC":-3,"BL":-2,"RE":-1}], 
                                                    "effect2":[[0.005, 0,0.001,0.0025,-0.0025],[-0.0025, 0,0,0.001,0],
                                                               [0,0,0,0.0025,-0.001],[-0.005, 0.0025,-0.001,-0.001,0]]},//ici le premier est le gagnant
     // effect[0] vole et pas attrapé // effect[1] vole et attrapé // effect[2] vole pas et pas attrapé // effect[3] vole pas et attrapé
-    {"ID":"VO2b","type":5,"effect":[{"FC":0,"CP":0,"RA":-0.1,"RP":-2,"BC":-5,"BL":-3,"RE":-2},{"FC":0,"CP":0,"RA":0,"RP":0,"BC":-2,"BL":0,"RE":-1},
+    {"ID":"VO2b","type":5,"effect":[{"FC":0,"CP":0,"RA":-0.1,"RP":-0.5,"BC":-5,"BL":-3,"RE":-2},{"FC":0,"CP":0,"RA":0,"RP":0,"BC":-2,"BL":0,"RE":-1},
                                     {"FC":0,"CP":0,"RA":0,"RP":0,"BC":-1,"BL":0,"RE":-1},{"FC":0,"CP":0,"RA":0,"RP":0,"BC":1,"BL":1,"RE":-1}], 
                           "effect2":[[-0.0025,-0.0025,-0.0025,0.0025,0.01],[0,-0.0025,-0.0025,0,0],
                                      [0,-0.001,-0.001,0,0],[0,0,-0.001,0,0.0025]]}//ici le second le perdant
