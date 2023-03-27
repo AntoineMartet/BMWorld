@@ -177,6 +177,13 @@ function fnActionProba(){//pour calculer des probabilité des chaques actions
             continue;
         }
 
+        if (creatureTotal[i].status.FC < 15){
+
+            creatureTotal[i].action = "TRA";
+            continue;
+
+        }
+
 
         for (let j = 0; j < actions.length; j++){
             if (actions[j].type == 1 || actions[j].type == 3){//si action seul
