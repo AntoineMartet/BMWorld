@@ -1,54 +1,65 @@
 body{
     margin: 0px;
+    background-color: black;
 }
 
 h1{
-    background-color: lightcoral;
-    margin: 0px;
+    background-color: black;
+    margin-bottom: 20px;
     padding: 5px;
+    padding-bottom: 20px;
     text-align: center;
     font-family: Verdana;
+    color: white;
+    border-color: white;
+    border-bottom-style: double;
 }
+
+
 
 /*Display 3D canvas*/
 #canvasDisplay{
-    border: 5px solid lightcoral;
     width: 1200px;
     height: 850px;
     float: left;
     margin: 10px;
+    border-color: white;
+    border-style: solid;
+}
+
+#Options{
+    margin-left: 10px;
+    color: white;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#WorldTypeSelect{
+    margin-left: 10px;
+    text-align: center;
 }
 
 #world{
-    background-color: mediumpurple;
-    border: 5px solid lightcoral;
+    background-color: #00a85a;
+    border-color: white;
+    border-style: solid;
     height: 410px;
     width: 600px;
     float: left;
     margin: 10px;
     display: flex;
     flex-wrap: wrap;
-
-    align-content: flex-start;
 }
 
 #person{
-    background-color: mediumpurple;
-    border: 5px solid lightcoral;
+    border-color: white;
+    border-style: solid;
     height: 410px;
     width: 600px;
     float: left;
     margin: 10px;
     flex-wrap: wrap;
     display: flex;
-
-}
-
-#devTests{
-    background-color: lightyellow;
-    width: 1700px;
-    margin: 10px;
-    clear: both;
 }
 
 .tabPerson {
@@ -79,7 +90,7 @@ input[name="radioPerson"] {
 /* color of tab which is just after the checked input */
 /* div + p	selects the first <p> element that is placed immediately after <div> elements */
 input:checked + .tabPerson {
-    background-color: cadetblue;
+    background-color: black;
     color: aliceblue;
 }
 
@@ -111,7 +122,7 @@ input[name="radioWorld"]{
 }
 
 input:checked + .tabWorld {
-    background-color: cadetblue;
+    background-color: black;
     color: aliceblue;
 }
 
@@ -124,18 +135,31 @@ input:checked + .tabWorld + .divShowHide{
 .divShowHide {
     display: none;
     width: 100%;
-    padding: 10px;
+    margin: 20px;
 }
 
 #tableWorldEtat {
-    padding: 10px;
+    padding: 5px;
     border-collapse: collapse;
-    margin: 10px;
     border: 1px solid;
     width: 100%;
-
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 tr, td {
     border: 1px solid;
+}
+
+#WorldTypeList{
+    width: 200px;
+    height: 40px;
+    background-color: white;
+    border-color: white;
+    color: black;
+    line-height: 40px;
+    font-size: 15px;
+    text-align: center;
+    order: -1;
 }

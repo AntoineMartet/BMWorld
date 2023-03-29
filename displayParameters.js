@@ -1,5 +1,5 @@
 let statusLegends = ["FC", "CP", "RA", "RP", "BC", "BL", "RE"]; // légendes à afficher
-let statusColors = ["yellow", "orange", "red", "purple", "blue", "deepskyblue", "green"]; // couleurs
+let statusColors = ["#FF000D", "#8400FF", "#FFFF00", "#FF6200", "#2DF500", "#22CC00","#0000FF"];
 
 let actionsLegends=["ETU","TRA","JOS","SPS","VOS","COS","COB","JO2","DI2","SP2","VO2","VO2b"];
 let actionsColors=["red","orange","yellow","lightgreen","green","darkgreen","darkblue","lightblue","blue","aqua","purple","pink",""];

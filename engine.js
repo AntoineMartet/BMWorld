@@ -78,7 +78,7 @@ function fnMove() {//fonction qui gère le mouvement des créature
         //Random pour le possibilité à changer le direction
         let randomProbability
         if (creatureTotal[i].direction == 4){//si la créature ne bouge pas, elle a plus de chance de changer de direction
-            randomProbability = 10;
+            randomProbability = 15;
         }
         else{
             randomProbability = 20;

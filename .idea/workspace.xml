@@ -7,7 +7,12 @@
     <list default="true" id="750940a2-276d-4ac7-b530-15f2d945770d" name="Changes" comment="Changes">
       <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Courbe.html" beforeDir="false" afterPath="$PROJECT_DIR$/Courbe.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BMWorld.css" beforeDir="false" afterPath="$PROJECT_DIR$/BMWorld.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data.js" beforeDir="false" afterPath="$PROJECT_DIR$/data.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/display.js" beforeDir="false" afterPath="$PROJECT_DIR$/display.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/displayCreature.js" beforeDir="false" afterPath="$PROJECT_DIR$/displayCreature.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/displayParameters.js" beforeDir="false" afterPath="$PROJECT_DIR$/displayParameters.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine.js" beforeDir="false" afterPath="$PROJECT_DIR$/engine.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,12 +50,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="N:\COMMUN\ELEVE\INFO\SI-CA1a\I-CT 306\BMWorld\protos" />
@@ -102,6 +111,9 @@
       <workItem from="1679314518902" duration="8327000" />
       <workItem from="1679555265116" duration="4868000" />
       <workItem from="1679662186125" duration="3802000" />
+      <workItem from="1679924833781" duration="122000" />
+      <workItem from="1680086475496" duration="406000" />
+      <workItem from="1680087901399" duration="4338000" />
     </task>
     <servers />
   </component>
@@ -118,6 +130,5 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

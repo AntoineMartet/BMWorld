@@ -133,16 +133,16 @@ function fnDisplay() {
     }
 
     // Fond du canvas PersonStatus
-    ctxPersonStatus.fillStyle = "lightblue";
+    ctxPersonStatus.fillStyle = "#00a85a";
     ctxPersonStatus.fillRect(0, 0, 600, 600);
 
     // Fond du canvas PersonPersonality
-    ctxPersonPersonality.fillStyle = "lightblue";
+    ctxPersonPersonality.fillStyle = "#00a85a";
     ctxPersonPersonality.fillRect(0, 0, 600, 600);
 
     // Dessin des graphes
     bars(statusLegends, 130, 335, 300, 300, statusColors);
-    spider(personalityLegends, 300, 188, 150, "purple", "yellow");
+    spider(personalityLegends, 300, 188, 150, "lightgreen", "yellow");
 
     // MAJ de l'affichage du nombre de cycles
     document.getElementById("cyclesNumber").innerHTML = "Cycles : " + cycles;
@@ -207,11 +207,11 @@ function bars(legends, x, y, l, h, colors) {
     // axes
     ctxPersonStatus.beginPath();
     ctxPersonStatus.moveTo(x, y);
-    ctxPersonStatus.lineTo(x + l * 1.1, y);
+    ctxPersonStatus.lineTo(x + l * 1, y);
     ctxPersonStatus.stroke(); // La méthode stroke() dessine le chemin actuel
     ctxPersonStatus.beginPath();
     ctxPersonStatus.moveTo(x, y);
-    ctxPersonStatus.lineTo(x, y - h * 1.1);
+    ctxPersonStatus.lineTo(x, y - h * 1);
     ctxPersonStatus.stroke();
     ctxPersonStatus.strokeRect(x, y, l, -h);
 
@@ -421,7 +421,7 @@ function updateSelectedCreature() {
 // Appelée en cliquant sur l'onglet "État du monde"
 // Lien pour le calcul de la moyenne avec la fonction reduce() : https://www.codingem.com/javascript-calculate-average/
 function fnDisplayWorldStatus() {
-    let textToDisplay = "<tr> <td></td><td>Minimum</td><td>Moyenne</td><td>Maximum</td> </tr>";
+    let textToDisplay = "<tr> <td>Status</td><td>Minimum</td><td>Moyenne</td><td>Maximum</td> </tr>";
 
     textToDisplay += fnStatusValues("Force", "FC");
     textToDisplay += fnStatusValues("Compétences", "CP");

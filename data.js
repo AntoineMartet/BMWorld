@@ -30,7 +30,8 @@ let creatureTotal = [
         "type"     : Math.floor(Math.random() * 4) + 1,
         "color"    : Math.floor(Math.random()*24),
         "near"     : null,
-        "action"   : null
+        "action"   : null,
+        "actualSpecialChar"  : 0
     },
     {   "ID": 1, "name": "MICHAEL",
         "position" : {"x": 10, "z": 10},
@@ -40,7 +41,8 @@ let creatureTotal = [
         "type"     : Math.floor(Math.random() * 4) + 1,
         "color"    :Math.floor(Math.random()*24),
         "near"     : null,
-        "action"   : null
+        "action"   : null,
+        "actualSpecialChar"  : 0
     },
     {   "ID": 2, "name": "LEO",
         "position" : {"x": 20, "z": 20},
@@ -50,7 +52,8 @@ let creatureTotal = [
         "type"     : Math.floor(Math.random() * 4) + 1,
         "color"    :Math.floor(Math.random()*24),
         "near"     : null,
-        "action"   : null
+        "action"   : null,
+        "actualSpecialChar"  : 0
     },
     {   "ID": 3, "name": "SIMONNE",
         "position" : {"x": 30, "z": 30},
@@ -60,7 +63,8 @@ let creatureTotal = [
         "type"     : Math.floor(Math.random() * 4) + 1,
         "color"    :Math.floor(Math.random()*24),
         "near"     : null,
-        "action"   : null
+        "action"   : null,
+        "actualSpecialChar"  : 0
     },
     {   "ID": 4, "name": "ROSE",
         "position" : {"x": 30, "z": 29},
@@ -70,7 +74,8 @@ let creatureTotal = [
         "type"     : Math.floor(Math.random() * 4) + 1,
         "color"    :Math.floor(Math.random()*24),
         "near"     : null,
-        "action"   : null
+        "action"   : null,
+        "actualSpecialChar"  : 0
     },
     {   "ID": 5, "name": "NICOLAS",
         "position" : {"x": 34, "z": 34},
@@ -80,7 +85,8 @@ let creatureTotal = [
         "type"     : Math.floor(Math.random() * 4) + 1,
         "color"    :Math.floor(Math.random()*24),
         "near"     : null,
-        "action"   : null
+        "action"   : null,
+        "actualSpecialChar"  : 0
     },
     {   "ID": 6, "name": "ANTOINE",
         "position" : {"x": 35, "z": 35},
@@ -90,7 +96,8 @@ let creatureTotal = [
         "type"     : Math.floor(Math.random() * 4) + 1,
         "color"    :Math.floor(Math.random()*24),
         "near"     : null,
-        "action"   : null
+        "action"   : null,
+        "actualSpecialChar"  : 0
     },
     {   "ID": 7, "name": "KAREN",
         "position" : {"x": 25, "z": 25},
@@ -100,7 +107,8 @@ let creatureTotal = [
         "type"     : Math.floor(Math.random() * 4) + 1,
         "color"    :Math.floor(Math.random()*24),
         "near"     : null,
-        "action"   : null
+        "action"   : null,
+        "actualSpecialChar"  : 0
     },
     {   "ID": 8, "name": "PATRICK",
         "position" : {"x": 15, "z": 15},
@@ -110,7 +118,8 @@ let creatureTotal = [
         "type"     : Math.floor(Math.random() * 4) + 1,
         "color"    :Math.floor(Math.random()*24),
         "near"     : null,
-        "action"   : null
+        "action"   : null,
+        "actualSpecialChar"  : 0
     },
     {   "ID": 9, "name": "MAX",
         "position" : {"x": 5, "z": 5},
@@ -120,7 +129,8 @@ let creatureTotal = [
         "type"     : Math.floor(Math.random() * 4) + 1,
         "color"    :Math.floor(Math.random()*24),
         "near"     : null,
-        "action"   : null
+        "action"   : null,
+        "actualSpecialChar"  : 0
     },
     {   "ID": 10, "name": "NICK",
         "position" : {"x": 5, "z": 5},
@@ -130,7 +140,8 @@ let creatureTotal = [
         "type"     : Math.floor(Math.random() * 4) + 1,
         "color"    :Math.floor(Math.random()*24),
         "near"     : null,
-        "action"   : null
+        "action"   : null,
+        "actualSpecialChar"  : 0
     },
     {   "ID": 11, "name": "PAUL",
         "position" : {"x": 5, "z": 5},
@@ -140,7 +151,8 @@ let creatureTotal = [
         "type"     : Math.floor(Math.random() * 4) + 1,
         "color"    :Math.floor(Math.random()*24),
         "near"     : null,
-        "action"   : null
+        "action"   : null,
+        "actualSpecialChar"  : 0
     },
     {   "ID": 12, "name": "HOPE",
         "position" : {"x": 5, "z": 5},
@@ -150,7 +162,8 @@ let creatureTotal = [
         "type"     : Math.floor(Math.random() * 4) + 1,
         "color"    :Math.floor(Math.random()*24),
         "near"     : null,
-        "action"   : null
+        "action"   : null,
+        "actualSpecialChar"  : 0
     },
     {   "ID": 13, "name": "ARTHUR",
         "position" : {"x": 5, "z": 5},
@@ -160,7 +173,8 @@ let creatureTotal = [
         "type"     : Math.floor(Math.random() * 4) + 1,
         "color"    :Math.floor(Math.random()*24),
         "near"     : null,
-        "action"   : null
+        "action"   : null,
+        "actualSpecialChar"  : 0
     },
     {   "ID": 14, "name": "ADAM",
         "position" : {"x": 5, "z": 5},
@@ -170,7 +184,8 @@ let creatureTotal = [
         "type"     : Math.floor(Math.random() * 4) + 1,
         "color"    :Math.floor(Math.random()*24),
         "near"     : null,
-        "action"   : null
+        "action"   : null,
+        "actualSpecialChar"  : 0
     }
 ]
 
@@ -188,7 +203,8 @@ for(let i = (creatureTotal.length);i < 100; i++) {
         "type"     : Math.floor(Math.random() * 4) + 1,
         "color"    :Math.floor(Math.random()*24),
         "near"     : null,
-        "action"   : null
+        "action"   : null,
+        "actualSpecialChar"  : 0
     })
 }
 //Fin les creatures---------------------------------------------------------------------------------------------------
