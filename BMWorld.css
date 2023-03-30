@@ -1,6 +1,7 @@
 body{
     margin: 0px;
     background-color: black;
+    font-family: Century;
 }
 
 h1{
@@ -9,7 +10,6 @@ h1{
     padding: 5px;
     padding-bottom: 20px;
     text-align: center;
-    font-family: Verdana;
     color: white;
     border-color: white;
     border-bottom-style: double;
@@ -63,7 +63,7 @@ h1{
 }
 
 .tabPerson {
-    width: calc(100%/5);
+    width: calc(100%/4.53);
     height: 40px;
     background-color: darkgrey;
     line-height: 40px;
@@ -76,6 +76,7 @@ h1{
 
 #tabCreaturesText {
     text-align: right;
+    width: 70px;
 }
 
 #listPerson {
@@ -151,6 +152,9 @@ input:checked + .tabWorld + .divShowHide{
 tr, td {
     border: 1px solid;
 }
+tbody{
+    border: 5px double;
+}
 
 #WorldTypeList{
     width: 200px;
@@ -172,4 +176,28 @@ tr, td {
 img{
     height: 100px;
     width: 750px;
+}
+#divCam{
+    text-align: right;
+}
+
+#camera{
+    width: 24px;
+    height: 24px;
+    background-color: transparent;
+    vertical-align: -7px;
+
+}
+#SwitchCameras{
+    background-color: transparent;
+    border: none;
+}
+#SwitchCameras:hover{
+    cursor: pointer;
+}
+p{
+    text-align: center;
+}
+h3{
+    text-align: center;
 }

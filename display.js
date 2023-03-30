@@ -142,7 +142,7 @@ function fnDisplay() {
     ctxPersonPersonality.fillRect(0, 0, 600, 600);
 
     // Dessin des graphes
-    bars(statusLegends, 130, 335, 300, 300, statusColors);
+    bars(statusLegends, 250, 335, 300, 300, statusColors);
     spider(personalityLegends, 300, 188, 150, "lightgreen", "yellow");
 
     // MAJ de l'affichage du nombre de cycles
@@ -164,17 +164,14 @@ function fnCameraSwitch(){//fonction de changement de caméra
     if(cameraNumber == 1){
         cameraNumber = 2;
         setCamera(camera2); //changement de caméra
-        document.getElementById("SwitchCameras").innerHTML = "Passer à caméra 2";
     }
     else if(cameraNumber == 2){
         cameraNumber = 3;
         setCamera(camera3); //changement de caméra
-        document.getElementById("SwitchCameras").innerHTML = "Passer à caméra 3";
     }
     else{
         cameraNumber = 1;
         setCamera(camera1); //changement de caméra
-        document.getElementById("SwitchCameras").innerHTML = "Passer à caméra 1";
     }
 }
 
@@ -422,7 +419,7 @@ function updateSelectedCreature() {
 // Appelée en cliquant sur l'onglet "État du monde"
 // Lien pour le calcul de la moyenne avec la fonction reduce() : https://www.codingem.com/javascript-calculate-average/
 function fnDisplayWorldStatus() {
-    let textToDisplay = "<tr> <td>Status</td><td>Minimum</td><td>Moyenne</td><td>Maximum</td> </tr>";
+    let textToDisplay = "<tr> <td>Statut</td><td>Minimum</td><td>Moyenne</td><td>Maximum</td> </tr>";
 
     textToDisplay += fnStatusValues("Force", "FC");
     textToDisplay += fnStatusValues("Compétences", "CP");

@@ -18,7 +18,6 @@ SI-CA1a
     <div id="Options">
         <p id="cyclesNumber">Cycles : 1</p>
         <button type="button" id="cyclesPauseButton" onclick="fnUpdatePause()">Mettre en pause</button>
-        <button type="button" id="SwitchCameras" onclick="fnCameraSwitch()">Passer à caméra 2</button>
         <label for="speed">Vitesse des Cycles</label>
         <input type="range" id="speed" min="0" max="100" onchange="fnSpeedofCycles()">
         <button type="button" id="creaturesLog" onclick="fnLog(JSON.stringify(creatureTotalLog))">Log</button>
@@ -30,14 +29,14 @@ SI-CA1a
 
     <div id="WorldTypeSelect">
         <select name="TypeWorld" id="WorldTypeList" onchange="fnTypeOfSociety()">
-            <option value="0">Autocracy</option>
-            <option value="1">Anarchy</option>
-            <option value="2">Democracy</option>
-            <option value="3">Liberal Democracy</option>
-            <option value="4">Oligarchy</option>
-            <option value="5">Theocracy</option>
-            <option value="6">Communism</option>
-            <option value="7">Monarchy</option>
+            <option value="0">Autocratie</option>
+            <option value="1">Anarchie</option>
+            <option value="2">Democratie</option>
+            <option value="3">Democratie Liberale</option>
+            <option value="4">Oligarchie</option>
+            <option value="5">Theocratie</option>
+            <option value="6">Communisme</option>
+            <option value="7">Monarchie</option>
         </select>
 
     </div>
@@ -82,10 +81,11 @@ SI-CA1a
         </div>
 
         <!-- div d'espace vide avant le div avec le texte "Créatures :" -->
-        <div id="tabCreatureName" class="tabPerson"></div>
+        <div id="divCam" class="tabPerson"><button type="button" id="SwitchCameras" onclick="fnCameraSwitch()"><img id="camera" src="Camera.png"></button></div>
 
         <!-- div pour afficher le texte "Créatures :" avant le div avec la liste des créatures -->
         <div id="tabCreaturesText" class="tabPerson">
+
             <div>Créatures :</div>
         </div>
 
