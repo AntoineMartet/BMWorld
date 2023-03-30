@@ -113,6 +113,7 @@ function draw() {
         camera3.lookAt(creatureTotal[selectedCreatureIndex].position.x * unit, -20, creatureTotal[selectedCreatureIndex].position.z * unit);
     }
     fnDisplay(); // Affiche les fonds des 3 canvas, le monde, les créatures et les graphes
+    fnDisplayWorldStatus();
 }
 
 function fnDisplay() {
@@ -428,7 +429,8 @@ function fnDisplayWorldStatus() {
     textToDisplay += fnStatusValues("Argent", "RA");
     textToDisplay += fnStatusValues("Patrimoine", "RP");
     textToDisplay += fnStatusValues("Compétences", "CP");
-    textToDisplay += fnStatusValues("Bien-être", "BE");
+    textToDisplay += fnStatusValues("Bien-être Court", "BC");
+    textToDisplay += fnStatusValues("Bien-être Long", "BL");
     textToDisplay += fnStatusValues("Relations", "RE");
 
     document.getElementById("tableWorldEtat").innerHTML = textToDisplay;
@@ -441,9 +443,9 @@ function fnStatusValues(statusFullName, statusShortName) {
         arrayValues.push(creatureTotal[i].status[statusShortName]);
     }
 
-    let min = Math.min(...arrayValues);
-    let avg = arrayValues.reduce((a, b) => a + b, 0) / arrayValues.length;
-    let max = Math.max(...arrayValues);
+    let min = Math.round(Math.min(...arrayValues));
+    let avg = Math.round(arrayValues.reduce((a, b) => a + b, 0) / arrayValues.length);
+    let max = Math.round(Math.max(...arrayValues));
 
     if(statusShortName == "RA") {
         min *= 1000;
