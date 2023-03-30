@@ -177,12 +177,7 @@ function fnActionProba(){//pour calculer des probabilité des chaques actions
             continue;
         }
 
-        if (creatureTotal[i].status.FC < 15){
-
-            creatureTotal[i].action = "TRA";
-            continue;
-
-        }
+        
 
 
         for (let j = 0; j < actions.length; j++){
@@ -192,6 +187,11 @@ function fnActionProba(){//pour calculer des probabilité des chaques actions
             else if((actions[j].type == 2 || actions[j].type == 4) && creatureTotal[i].near != null){//si action à plusieurs, check si quelqu'un est à coté
                 tempArr.push({"nom" : actions[j].ID, "prob" : fnAddProba(actions[j].prob, i), "type" : actions[j].type})
             }
+        }
+        
+        if (creatureTotal[i].status.RA < 15){
+            tempArr[1].prob += 3;
+
         }
 
         let nbIndex = fnTakeOneIndexAction(tempArr);
