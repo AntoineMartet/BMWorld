@@ -163,3 +163,7 @@ tr, td {
     text-align: center;
     order: -1;
 }
+
+#skipCounter{
+    width: 50px;
+}

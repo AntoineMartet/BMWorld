@@ -13,7 +13,7 @@ let cameraNumber = 1;
 let camera1; //création des deux caméras
 let camera2;
 let camera3;
-let politic = document.getElementById("WorldTypeList").value ;
+let politic = document.getElementById("WorldTypeList").value;
 let actualSpecialChar = 0;
 
 let img; //chargement de l'image de fond
@@ -466,4 +466,12 @@ function fnTypeOfSociety(){
     textToDisplay += "<p> Salaire : " + actualSociety.salary + " </p>";
 
     document.getElementById("WorldType").innerHTML = textToDisplay;
+}
+
+function fnjumpCycles(){
+    let skipText = document.getElementById("skipCounter").value;
+    var cyclesToSkip = skipText * 50;
+    for(let i=0;i<cyclesToSkip;i++){
+        setTimeout(() => {  fnEngine(); }, 50);
+    }
 }
