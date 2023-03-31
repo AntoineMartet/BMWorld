@@ -60,6 +60,7 @@ h1{
     margin: 10px;
     flex-wrap: wrap;
     display: flex;
+
 }
 
 .tabPerson {
@@ -151,6 +152,7 @@ input:checked + .tabWorld + .divShowHide{
 
 tr, td {
     border: 1px solid;
+    background-color: lightgreen;
 }
 tbody{
     border: 5px double;
