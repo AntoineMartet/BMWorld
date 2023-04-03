@@ -11,23 +11,13 @@ SI-CA1a
     <link rel="stylesheet" type="text/css" href="BMWorld.css">
 </head>
 
+
 <body>
+<main>
 
     <h1><img src="Logo_BMW.png"></h1>
 
     <div id="Options">
-        <p id="cyclesNumber">Cycles : 1</p>
-        <button type="button" id="cyclesPauseButton" onclick="fnUpdatePause()">Mettre en pause</button>
-        <label for="speed">Vitesse des Cycles</label>
-        <input type="range" id="speed" min="0" max="100" onchange="fnSpeedofCycles()">
-        <button type="button" id="creaturesLog" onclick="fnLog(JSON.stringify(creatureTotalLog))">Log</button>
-        <input type="text" id="skipCounter"/>
-        <button type="button" id="jumpCycles" onclick="fnjumpCycles()">Sauter X cycles</button>
-    </div>
-
-
-
-    <div id="WorldTypeSelect">
         <select name="TypeWorld" id="WorldTypeList" onchange="fnTypeOfSociety()">
             <option value="0">Autocratie</option>
             <option value="1">Anarchie</option>
@@ -38,8 +28,18 @@ SI-CA1a
             <option value="6">Communisme</option>
             <option value="7">Monarchie</option>
         </select>
-
+        <button type="button" id="cyclesPauseButton" onclick="fnUpdatePause()">Mettre en pause</button>
+        <label for="speed">Vitesse des Cycles</label>
+        <input type="range" id="speed" min="0" max="100" onchange="fnSpeedofCycles()">
+        <button type="button" id="creaturesLog" onclick="fnLog(JSON.stringify(creatureTotalLog))">Log</button>
+        <input type="text" id="skipCounter"/>
+        <button type="button" id="jumpCycles" onclick="fnjumpCycles()">Sauter X cycles</button>
+        <p id="cyclesNumber">Cycles : 1</p>
     </div>
+
+
+
+
 
     <div id="canvasDisplay"></div>
 
@@ -86,7 +86,7 @@ SI-CA1a
         <!-- div pour afficher le texte "Créatures :" avant le div avec la liste des créatures -->
         <div id="tabCreaturesText" class="tabPerson">
 
-            <div>Créatures :</div>
+            <div>Créature</div>
 
         </div>
 
@@ -101,6 +101,10 @@ SI-CA1a
         <textarea id="textEngine" rows="50" cols="180"></textarea>
     </div>
 
+</main>
+<footer>
+    <div><p>© SI-CA1a 2023</p></div>
+</footer>
 </body>
 </html>
 

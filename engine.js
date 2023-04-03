@@ -397,6 +397,7 @@ function fnSalary(){// fonction qui donne un salaire aux créatures selon condit
 }
 
 function fnLog(text){//fonction qui permet d'écrire des logs
+    document.getElementById("textEngine").style.display = "block";
     document.getElementById("textEngine").value += "\n\n" + text;
     console.log(text);
 }

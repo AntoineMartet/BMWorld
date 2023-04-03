@@ -75,9 +75,9 @@ function setup() {
     ctxPersonStatus = document.getElementById("canvasPersonStatus").getContext("2d");
     ctxPersonPersonality = document.getElementById("canvasPersonPersonality").getContext("2d");
     ctxPersonStatus.canvas.width = 600;
-    ctxPersonStatus.canvas.height = 370;
+    ctxPersonStatus.canvas.height = 374;
     ctxPersonPersonality.canvas.width = 600;
-    ctxPersonPersonality.canvas.height = 370;
+    ctxPersonPersonality.canvas.height = 374;
     createListOfCreatures();
     fnTypeOfSociety();
 }
@@ -143,7 +143,7 @@ function fnDisplay() {
 
     // Dessin des graphes
     bars(statusLegends, 250, 335, 300, 300, statusColors);
-    spider(personalityLegends, 300, 188, 150, "lightgreen", "yellow");
+    spider(personalityLegends, personalityLegendsOfLegends, 400, 188, 150, "lightgreen", "yellow");
 
     // MAJ de l'affichage du nombre de cycles
     document.getElementById("cyclesNumber").innerHTML = "Cycles : " + cycles;
@@ -214,14 +214,18 @@ function bars(legends, x, y, l, h, colors) {
     ctxPersonStatus.strokeRect(x, y, l, -h);
 
     //Ecritures des légendes (noir, 15pt Arial)
-    ctxPersonStatus.font = "15pt Arial";
+    ctxPersonStatus.font = "14pt Calibri";
     ctxPersonStatus.fillStyle = "black";
+
     for (let i = 0; i < legends.length; i++) {
-        ctxPersonStatus.fillText(legends[i], x + largeur * (i + 0.25), y + 25);
+        ctxPersonStatus.fillStyle = "black";
+        ctxPersonStatus.fillText(legends[i], 50, y - 260 + i * 40);
+        ctxPersonStatus.fillStyle = statusColors[i];
+        ctxPersonStatus.fillRect(20, 58 + i * 40, 20, 20);
     }
 }
 
-function spider(legends, x, y, r, c1, c2) {
+function spider(legends, legendsOfLegends, x, y, r, c1, c2) {
     // Cette fonction dessine un graphique en toile d'araignée
     // dans le dessin ctx, avec le tableau des valeurs et le tableau des légendes
     // Le graphique est placé en x, y et a pour rayon r
@@ -291,12 +295,18 @@ function spider(legends, x, y, r, c1, c2) {
     }
 
     // Ecritures des légendes (noir, 15pt Arial)
-    ctxPersonPersonality.font = "15pt Arial";
+    ctxPersonPersonality.font = "15pt Calibri";
     ctxPersonPersonality.fillStyle = "black";
     for (let i = 0; i < legends.length; i++) {
         let angle = -i * 2 * Math.PI / legends.length;
         ctxPersonPersonality.fillText(legends[i], x - 5 + 1.2 * r * Math.cos(angle), y + 5 - 1.2 * r * Math.sin(angle));
         // "-5" et "+5" uniquement pour peaufiner l'emplacement des légendes
+    }
+
+    ctxPersonStatus.fillStyle = "black";
+
+    for (let i = 0; i < legendsOfLegends.length; i++) {
+        ctxPersonPersonality.fillText(legendsOfLegends[i], 50, y -75 + i * 40);
     }
 }
 
@@ -457,12 +467,14 @@ function fnTypeOfSociety(){
     let monde = parseInt(document.getElementById("WorldTypeList").value);
     actualSociety = societyModels[monde];
 
-    let textToDisplay = "<h3>" + actualSociety.state + "\n \n </h3>";
+    let textToDisplay = "<h3>" + actualSociety.state + "</h3>";
 
-    textToDisplay += "<p> Aides : " + actualSociety.help + " % \n \n </p>";
-    textToDisplay += "<p> Taxes : " + actualSociety.tax + " % \n \n </p>";
-    textToDisplay += "<p> Sanctions : " + actualSociety.penalty + "\n \n </p>";
-    textToDisplay += "<p> Salaire : " + actualSociety.salary + " </p>";
+    textToDisplay += "<p> Aides : " + actualSociety.help + " %</p>";
+    textToDisplay += "<p> Taxes : " + actualSociety.tax + " %</p>";
+    textToDisplay += "<p> Sanctions : " + actualSociety.penalty + "</p>";
+    textToDisplay += "<p> Salaire : " + actualSociety.salary + " </p> <br>";
+    textToDisplay += "<p id='societyDescription'>L'autocratie est un régime politique où un seul individu détient le pouvoir, alors qualifié de pouvoir personnel et absolu. " +
+        "Étymologiquement, «autocratie» signifie « qui tire son pouvoir de lui-même ». L'autocratie est un pouvoir qui n'a d'autre justification et légitimité que lui-même.\n</p>"
 
     document.getElementById("WorldType").innerHTML = textToDisplay;
 }
