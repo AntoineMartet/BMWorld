@@ -9,17 +9,17 @@
 <h1><img src="Logo_BMW.png"></h1>
 
 <div style="text-align: center">
-	<p id="creatureAnalyse" style="color: white">Créature à analyser :</p>
+	<p id="creatureAnalyse" style="color: white">ID de la créature à analyser :</p>
 	<input type="text" id="creature" value="0">
 	<button onclick="fnAnalyse()">Graphes de la créature + monde</button>
 	<!--<input type="text" id="action" value="Exemple : BC">
 	<button onclick="fnSuiviActionCreature()">Suivi actions + statut choisi de la créature</button><br>-->
-	<p style="color: white">Coller dans la zone de texte l'historique à tester, choisir une créature, choisir un composant du status (optionnel).<br></p>
+	<p style="color: white">Choisir une créature, coller dans la zone de texte l'historique à tester. Les deux premiers graphes montrent les caractéristiques de la créature sélectionnée. Puis viennent les actions réalisées par la créature. Enfin on peut voir les valeurs moyennes des caractéristiques des 100 créatures.<br></p>
 	<textarea id="log" rows="5", cols="160"></textarea>
 	<canvas id="dessin" width="1600" height="1200" style="border:1px solid black;background-color:lightblue"></canvas>
-	<div>
+	<!--<div>
 		<textarea id="creatureActions" rows="50" cols="180"></textarea>
-	</div>
+	</div>-->
 </div>
 </body>
 </html>
