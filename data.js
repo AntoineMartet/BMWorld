@@ -251,10 +251,11 @@ actions= [
 // LIB = LIBERAL DEMOCRACY
 // COM = COMMUNISM
 let societyModels=[
-    {"state":"AUTOCRATIE", "penalty":0.5,"conditionHelp":0, "help":0, "conditionTax": 30,"tax": 10, "salary":1, "probaArrest": 2},
-    {"state":"ANARCHIE", "penalty":0, "conditionHelp":0, "help":0, "conditionTax": 100, "tax":0, "salary":0.3, "probaArrest": 1000},
-    {"state":"DEMOCRATIE", "penalty": 0.3, "conditionHelp":40, "help":25, "conditionTax": 50, "tax":15, "salary":2, "probaArrest": 3},
-    {"state":"DEMOCRATIE LIBERALE", "penalty":0.2, "conditionHelp":20,"help": 15, "conditionTax": 70, "tax":12, "salary":2.5, "probaArrest": 3},
-    {"state":"COMMUNISME", "penalty":0.5, "conditionHelp":30, "help":20, "conditionTax": 50, "tax":10, "salary":0.9, "probaArrest": 2}
+    {"state":"AUTOCRATIE", "penalty":0.5,"conditionHelp":0, "help":0, "conditionTax": 30,"tax": 10, "salary":1, "probaArrest": 2, "description": "L'autocratie est un régime politique où un seul individu détient le pouvoir, alors qualifié de pouvoir personnel et absolu. Étymologiquement, «autocratie» signifie «qui tire son pouvoir de lui-même». L'autocratie est un pouvoir qui n'a d'autre justification et légitimité que lui-même."},
+    {"state":"ANARCHIE", "penalty":0, "conditionHelp":0, "help":0, "conditionTax": 100, "tax":0, "salary":0.3, "probaArrest": 1000, "description": "L’anarchie, ou société libertaire, est une société fondée sur la démocratie directe sans système de pouvoir vertical tel qu'un gouvernement non soumis au peuple, une économie d'exploitation ou une religion d'État."},
+    {"state":"DEMOCRATIE", "penalty": 0.3, "conditionHelp":40, "help":25, "conditionTax": 50, "tax":15, "salary":2, "probaArrest": 3, "description": "Le terme démocratie désigne à l'origine un régime politique dans lequel tous les citoyens participent aux décisions publiques et à la vie politique de la cité. Ce dispositif s'effectuait soit de manière directe en soumettant des décisions au vote à tous les citoyens, soit de manière indirecte par des représentants qui étaient préalablement désignés."},
+    {"state":"DEMOCRATIE LIBERALE", "penalty":0.2, "conditionHelp":20,"help": 15, "conditionTax": 70, "tax":12, "salary":2.5, "probaArrest": 3, "description": "La démocratie libérale, parfois appelée démocratie occidentale, est une idéologie politique et une forme de gouvernement dans laquelle la démocratie représentative fonctionne selon les principes du libéralisme, à savoir la protection des libertés de l'individu."},
+    {"state":"COMMUNISME", "penalty":0.5, "conditionHelp":30, "help":20, "conditionTax": 50, "tax":10, "salary":0.9, "probaArrest": 2, "description": "Le communisme est initialement un ensemble de doctrines politiques, issues du socialisme et, pour la plupart, du marxisme, s'opposant au capitalisme et visant à l'instauration d'une société sans classes sociales, sans salariat, voire aussi l'extinction de l'État et une mise en place d'une totale socialisation économique et démocratique des moyens de production."}
 ]
+
 //Fin les systèmes politiques----------------------------------------------------------------------------------------

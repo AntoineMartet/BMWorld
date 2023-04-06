@@ -5,7 +5,6 @@
 // À faire :
 //  - Créer une liste des individus pour sélectionner l'un d'eux.
 
-
 let selectedCreatureIndex = 0;
 let cycles = 0;
 let booleanPause = 0;
@@ -14,7 +13,6 @@ let camera1; //création des deux caméras
 let camera2;
 let camera3;
 let politic = document.getElementById("WorldTypeList").value;
-let actualSpecialChar = 0;
 
 let img; //chargement de l'image de fond
 /*let matrix;
@@ -27,9 +25,6 @@ let nz = 40; // nombre de tuiles en y
 let unit = 50; // taille de l'unité de base du monde. Une tuile fait 50 de côté.
 let tileSize = unit - 2; // L'affichage d'une tuile fait 48 de côté.
 let aWorld = [
-    { "name": "axe X", "type": "line", "x": 0, "y": 0, "z": 0, "x1": 700, "y1": 0, "z1": 0, "color": "red" },
-    { "name": "axe Y", "type": "line", "x": 0, "y": 0, "z": 0, "x1": 0, "y1": 700, "z1": 0, "color": "green" },
-    { "name": "axe Z", "type": "line", "x": 0, "y": 0, "z": 0, "x1": 0, "y1": 0, "z1": 700, "color": "blue" },
     {"name":"monde","type":"monde","x":1000,"y":-50,"z":1000,"rx":0,"ry":0,"rz":0,"l1":100,"l2":100,"l3":100,"color":"green"}
 ];
 
@@ -129,8 +124,6 @@ function fnDisplay() {
         ColorTorus = CouleurTorus[creatureTotal[i].color];
         ColorCone = CouleurCone[creatureTotal[i].color];
         fnDisplayCreature(creatureTotal[i], i);
-
-
     }
 
     // Fond du canvas PersonStatus
@@ -395,7 +388,6 @@ function fnDisplayObject(o) {
             rotateX(o.rx);
             rotateY(180);
             rotateZ(o.rz);
-            //texture(matrix);
             sphere(4800,4800);
             pop();
             break;
@@ -473,8 +465,7 @@ function fnTypeOfSociety(){
     textToDisplay += "<p> Taxes : " + actualSociety.tax + " %</p>";
     textToDisplay += "<p> Sanctions : " + actualSociety.penalty + "</p>";
     textToDisplay += "<p> Salaire : " + actualSociety.salary + " </p> <br>";
-    textToDisplay += "<p id='societyDescription'>L'autocratie est un régime politique où un seul individu détient le pouvoir, alors qualifié de pouvoir personnel et absolu. " +
-        "Étymologiquement, «autocratie» signifie « qui tire son pouvoir de lui-même ». L'autocratie est un pouvoir qui n'a d'autre justification et légitimité que lui-même.\n</p>"
+    textToDisplay += "<p id='societyDescription'>" + actualSociety.description + "</p>";
 
     document.getElementById("WorldType").innerHTML = textToDisplay;
 }
@@ -486,3 +477,4 @@ function fnjumpCycles(){
         setTimeout(() => {  fnEngine(); }, 50);
     }
 }
+
