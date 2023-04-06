@@ -1,18 +1,26 @@
 <!DOCTYPE HTML>
 <html>
+<head>
+	<meta charset="UTF-8">
+	<title>Courbes</title>
+	<link rel="stylesheet" type="text/css" href="BMWorld.css">
+</head>
 <body>
-	<title> Courbes </title>
-	Coller dans le textarea l'historique à tester, choisir une créature, choisir un composant du status (optionnel).<br>
-	Personnage à analyser:
+<h1><img src="Logo_BMW.png"></h1>
+
+<div style="text-align: center">
+	<p id="creatureAnalyse" style="color: white">Créature à analyser :</p>
 	<input type="text" id="creature" value="0">
 	<button onclick="fnAnalyse()">Graphes de la créature + monde</button>
-	<input type="text" id="action" value="Exemple : BC">
-	<button onclick="fnSuiviActionCreature()">Suivi actions + statut choisi de la créature</button><br>
+	<!--<input type="text" id="action" value="Exemple : BC">
+	<button onclick="fnSuiviActionCreature()">Suivi actions + statut choisi de la créature</button><br>-->
+	<p style="color: white">Coller dans la zone de texte l'historique à tester, choisir une créature, choisir un composant du status (optionnel).<br></p>
 	<textarea id="log" rows="5", cols="160"></textarea>
 	<canvas id="dessin" width="1600" height="1200" style="border:1px solid black;background-color:lightblue"></canvas>
 	<div>
 		<textarea id="creatureActions" rows="50" cols="180"></textarea>
 	</div>
+</div>
 </body>
 </html>
 
