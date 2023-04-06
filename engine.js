@@ -11,7 +11,9 @@ let PositionCreatures = [];
 
 function fnEngine(){
     //Cette fonction va faire
+    fnResetPosCreature()
     fnMove();
+    
     stepCount++;
 
     if(stepCount % 50 == 0){
@@ -39,35 +41,44 @@ function fnEngine(){
 
 }
 
-
+for (let i = 0; i < 40; i++) {
+    PositionCreatures[i] = [];
+    for(let j = 0; j < 40; j++) {
+        PositionCreatures[i][j] = [];
+    }
+}
 
 function fnMove() {//fonction qui gère le mouvement des créature
 
     for (i=0;i<creatureTotal.length;i++){
-        switch(creatureTotal[i].direction) { //AYAMI
+        switch(creatureTotal[i].Tempdirection) { //AYAMI
             case 0: //up
-                if(creatureTotal[i].position.z + 0.1 < 40) {
+                if(creatureTotal[i].position.z + 0.1 < 40 && fnCaseLibre(i, 1, "x")){
+                    creatureTotal[i].direction = creatureTotal[i].Tempdirection;
                     creatureTotal[i].position.z += 0.1;
                 } else {
                     fnChangeDirection();
                 }
                 break;
             case 1: //right
-                if(creatureTotal[i].position.x + 0.1 < 40) {
+                if(creatureTotal[i].position.x + 0.1 < 40 && fnCaseLibre(i, 1, "z")) {
+                    creatureTotal[i].direction = creatureTotal[i].Tempdirection;
                     creatureTotal[i].position.x += 0.1;
                 } else {
                     fnChangeDirection();
                 }
                 break;
             case 2: //down
-                if(creatureTotal[i].position.z - 0.1 >= 0) {
+                if(creatureTotal[i].position.z - 0.1 >= 0 && fnCaseLibre(i, -1, "x")) {
+                    creatureTotal[i].direction = creatureTotal[i].Tempdirection;
                     creatureTotal[i].position.z -= 0.1;
                 } else {
                     fnChangeDirection();
                 }
                 break;
             case 3: // left
-                if(creatureTotal[i].position.x - 0.1 >= 0) {
+                if(creatureTotal[i].position.x - 0.1 >= 0 && fnCaseLibre(i, -1, "z")) {
+                    creatureTotal[i].direction = creatureTotal[i].Tempdirection;
                     creatureTotal[i].position.x -= 0.1;
                 } else {
                     fnChangeDirection();
@@ -77,7 +88,7 @@ function fnMove() {//fonction qui gère le mouvement des créature
 
         //Random pour le possibilité à changer le direction
         let randomProbability
-        if (creatureTotal[i].direction == 4){//si la créature ne bouge pas, elle a plus de chance de changer de direction
+        if (creatureTotal[i].Tempdirection == 4){//si la créature ne bouge pas, elle a plus de chance de changer de direction
             randomProbability = 15;
         }
         else{
@@ -88,8 +99,34 @@ function fnMove() {//fonction qui gère le mouvement des créature
             fnChangeDirection();
         }
 
+        
+
     }
 
+}
+
+function fnCaseLibre(nbCreature, dep, dirCheck){
+    if (dirCheck == "x"){
+        if ((PositionCreatures[Math.max(0,Math.min(39, Math.round(creatureTotal[nbCreature].position.x)))][Math.max(0,Math.min(39, Math.round(creatureTotal[nbCreature].position.z + dep)))].length == 0 ||
+            (PositionCreatures[Math.max(0,Math.min(39, Math.round(creatureTotal[nbCreature].position.x)))][Math.max(0,Math.min(39, Math.round(creatureTotal[nbCreature].position.z + dep)))].length == 1 && 
+            PositionCreatures[Math.max(0,Math.min(39, Math.round(creatureTotal[nbCreature].position.x)))][Math.max(0,Math.min(39, Math.round(creatureTotal[nbCreature].position.z + dep)))][0] == nbCreature)) && 
+            PositionCreatures[Math.max(0,Math.min(39, Math.round(creatureTotal[nbCreature].position.x + 1)))][Math.max(0,Math.min(39, Math.round(creatureTotal[nbCreature].position.z + dep)))].length == 0 &&
+            PositionCreatures[Math.max(0,Math.min(39, Math.round(creatureTotal[nbCreature].position.x - 1)))][Math.max(0,Math.min(39, Math.round(creatureTotal[nbCreature].position.z + dep)))].length == 0){
+
+                return true;
+        }
+    } else {
+        if ((PositionCreatures[Math.max(0,Math.min(39, Math.round(creatureTotal[nbCreature].position.x + dep)))][Math.max(0,Math.min(39, Math.round(creatureTotal[nbCreature].position.z)))].length == 0 || 
+            (PositionCreatures[Math.max(0,Math.min(39, Math.round(creatureTotal[nbCreature].position.x + dep)))][Math.max(0,Math.min(39, Math.round(creatureTotal[nbCreature].position.z)))].length == 1 &&
+            PositionCreatures[Math.max(0,Math.min(39, Math.round(creatureTotal[nbCreature].position.x + dep)))][Math.max(0,Math.min(39, Math.round(creatureTotal[nbCreature].position.z)))][0] == nbCreature)) &&
+            PositionCreatures[Math.max(0,Math.min(39, Math.round(creatureTotal[nbCreature].position.x + dep)))][Math.max(0,Math.min(39, Math.round(creatureTotal[nbCreature].position.z + 1)))].length == 0 &&
+            PositionCreatures[Math.max(0,Math.min(39, Math.round(creatureTotal[nbCreature].position.x + dep)))][Math.max(0,Math.min(39, Math.round(creatureTotal[nbCreature].position.z - 1)))].length == 0){
+                return true;
+        }
+    
+    }
+
+    return false;
 }
 
 function fnChangeDirection (){ //pour changer le direction
@@ -97,21 +134,28 @@ function fnChangeDirection (){ //pour changer le direction
     do {
         newDirection = Math.floor(Math.random() * 5);
     }
-    while(newDirection == creatureTotal[i].direction)
-    creatureTotal[i].direction = newDirection;
+    while(newDirection == creatureTotal[i].Tempdirection)
+    creatureTotal[i].Tempdirection = newDirection;
 }
 
-function fnResetActionCreature(){ // fonction qui reset la position des créatures dans le tableau temporaire et reset les actions
+function fnResetPosCreature(){
     for (let i = 0; i < 40; i++) {
         PositionCreatures[i] = [];
         for(let j = 0; j < 40; j++) {
             PositionCreatures[i][j] = [];
         }
     }
+
     for (i = 0;i < creatureTotal.length;i++) {
         let x = Math.min(39, Math.round(creatureTotal[i].position.x))
         let z = Math.min(39, Math.round(creatureTotal[i].position.z))
         PositionCreatures[x][z].push(creatureTotal[i].ID);
+    }
+}
+
+function fnResetActionCreature(){ // fonction qui reset la position des créatures dans le tableau temporaire et reset les actions
+    
+    for (i = 0;i < creatureTotal.length;i++) {
         creatureTotal[i].near = null;//maikol
         creatureTotal[i].action = null;//maikol
     }
