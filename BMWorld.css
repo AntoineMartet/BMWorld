@@ -242,3 +242,57 @@ a:hover{
     margin-top: -7px;
     margin-bottom: 7px;
 }
+
+
+/*CSS pour main page*/
+#description-page {
+    color: white;
+}
+#description-page ul {
+    list-style: none;
+}
+#description-page .container {
+    width: 65%;
+    margin: 0 auto;
+}
+#description-page .intro p {
+
+    text-align: left;
+}
+
+#description-page h2{
+    color: #45CF88;
+    border-bottom: 1px solid #45CF88;
+}
+
+#description-page .page-title{
+    color: #FBFE00;
+    border-bottom: 1px solid #FBFE00;
+    text-align: left;
+    font-size: 1.2em;
+}
+#description-page .page-title:hover {
+    color: white;
+    border-bottom: 1px solid white;
+}
+
+#description-page .teams {
+    display: flex;
+    gap: 30px;
+}
+
+#description-page .team-title  {
+    border-bottom: 1px solid white;
+}
+
+#description-page .two-pages {
+    display: flex;
+}
+
+#description-page .two-pages p {
+    text-align: left;
+}
+
+#description-page a {
+    text-decoration: none;
+}
