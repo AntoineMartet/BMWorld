@@ -227,7 +227,7 @@ footer{
 }
 
 a{
-    color: white;
+    color: #FBFE00;
     text-align: center;
     padding-left: 10px;
     padding-right: 10px;
@@ -243,6 +243,9 @@ a:hover{
     margin-bottom: 7px;
 }
 
+#creatureAnalyse{
+    display: inline;
+}
 
 /*CSS pour main page*/
 #description-page {
@@ -265,6 +268,9 @@ a:hover{
     border-bottom: 1px solid #45CF88;
 }
 
+#description-page .about-us p {
+    text-align: left;
+}
 #description-page .page-title{
     color: #FBFE00;
     border-bottom: 1px solid #FBFE00;
@@ -272,8 +278,8 @@ a:hover{
     font-size: 1.2em;
 }
 #description-page .page-title:hover {
-    color: white;
-    border-bottom: 1px solid white;
+    color: #45CF88;
+    border-bottom: 1px solid #45CF88;
 }
 
 #description-page .teams {
@@ -287,15 +293,21 @@ a:hover{
 
 #description-page .two-pages {
     display: flex;
+    gap: 30px;
 }
 
 #description-page .two-pages p {
-    text-align: left;
+    text-align: justify;
 }
 
 #description-page a {
     text-decoration: none;
 }
-#creatureAnalyse{
-    display: inline;
+
+.footer-desc {
+    position: relative;
+}
+.footer-desc p {
+    text-align: left;
+    padding-bottom: 11px;
 }
